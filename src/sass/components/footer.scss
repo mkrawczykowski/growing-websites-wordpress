@@ -1,0 +1,60 @@
+.footer {
+  border-top: 0.1rem solid $secondary100;
+
+  @include media-up(xxl) {
+    padding-top: 3.2rem;
+    padding-bottom: 3.2rem;
+  }
+
+  &-nav {
+    margin-top: 2rem;
+    text-align: center;
+
+    @include media-up(xxl) {
+      margin: 0;
+    }
+
+    &__nav {
+      @include media-up(xxl) {
+        display: flex;
+        justify-content: flex-start;
+      }
+
+      .menu-item {
+        margin-bottom: 2rem;
+
+        @include media-up(xxl) {
+          margin: 0 3.9rem 0 0;
+        }
+
+        a {
+          font-family: 'Rubik', sans-serif;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 1.4rem;
+          line-height: 1.7rem;
+          text-align: center;
+          letter-spacing: 0.05em;
+          text-transform: uppercase;
+          color: $secondary300;
+        }
+      }
+    }
+  }
+
+  &__company-name {
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+    text-align: center;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: $secondary300;
+
+    @include media-up(xxl) {
+      text-align: right;
+    }
+  }
+}

@@ -1,0 +1,137 @@
+.reviews-slider {
+  padding: 2.1rem 0 1rem 0;
+
+  .headings-text {
+    margin-bottom: 6rem;
+
+    @include media-up(xxl) {
+      margin-bottom: 8rem;
+    }
+  }
+
+  &__slider {
+    margin-right: -2rem;
+  }
+
+  &__reviews-list {
+    display: flex;
+    border-radius: 0.8rem;
+
+    .reviews-slider__person {
+      border: 1px solid $secondary100;
+      padding: 2.7rem;
+      max-width: 32rem;
+      border-radius: 1rem;
+      height: auto;
+
+      @include media-up(xxl) {
+        max-width: 48.7rem;
+        padding: 2.7rem 2.7rem 2.8rem 2.7rem;
+      }
+
+      &-text {
+        font-family: 'Rubik', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1.6rem;
+        line-height: 2.4rem;
+        color: $secondary500;
+        margin-bottom: 2rem;
+
+        @include media-up(xxl) {
+          font-size: 1.8rem;
+          line-height: 2.8rem;
+        }
+      }
+
+      &-name {
+        font-family: 'Bree Serif', serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 2rem;
+        line-height: 130%;
+        letter-spacing: -0.02em;
+        margin-bottom: 0.8rem;
+
+        @include media-up(xxl) {
+          font-size: 2.4rem;
+          margin-bottom: 1rem;
+        }
+      }
+
+      &-position {
+        font-family: 'Rubik', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1.2rem;
+        line-height: 1.4rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: $main400;
+
+        @include media-up(xxl) {
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2.8rem;
+
+    .swiper-pagination {
+      display: flex;
+      column-gap: 0.8rem;
+      margin-top: 2rem;
+
+      .swiper-pagination-bullet {
+        display: inline-block;
+        width: 1rem;
+        height: 1rem;
+        border: 1px solid $secondary100;
+        border-radius: 50%;
+
+        &-active {
+          border: 1px solid $secondary500;
+          background-color: $secondary500;
+        }
+      }
+    }
+
+    &-arrows {
+      display: flex;
+      justify-content: space-between;
+      max-width: 11.2rem;
+      column-gap: 1.2rem;
+
+      .reviews-slider__nav-arrow {
+        width: 5rem;
+        height: 5rem;
+        border: 1px solid $secondary100;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+
+        &:hover {
+          cursor: pointer;
+          background-color: $main300;
+          transition: all 0.3s ease;
+        }
+
+        &.swiper-button-prev {
+          background-image: url('data:image/svg+xml,<svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.75 8.5C17.75 8.85156 17.4375 9.125 17.0859 9.125H2.35938L7.82812 14.9844C8.0625 15.2188 8.0625 15.6094 7.78906 15.8438C7.67188 15.9609 7.51562 16 7.35938 16C7.16406 16 7.00781 15.9609 6.89062 15.8047L0.40625 8.92969C0.171875 8.69531 0.171875 8.34375 0.40625 8.10938L6.89062 1.23438C7.125 0.960938 7.51562 0.960938 7.78906 1.19531C8.0625 1.42969 8.0625 1.82031 7.82812 2.05469L2.35938 7.875H17.0859C17.4375 7.875 17.75 8.1875 17.75 8.5Z" fill="%23011937"/></svg>');
+          background-repeat: no-repeat;
+          background-position: center center;
+        }
+
+        &.swiper-button-next {
+          background-image: url('data:image/svg+xml,<svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.75 8.5C17.75 8.85156 17.4375 9.125 17.0859 9.125H2.35938L7.82812 14.9844C8.0625 15.2188 8.0625 15.6094 7.78906 15.8438C7.67188 15.9609 7.51562 16 7.35938 16C7.16406 16 7.00781 15.9609 6.89062 15.8047L0.40625 8.92969C0.171875 8.69531 0.171875 8.34375 0.40625 8.10938L6.89062 1.23438C7.125 0.960938 7.51562 0.960938 7.78906 1.19531C8.0625 1.42969 8.0625 1.82031 7.82812 2.05469L2.35938 7.875H17.0859C17.4375 7.875 17.75 8.1875 17.75 8.5Z" fill="%23011937"/></svg>');
+          background-repeat: no-repeat;
+          background-position: center center;
+          transform: rotateZ(180deg);
+        }
+      }
+    }
+  }
+}

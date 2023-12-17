@@ -1,0 +1,38 @@
+.left-text-right-image {
+  padding: 8.4rem 0;
+
+  @include media-up(xxl) {
+    padding: 15.4rem 0 5.2rem 0;
+  }
+
+  .button {
+    margin-top: 3.2rem;
+
+    @include media-up(xxl) {
+      margin-top: 3.9rem;
+    }
+  }
+
+  &__image-col {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 6rem;
+    position: relative;
+    height: 270px;
+  }
+
+  &__image {
+    width: 39rem;
+    margin: 0 -2rem 0 -2rem;
+    top: 6rem;
+    position: absolute;
+
+    @include media-up(xxl) {
+      margin: 0;
+      width: 60.2rem;
+      left: -0.7rem;
+      top: -5.4rem;
+      max-width: none;
+    }
+  }
+}

@@ -1,0 +1,101 @@
+.video-file {
+  padding: 6.2rem 0;
+
+  @include media-up(xxl) {
+    padding: 11.9rem 0;
+  }
+
+  .headings-text {
+    .headings-text__heading-main {
+      @include media-up(xxl) {
+        max-width: 70rem;
+      }
+    }
+  }
+
+  &__background {
+    position: relative;
+    background-color: $main400;
+    border-radius: 1.2rem;
+    width: 35rem;
+    height: 19.6rem;
+    margin-top: 6.8rem;
+    margin-left: 0.8rem;
+
+    @include media-up(xxl) {
+      margin-top: 6.3rem;
+      margin-left: 1.6rem;
+      width: 100.3%;
+      height: 672px;
+    }
+
+    .video-file__play-button {
+      background-color: $main50;
+      width: 7rem;
+      height: 7rem;
+      border-radius: 50%;
+      position: absolute;
+      top: calc(50% - 4.3rem);
+      left: calc(50% - 4.3rem);
+      z-index: 1;
+      opacity: 1;
+      transition: all 0.2s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      @include media-up(xxl) {
+        width: 10rem;
+        height: 10rem;
+        border-radius: 50%;
+        position: absolute;
+        top: calc(50% - 3.2rem);
+        left: calc(50% - 6.8rem);
+      }
+
+      &:hover {
+        background-color: $main400;
+        transition: all 0.3s ease;
+        cursor: pointer;
+
+        svg {
+          fill: $main50;
+          transition: all 0.3s ease;
+        }
+      }
+
+      &.video-file__play-button--disabled {
+        opacity: 0;
+        transition: all 0.2s ease;
+      }
+
+      svg {
+        transition: all 0.3s ease;
+        fill: $main400;
+
+        @include media-up(xxl) {
+          width: 3.2rem;
+          height: 2.7rem;
+          margin-top: 4px;
+          margin-right: 0px;
+        }
+      }
+    }
+
+    .video-file__player {
+      position: relative;
+      border-radius: 1.2rem;
+      top: -0.8rem;
+      left: -0.9rem;
+      width: 35rem;
+      height: 19.6rem;
+
+      @include media-up(xxl) {
+        top: 16px;
+        left: -16px;
+        width: 99.8%;
+        height: 101.3%;
+      }
+    }
+  }
+}

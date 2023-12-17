@@ -1,0 +1,253 @@
+.contact-info-contact-form {
+  padding: 7rem 0 1.9rem;
+
+  @include media-up(xxl) {
+    padding: 11rem 0 11.5rem;
+  }
+
+  .headings-text {
+    &__heading-main {
+      max-width: 30rem;
+
+      @include media-up(xxl) {
+        max-width: 40rem;
+      }
+    }
+  }
+
+  &__contact-data {
+    margin-top: 3.9rem;
+
+    @include media-up(xxl) {
+      margin-top: 5.9rem;
+    }
+
+    &>p {
+      font-family: 'Rubik', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+      color: $secondary500;
+      position: relative;
+      padding: 1px 0 0 3.4rem;
+      margin-bottom: 2.3rem;
+
+      &:before {
+        content: '';
+        position: absolute;
+        display: inline-block;
+        background-repeat: no-repeat;
+        background-position: center center;
+        width: 2.2rem;
+        height: 2.4rem;
+        left: 0;
+      }
+    }
+
+    &-email {
+      &:before {
+        background-image: url('data:image/svg+xml,<svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21.1836 7.75391C20.1094 6.9375 19.25 6.25 14.1367 2.55469C13.4062 2.03906 11.9883 0.75 11 0.75H10.957C9.96875 0.75 8.55078 2.03906 7.82031 2.55469C2.70703 6.25 1.84766 6.9375 0.773438 7.75391C0.257812 8.14062 0 8.74219 0 9.38672V20.6875C0 21.8477 0.902344 22.75 2.0625 22.75H19.9375C21.0547 22.75 22 21.8477 22 20.7305V9.38672C22 8.74219 21.6992 8.14062 21.1836 7.75391ZM20.625 20.6875C20.625 21.0742 20.2812 21.375 19.9375 21.375H2.0625C1.67578 21.375 1.375 21.0742 1.375 20.6875V9.38672C1.375 9.17188 1.46094 9 1.63281 8.87109C2.62109 8.05469 3.4375 7.41016 8.63672 3.67188C8.76562 3.58594 8.89453 3.45703 9.06641 3.32812C9.49609 3.02734 10.5273 2.16797 11 2.16797C11.4297 2.16797 12.4609 3.02734 12.8906 3.32812C13.0625 3.45703 13.1914 3.58594 13.3203 3.67188C18.5195 7.41016 19.3359 8.05469 20.3672 8.87109C20.4961 9 20.625 9.17188 20.625 9.38672V20.6875ZM18.1328 11.9219L12.418 16.0898C11.5586 16.7344 10.3984 16.7344 9.53906 16.0898L3.82422 11.9219C3.52344 11.6641 3.09375 11.75 2.87891 12.0508C2.62109 12.3516 2.70703 12.7812 3.00781 12.9961L8.72266 17.207C9.36719 17.6797 10.1406 17.9375 11 17.9375C11.8164 17.9375 12.5898 17.6797 13.2344 17.1641L18.9492 12.9531C19.25 12.7383 19.3359 12.3086 19.0781 12.0078C18.8633 11.75 18.4336 11.6641 18.1328 11.9219Z" fill="%2300ADF0"/></svg>');
+      }
+    }
+
+    &-telephone {
+      &:before {
+        background-image: url('data:image/svg+xml,<svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.7969 14.9727L16.4141 13.082C15.6406 12.7812 14.6953 12.9961 14.1797 13.6836L12.7188 15.4023C10.4844 14.1562 8.59375 12.2656 7.34766 10.0312L9.10938 8.61328C9.75391 8.05469 9.96875 7.10938 9.625 6.33594L7.77734 1.95312C7.39062 1.09375 6.44531 0.621094 5.54297 0.835938L1.50391 1.78125C0.601562 1.95312 0 2.72656 0 3.67188C0 14.1992 8.55078 22.75 19.0781 22.75C20.0234 22.75 20.7969 22.1484 21.0117 21.2461L21.9141 17.207C22.1289 16.3047 21.6562 15.3594 20.7969 14.9727ZM19.6367 20.9453C19.5938 21.2031 19.3789 21.418 19.0781 21.418C9.32422 21.418 1.375 13.4258 1.375 3.67188C1.375 3.37109 1.54688 3.15625 1.80469 3.11328L5.84375 2.16797C5.88672 2.16797 5.92969 2.125 5.97266 2.125C6.1875 2.125 6.40234 2.29688 6.53125 2.51172L8.37891 6.85156C8.46484 7.10938 8.42188 7.36719 8.20703 7.53906L6.05859 9.30078C5.80078 9.51562 5.71484 9.85938 5.88672 10.1602C7.30469 13.0391 9.71094 15.4453 12.6328 16.8633C12.8906 17.0352 13.2344 16.9492 13.4492 16.6914L15.2109 14.543C15.3828 14.3281 15.6406 14.2852 15.8984 14.3711L20.2383 16.2188C20.4961 16.3477 20.668 16.6055 20.582 16.9062L19.6367 20.9453Z" fill="%2300ADF0"/></svg>');
+        width: 2.3rem;
+      }
+    }
+
+    &-address {
+      &:before {
+        background-image: url('data:image/svg+xml,<svg width="18" height="23" viewBox="0 0 18 23" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.4375 9C12.4375 10.9336 10.8906 12.4375 9 12.4375C7.06641 12.4375 5.5625 10.9336 5.5625 9C5.5625 7.10938 7.06641 5.5625 9 5.5625C10.8906 5.5625 12.4375 7.10938 12.4375 9ZM9 11.0625C10.1172 11.0625 11.0625 10.1602 11.0625 9C11.0625 7.88281 10.1172 6.9375 9 6.9375C7.83984 6.9375 6.9375 7.88281 6.9375 9C6.9375 10.1602 7.83984 11.0625 9 11.0625ZM17.25 9C17.25 12.7812 12.2227 19.4414 9.98828 22.2344C9.47266 22.8789 8.48438 22.8789 7.96875 22.2344C5.73438 19.4414 0.75 12.7812 0.75 9C0.75 4.44531 4.40234 0.75 9 0.75C13.5547 0.75 17.25 4.44531 17.25 9ZM9 2.125C5.17578 2.125 2.125 5.21875 2.125 9C2.125 9.6875 2.33984 10.5898 2.8125 11.75C3.28516 12.8672 3.92969 14.0703 4.70312 15.2734C6.16406 17.6367 7.88281 19.9141 9 21.2891C10.0742 19.9141 11.793 17.6367 13.2539 15.2734C14.0273 14.0703 14.6719 12.8672 15.1445 11.75C15.6172 10.5898 15.875 9.6875 15.875 9C15.875 5.21875 12.7812 2.125 9 2.125Z" fill="%2300ADF0"/></svg>');
+      }
+    }
+  }
+
+  .wpcf7 {
+    padding-top: 3.7rem;
+
+    @include media-up(xxl) {
+      padding-top: 4.5rem;
+      padding-left: 9.8rem;
+    }
+
+    .wpcf7-form {
+      position: relative;
+
+      label {
+        margin-bottom: 2.8rem;
+        width: 100%;
+        display: inline-block;
+        font-family: 'Rubik', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1.4rem;
+        line-height: 1.7rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: $secondary500;
+
+        .wpcf7-form-control-wrap {
+          height: 6rem;
+          width: 100%;
+          display: inline-block;
+          margin-top: 1.2rem;
+
+          .wpcf7-text {
+            border: 1px solid $secondary100;
+            border-radius: 0.6rem;
+            height: 100%;
+            width: 100%;
+            font-family: 'Rubik', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 1.6rem;
+            line-height: 2rem;
+            text-transform: none;
+            padding: 0 2.3rem;
+            letter-spacing: 0;
+
+            &:focus {
+              border: 1px solid $main400;
+            }
+          }
+
+          .wpcf7-textarea {
+            border: 1px solid $secondary100;
+            border-radius: 0.6rem;
+            width: 100%;
+            height: 17.1rem;
+            text-transform: none;
+            padding: 0 2.3rem;
+            font-family: 'Rubik', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 1.6rem;
+            line-height: 2rem;
+            padding: 1.9rem 2.3rem;
+            letter-spacing: 0;
+
+            &:focus {
+              border: 1px solid $main400;
+            }
+          }
+        }
+      }
+
+      .wpcf7-acceptance {
+        margin-top: 0.7rem;
+        display: inline-block;
+
+        @include media-up(xxl) {
+          margin-top: -0.2rem;
+        }
+
+        .wpcf7-list-item {
+          margin: 0;
+
+          label {
+            position: relative;
+
+            .wpcf7-list-item-label {
+              font-family: 'Rubik', sans-serif;
+              font-style: normal;
+              font-weight: 400;
+              font-size: 1.6rem;
+              line-height: 1.9rem;
+              text-transform: none;
+              position: relative;
+              top: -3.5rem;
+              letter-spacing: 0px;
+              padding-left: 3.2rem;
+              display: inline-block;
+              color: $secondary300;
+
+              @include media-up(xxl) {
+                left: -2.8rem;
+                top: -0.7rem;
+              }
+
+              a {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+
+        input[type="checkbox"] {
+          position: relative;
+          cursor: pointer;
+          padding: 0;
+          margin-right: 0.8rem;
+          margin-top: 1px;
+          width: 2rem;
+        }
+
+        input[type="checkbox"]:before {
+          content: '';
+          margin-right: 1rem;
+          display: inline-block;
+          margin-top: -0.3rem;
+          width: 2.4rem;
+          height: 2.4rem;
+          background: #fcfcfc;
+          border: 0.1rem solid #aaa;
+          border-radius: 0.2rem;
+        }
+
+        input[type="checkbox"]:checked:before {
+          background: $main400;
+          border-color: $main400;
+        }
+
+        input[type="checkbox"]:disabled {
+          color: #b8b8b8;
+          cursor: auto;
+        }
+
+        input[type="checkbox"]:disabled:before {
+          box-shadow: none;
+          background: #ddd;
+        }
+
+        input[type="checkbox"]:checked:after {
+          content: '';
+          position: absolute;
+          left: 0.5rem;
+          top: 0.8rem;
+          background: white;
+          width: 0.3rem;
+          height: 0.3rem;
+          box-shadow: 0.2rem 0 0 white, 0.4rem 0 0 white, 0.4rem -2px 0 white, 0.4rem -0.4rem 0 white, 0.4rem -6px 0 white, 0.4rem -0.8rem 0 white;
+          transform: rotate(45deg);
+        }
+      }
+
+      .wpcf7-submit {
+        padding: 1.8rem 2.8rem 1.8rem 2.8rem;
+        border-radius: 0.6rem;
+        font-family: 'Rubik', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 21px;
+        display: inline-block;
+        opacity: 0.2;
+        color: $white;
+        background-color: $main400;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        position: relative;
+        top: -3.4rem;
+
+        @include media-up(xxl) {
+          width: 41%;
+          top: -0.4rem;
+        }
+      }
+    }
+  }
+}
