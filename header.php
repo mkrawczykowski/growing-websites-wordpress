@@ -35,16 +35,16 @@
   <header class="header">
     <div class="container container--wider">
       
-          <nav class="main-nav">
-            <ul>
-              <?php include get_template_directory() . '/inc/acf-menu/acf-menu.php' ?>  
-            </ul>
-            <div class="main-nav__hamburger" id="js-hamburger">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-          </nav>  
+      <nav class="main-nav">
+        <ul class="main-nav__list">
+          <?php include get_template_directory() . '/inc/acf-menu/acf-menu.php' ?>  
+        </ul>
+        <div class="main-nav__hamburger" id="js-hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>  
         
     </div>
   </header>

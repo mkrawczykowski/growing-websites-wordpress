@@ -33,3 +33,19 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+.container{
+  display: block;
+  margin: 0 auto;
+  
+  @include media-up(xxxl){
+    max-width: 970px;
+  }
+
+  &--wider{
+    @include media-up(xxxl){
+      max-width: 1266px;
+    }
+  }
+  
+}
