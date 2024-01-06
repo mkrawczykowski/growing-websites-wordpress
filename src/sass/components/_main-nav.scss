@@ -1,8 +1,19 @@
 .main-nav{
-    
-
     &__list{
         width: 100%;
         display: flex;
+        justify-content: center;
+
+        &-item{
+            background-color: white;
+            &--left{
+                margin-left: 0;
+                margin-right: auto;
+            }
+            &--right{
+                margin-right: 0;
+                margin-left: auto;
+            }
+        }
     }
 }
