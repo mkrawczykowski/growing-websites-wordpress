@@ -31,6 +31,7 @@
 </head>
 
 <body>
+  <div class="covering-layer"></div>
   <header class="header">
     <div class="container container--wider">
       
