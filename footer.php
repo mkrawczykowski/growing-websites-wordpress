@@ -2,7 +2,7 @@
       <div class="container">
         <div class="row">
           <div class="col col--50">
-            <nav>
+            <!-- <nav>
               <?php
                 wp_nav_menu( array(
                   'theme_location' => 'footer-menu',
@@ -11,13 +11,13 @@
                   'menu_class'     => 'footer-nav__nav',
                 ) );
               ?>
-            </nav> 
+            </nav>  -->
           </div>
-          <div class="col col--50">
+          <!-- <div class="col col--50">
             <p class="footer__company-name">
               2023 © nazwa
             </p>
-          </div>
+          </div> -->
         </div>
       </div>
       
