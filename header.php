@@ -33,20 +33,19 @@
 <body>
   <header class="header">
     <div class="container container--wider">
-      <div class="row">
-        <div class="col">
+      
           <nav>
-            <a class="logo" href="<?php echo site_url(); ?>">
+            <?php include get_template_directory() . '/inc/acf-menu/acf-menu.php' ?>
+            <!-- <a class="logo" href="<?php echo site_url(); ?>">
               <img src="<?php echo get_stylesheet_directory_uri(); ?>/public/logo.svg" alt="LOGO" width="92" height="39">
-            </a>
+            </a> -->
 
-            <div class="hamburger" id="js-hamburger">
+            <!-- <div class="hamburger" id="js-hamburger">
               <span></span>
               <span></span>
-            </div>
+            </div> -->
           </nav>  
-        </div>  
-      </div>
+        
       
     </div>
   </header>

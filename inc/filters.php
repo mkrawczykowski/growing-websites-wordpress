@@ -8,7 +8,10 @@
         line-height: 2em;
         background-color: #dcdcdc;
         font-size: 18px;
-      } 
+      }
+      .acf-table > tbody > tr > td{
+        border-width: 15px 0 0 1px;
+      }
     </style>';
   }
 ?>
