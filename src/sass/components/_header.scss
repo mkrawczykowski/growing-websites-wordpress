@@ -1,4 +1,6 @@
+@use '../variables';
+
 .header{
-    background-color: $navyBlue;
+    background-color: variables.$navyBlue;
     border-radius: 10px;
 }

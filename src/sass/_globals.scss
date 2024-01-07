@@ -1,4 +1,4 @@
-@use './variables' as variables;
+@use './variables';
 
 // * {
 //   outline: 1px solid #19ff04;
@@ -38,14 +38,13 @@ img {
   display: block;
   margin: 0 auto;
   
-  @include media-up(xxxl){
+  @include variables.media-up(xxxl){
     max-width: 970px;
   }
 
   &--wider{
-    @include media-up(xxxl){
+    @include variables.media-up(xxxl){
       max-width: 1266px;
     }
   }
-  
 }

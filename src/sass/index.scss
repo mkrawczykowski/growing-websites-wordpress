@@ -1,10 +1,10 @@
-@import './_reset.scss';
-@import './_variables.scss';
-// @import './_typography.scss';
-@import './_globals.scss';
+@use './_reset.scss';
+@use './_variables.scss';
+// @use './_typography.scss';
+@use './_globals.scss';
 
-// @import './components/button.scss';
+// @use './components/button.scss';
 
-@import './components/header.scss';
-@import './components/main-nav.scss';
-@import './components/covering-layer.scss';
+@use './components/header.scss';
+@use './components/main-nav.scss';
+@use './components/covering-layer.scss';

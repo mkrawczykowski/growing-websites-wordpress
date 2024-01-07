@@ -1,3 +1,5 @@
+@use '../variables';
+
 .covering-layer{
     z-index: 10;
     position: absolute;
@@ -7,7 +9,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: $navyBlue50;
+    background-color: variables.$navyBlue50;
     visibility: hidden;
     opacity: 0;
 }
