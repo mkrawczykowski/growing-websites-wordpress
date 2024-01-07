@@ -12,7 +12,9 @@
         font-size: 56px;
         font-style: normal;
         font-weight: 800;
-        line-height: 115%; /* 64.4px */
+        line-height: 115%;
         letter-spacing: -1.68px;
+        z-index: 5;
+        position: relative;
     }
 }
