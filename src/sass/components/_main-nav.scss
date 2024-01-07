@@ -6,6 +6,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
 
         &-item{
             font-family: 'Roboto Flex', sans-serif;
@@ -37,6 +38,7 @@
                     transition: all 0.2s ease;
                 } 
             }
+
 
             &.main-nav__has-children{
                 transition: all 0.2s ease;
@@ -79,21 +81,29 @@
                 }
 
                 &.active{
-                    position: relative;
                     z-index: 20;
                 }
             }
 
-            // &.has-children{
-            //     a{
-            //        padding: 14px 45px 14px 26px;
+            &.main-nav__mega-menu-panel-1{
+                &.active{
+                    .main-nav__mega-menu-panel-1-container{
+                        opacity: 1;
+                        visibility: visible;
+                    }
+                }
 
-            //         &:hover{
-            //             background-color: variables.$whiteAlpha10;
-            //             transition: all 0.2s ease;
-            //         } 
-            //     }
-            // }
+                .main-nav__mega-menu-panel-1-container{
+                    background-color: variables.$whiteAlpha10;
+                    position: absolute;
+                    z-index: 20;
+                    left: 0;
+                    right: 0;
+                    width: 100%;
+                    opacity: 0;
+                    visibility: hidden;
+                }
+            }
         }
     }
 }
