@@ -77,6 +77,11 @@
                         }
                     } 
                 }
+
+                &.active{
+                    position: relative;
+                    z-index: 20;
+                }
             }
 
             // &.has-children{
