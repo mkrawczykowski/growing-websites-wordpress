@@ -12,4 +12,11 @@
     background-color: variables.$navyBlue50;
     visibility: hidden;
     opacity: 0;
+    transition: all 0.2s ease;
+
+    &.active{
+        visibility: visible;
+        opacity: 1;
+        transition: all 0.2s ease;
+    }
 }

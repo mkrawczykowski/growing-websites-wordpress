@@ -44,7 +44,13 @@
           <span></span>
           <span></span>
         </div>
-      </nav>  
+      </nav>
+
+      <div class="container">
+        <h1 class="header__page-title">
+          <?php the_title(); ?>
+        </h1>
+      </div>
         
     </div>
   </header>
