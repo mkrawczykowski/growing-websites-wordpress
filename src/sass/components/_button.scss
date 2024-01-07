@@ -1,0 +1,22 @@
+@use '../variables';
+
+.button{
+    padding: 10px 20.5px;
+    display: inline-block;
+    border-radius: 8px;
+    font-family: 'Roboto Flex', sans-serif;
+    font-size: 15px;
+    height: 36px;
+    text-align: center;
+    color: variables.$white;
+
+    &--transparent-light{
+        background-color: variables.$whiteAlpha10;
+        transition: all 0.2s ease;
+
+        &:hover{
+            background-color: variables.$whiteAlpha20;
+            transition: all 0.2s ease;
+        }
+    }
+}

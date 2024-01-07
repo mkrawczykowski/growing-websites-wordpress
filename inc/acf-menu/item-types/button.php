@@ -10,7 +10,7 @@
 ?>
 
     <li <?= $id_attribute; ?> class="main-nav__list-item main-nav__button <?= $align_right_class . ' ' . esc_html($custom_classes); ?>">
-        <a href="<?php echo esc_url( $button_url ); ?>" target="<?php echo esc_attr( $button_target ); ?>"><?php echo esc_html( $button_title ); ?></a>
+        <a class="button button--transparent-light" href="<?php echo esc_url( $button_url ); ?>" target="<?php echo esc_attr( $button_target ); ?>"><?php echo esc_html( $button_title ); ?></a>
     </li>
 
 <?php

@@ -3,8 +3,7 @@
 // @use './_typography.scss';
 @use './_globals.scss';
 
-// @use './components/button.scss';
-
+@use './components/button.scss';
 @use './components/header.scss';
 @use './components/main-nav.scss';
 @use './components/covering-layer.scss';
