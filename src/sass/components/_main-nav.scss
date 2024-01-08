@@ -45,6 +45,21 @@
                 border-top-right-radius: 6px;
                 border-top-left-radius: 6px;
 
+                &:hover{
+                    background-color: variables.$whiteAlpha10;
+                    border-top-right-radius: 6px;
+                        border-top-left-radius: 6px;
+                        transition: all 0.2s ease;
+                        cursor: pointer;
+
+                        span{
+                            &:after{
+                                transform: rotateZ(180deg);
+                                transition: all 0.2s ease;
+                            }
+                        }
+                }
+
                 span{
                     display: inline-block;
                     padding: 14px 45px 14px 26px;
@@ -65,28 +80,21 @@
                         transition: all 0.2s ease;
                     }
 
-                    &:hover{
-                        background-color: variables.$whiteAlpha10;
-                        border-top-right-radius: 6px;
-                        border-top-left-radius: 6px;
-                        transition: all 0.2s ease;
-                        cursor: pointer;
-                        
-    
-                        &:after{
-                            transform: rotateZ(180deg);
-                            transition: all 0.2s ease;
-                        }
-                    } 
+                    // &:hover{
+                    //     &:after{
+                    //         transform: rotateZ(180deg);
+                    //         transition: all 0.2s ease;
+                    //     }
+                    // } 
                 }
 
-                &.active{
+                &:hover{
                     z-index: 20;
                 }
             }
 
             &.main-nav__mega-menu-panel-1{
-                &.active{
+                &:hover{
                     .main-nav__mega-menu-panel-1-container{
                         opacity: 1;
                         visibility: visible;
