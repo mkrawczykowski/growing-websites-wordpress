@@ -7,22 +7,13 @@ document.addEventListener('DOMContentLoaded', function(){
             itemHasChildren.addEventListener('mouseover', function(event){
                 if(!coveringLayer.classList.contains('active')){
                     coveringLayer.classList.add('active');
-                    
                 }
-
-                // if(!itemHasChildren.matches(':hover')){
-                //     itemHasChildren.classList.add('active');
-                // }
             })
             itemHasChildren.addEventListener('mouseout', function(event){
                 console.log(itemHasChildren.matches(':hover'))
                 if(coveringLayer.classList.contains('active')){
                     coveringLayer.classList.remove('active');
                 }
-                
-                // if(itemHasChildren.matches(':hover')){
-                //     itemHasChildren.classList.remove('active');
-                // }
             })
         })
     }
