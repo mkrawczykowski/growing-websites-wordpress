@@ -1,7 +1,5 @@
 <?php
 
-require_once get_template_directory() . '/inc/acf-menu/acf-menu-helper-functions.php';  
-    
 if( have_rows('main_menu', 'options') ):
     while( have_rows('main_menu', 'options') ) : the_row();
         $menu_item_type = get_sub_field('menu_item_type');
