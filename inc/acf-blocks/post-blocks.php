@@ -14,6 +14,7 @@ function post_blocks__callback( $block ) {
   $slug = str_replace('acf/', '', $block['name']);
     
   if( file_exists( get_theme_file_path("/template-parts/blocks/{$slug}/{$slug}.php") ) ) {
+    echo get_theme_file_path("/template-parts/blocks/{$slug}/{$slug}.php");
     include( get_theme_file_path("/template-parts/blocks/{$slug}/{$slug}.php") );
   }
 }
