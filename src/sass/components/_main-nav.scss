@@ -45,13 +45,14 @@
                 border-top-left-radius: 6px;
 
                 &:hover{
-                    background-color: variables.$whiteAlpha10;
+                    background-color: variables.$navyBlueLight;
                     border-top-right-radius: 6px;
                         border-top-left-radius: 6px;
-                        transition: all 0.2s ease;
-                        cursor: pointer;
+                        transition: all 0.5s ease;
 
                         span{
+                            cursor: pointer;
+                            
                             &:after{
                                 transform: rotateZ(180deg);
                                 transition: all 0.2s ease;
@@ -59,7 +60,7 @@
                         }
                 }
 
-                span{
+                & > span{
                     display: inline-block;
                     padding: 14px 45px 14px 26px;
                     position: relative;
@@ -87,14 +88,14 @@
 
             &.main-nav__mega-menu-panel-1{
                 &:hover{
-                    .main-nav__mega-menu-panel-1-container{
+                    .panel-1-container{
                         opacity: 1;
                         visibility: visible;
                     }
                 }
 
-                .main-nav__mega-menu-panel-1-container{
-                    background-color: variables.$whiteAlpha10;
+                .panel-1-container{
+                    background-color: variables.$navyBlueLight;
                     position: absolute;
                     z-index: 20;
                     left: 0;
@@ -102,6 +103,7 @@
                     width: 100%;
                     opacity: 0;
                     visibility: hidden;
+                    border-radius: 10px;
                 }
             }
         }

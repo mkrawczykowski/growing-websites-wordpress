@@ -9,7 +9,7 @@
         $featured_post_permalink = get_permalink($featured_post_id);
         
         $featured_categories = $mega_menu_panel_1['featured_categories'];
-        $featured_clink_in_the_cornerategories = $mega_menu_panel_1['link_in_the_corner'];
+        $link_in_the_corner = $mega_menu_panel_1['link_in_the_corner'];
         $custom_classes = get_sub_field('custom_classes');
         $id_attribute = ($custom_id = get_sub_field('custom_id')) ? 'id="' . $custom_id . '"' : ''; 
 ?>
@@ -17,19 +17,19 @@
             <span class="">
                 <?php echo esc_html( $menu_item_label ); ?>
             </span>
-            <div class="main-nav__mega-menu-panel-1-container">
+            <div class="panel-1-container">
                 <div class="panel-1-container__post">
-                    <div class="panel-1-container__post-row-1">
-                        <div class="panel-1-container__post-col-1">
-                            <?php wp_get_attachment_image($featured_post_id); ?>
+                    <div class="panel-1-container__row-1">
+                        <div class="panel-1-container__col-1">
+                            <?php echo get_the_post_thumbnail($featured_post_id); ?>
                         </div>
-                        <div class="panel-1-container__post-col-2">
+                        <div class="panel-1-container__col-2">
                             <div class="panel-1-container__post-meta">
                                 <ul class="panel-1-container__post-categories">
                                     <?php 
                                         foreach(get_the_category($featured_post_id) as $category) : ?>
-                                            <li>
-                                                <a href="<?= get_category_link($category->term_id); ?>">
+                                            <li class="panel-1-container__post-category">
+                                                <a class="panel-1-container__post-category-link" href="<?= get_category_link($category->term_id); ?>">
                                                     <?= $category->name; ?>
                                                 </a>
                                             </li>
@@ -41,23 +41,31 @@
                                     <?= get_the_date('F d Y', $featured_post_id); ?>
                                 </span>
                             </div>
+                            <a class="panel-1-container__post-title-link" href="<?= $featured_post_permalink; ?>">
+                                <h3 class="panel-1-container__post-title-text"><?php echo esc_html( $featured_post_title ); ?></h3>
+                            </a>
+                            <a href="<?= $featured_post_permalink; ?>" class="panel-1-container__post-button button button--light-blue">Read the post</a>
                         </div>
-                    
-                        <a class="panel-1-container__post-title-link" href="<?= $featured_post_permalink; ?>">
-                            <h3 class="panel-1-container__post-title-text"><?php echo esc_html( $featured_post_title ); ?></h3>
-                        </a>
-                        <a href="<?= $featured_post_permalink; ?>" class="panel-1-container__post-button">Read more</a>
                     </div>
-                    <div class="panel-1-container__post-row-2">
-                        <div class="panel-1-container__post-col-1">
-                            <h4 class="panel-1-container__featured-categories-title">Featured blog categories</h4>
-                            <ul class="panel-1-container__featured-categories-list">
-                                <li class="panel-1-container__featured-category-item">
-                                    <a class="panel-1-container__featured-category-link"></a>
-                                </li>
-                            </ul>
+                    <div class="panel-1-container__row-2">
+                        <div class="panel-1-container__col-1">
+                            <?php if ($featured_categories) : ?>
+                                <h4 class="panel-1-container__featured-categories-title">Featured blog categories</h4>
+                                <ul class="panel-1-container__featured-categories-list">
+                                    <?php 
+                                        foreach($featured_categories as $featured_category) : ?>
+                                            <li class="panel-1-container__featured-category">
+                                                <a class="panel-1-container__featured-category-link" href="<?= get_category_link($featured_category['category_url']); ?>">
+                                                    <?= $featured_category['category_name']; ?>
+                                                </a>
+                                            </li>
+                                    <?php
+                                        endforeach;
+                                    ?>
+                                </ul>
+                            <?php endif ; ?>
                         </div>
-                        <div class="panel-1-container__post-col-2">
+                        <div class="panel-1-container__col-2">
                             <a class="panel-1-container__link" href="">Go to blog page</a>
                         </div>
                     </div>
