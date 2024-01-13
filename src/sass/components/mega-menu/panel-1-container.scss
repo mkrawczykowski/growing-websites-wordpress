@@ -30,11 +30,24 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
+            justify-content: center;
+        }
+    }
+
+    &__image{
+        height: 208px;
+        overflow: hidden;
+        border-radius: 8px;
+
+        img{
+            object-fit: cover;
         }
     }
 
     &__post-meta{
         display: flex;
+        margin-bottom: 14px;
+        margin-top: 37px;
     }
 
     &__post-categories{
@@ -44,18 +57,20 @@
         border-bottom-left-radius: 6px;
         overflow: hidden;
 
-            .panel-1-container__post-category{
-                color: variables.$navyBlue;
+        .panel-1-container__post-category{
+            color: variables.$navyBlue;
 
-                &-link{
-                    font-family: 'Roboto Flex', sans-serif;
-                    font-size: 10px;
-                    font-style: normal;
-                    font-weight: 800;
-                    line-height: 120%; /* 12px */
-                    text-transform: uppercase;
-                }
+            &-link{
+                font-family: 'Roboto Flex', sans-serif;
+                font-size: 10px;
+                font-style: normal;
+                font-weight: 800;
+                line-height: 120%; /* 12px */
+                text-transform: uppercase;
+                padding: 10px 12px 8px 12px;
+                display: inline-block;
             }
+        }
     }
 
     &__post-date{
@@ -63,12 +78,20 @@
         border-top-right-radius: 6px;
         border-bottom-right-radius: 6px;
         overflow: hidden;
+        padding: 10px 12px 8px 12px;
+        display: inline-block;
+        font-family: 'Roboto Flex', sans-serif;
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 120%; /* 12px */
+        text-transform: uppercase;
     }
 
     &__post-title{
         text-align: left;
 
-        &-link{
+        &-text{
             color: variables.$white;
             font-family: 'Roboto Flex', sans-serif;
             text-align: left;
@@ -76,16 +99,30 @@
             font-style: normal;
             font-weight: 700;
             line-height: 150%;
+            font-weight: 700;
         }
+    }
+
+    &__post-button{
+        margin: 27px 0 0 auto;
     }
 
     &__featured-categories-title{
         text-align: left;
+        margin: 11px 0 12px 0;
+        color: variables.$white;
+        font-family: 'Roboto Flex';
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 140%;
+        letter-spacing: 0.36px;
     }
 
     &__featured-categories-list{
         text-align: left;
         display: flex;
+        column-gap: 16px;
 
         .panel-1-container__featured-category{
             color: variables.$navyBlue;
@@ -100,7 +137,20 @@
                 font-weight: 800;
                 line-height: 120%; /* 12px */
                 text-transform: uppercase;
+                padding: 10px 12px 8px 12px;
+                display: inline-block;
             }
         }
+    }
+
+    &__link{
+        color: variables.$white;
+        font-family: 'Roboto Flex';
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 140%;
+        letter-spacing: 0.36px;
+        margin-top: 42px;
     }
 }

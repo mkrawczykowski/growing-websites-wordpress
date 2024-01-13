@@ -1,7 +1,7 @@
 @use '../variables';
 
 .button{
-    padding: 8px 20.5px 11px;
+    padding: 8px 31.5px 11px;
     display: inline-block;
     border-radius: 8px;
     font-family: 'Roboto Flex', sans-serif;
@@ -10,9 +10,14 @@
     text-align: center;
     color: variables.$white;
     transition: all 0.2s ease;
+    font-weight: 600;
 
     &:hover{
         transition: all 0.2s ease;
+    }
+
+    &--smaller{
+        padding: 8px 23.5px 11px;
     }
 
     &--transparent-light{
@@ -22,6 +27,7 @@
             background-color: variables.$whiteAlpha20; 
         }
     }
+
     &--light-blue{
         background-color: variables.$lightBlue;
         color: variables.$navyBlue;

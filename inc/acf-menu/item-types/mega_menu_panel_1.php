@@ -13,7 +13,7 @@
         $custom_classes = get_sub_field('custom_classes');
         $id_attribute = ($custom_id = get_sub_field('custom_id')) ? 'id="' . $custom_id . '"' : ''; 
 ?>
-        <li <?= $id_attribute; ?> class="main-nav__list-item main-nav__has-children main-nav__mega-menu-panel-1 <?= esc_html($custom_classes); ?>">
+        <li <?= $id_attribute; ?> class="main-nav__list-item main-nav__has-children main-nav__mega-menu-panel-1 <?= esc_html($custom_classes); ?>"><!-- add .active if you want the menu always visible -->
             <span class="">
                 <?php echo esc_html( $menu_item_label ); ?>
             </span>
@@ -21,7 +21,9 @@
                 <div class="panel-1-container__post">
                     <div class="panel-1-container__row-1">
                         <div class="panel-1-container__col-1">
-                            <?php echo get_the_post_thumbnail($featured_post_id); ?>
+                            <div class="panel-1-container__image">
+                                <?php echo get_the_post_thumbnail($featured_post_id); ?>
+                            </div>
                         </div>
                         <div class="panel-1-container__col-2">
                             <div class="panel-1-container__post-meta">
@@ -44,7 +46,7 @@
                             <a class="panel-1-container__post-title-link" href="<?= $featured_post_permalink; ?>">
                                 <h3 class="panel-1-container__post-title-text"><?php echo esc_html( $featured_post_title ); ?></h3>
                             </a>
-                            <a href="<?= $featured_post_permalink; ?>" class="panel-1-container__post-button button button--light-blue">Read the post</a>
+                            <a href="<?= $featured_post_permalink; ?>" class="panel-1-container__post-button button button--light-blue button--smaller">Read the post</a>
                         </div>
                     </div>
                     <div class="panel-1-container__row-2">

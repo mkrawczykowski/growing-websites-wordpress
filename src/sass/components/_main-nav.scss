@@ -47,8 +47,8 @@
                 &:hover{
                     background-color: variables.$navyBlueLight;
                     border-top-right-radius: 6px;
-                        border-top-left-radius: 6px;
-                        transition: all 0.5s ease;
+                    border-top-left-radius: 6px;
+                    transition: all 0.5s ease;
 
                         span{
                             cursor: pointer;
@@ -81,13 +81,13 @@
                     }
                 }
 
-                &:hover{
+                &:hover,&.active{
                     z-index: 20;
                 }
             }
 
             &.main-nav__mega-menu-panel-1{
-                &:hover{
+                &:hover, &.active{
                     .panel-1-container{
                         opacity: 1;
                         visibility: visible;
@@ -98,9 +98,9 @@
                     background-color: variables.$navyBlueLight;
                     position: absolute;
                     z-index: 20;
-                    left: 0;
-                    right: 0;
-                    width: 100%;
+                    left: -54px;
+                    right: -54px;
+                    width: calc(100% + 108px);
                     opacity: 0;
                     visibility: hidden;
                     border-radius: 10px;
