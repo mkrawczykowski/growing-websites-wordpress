@@ -21,8 +21,8 @@
                 <div class="panel-1-container__post">
                     <div class="panel-1-container__row-1">
                         <div class="panel-1-container__col-1">
-                            <a class="panel-1-container__back">
-                            < 
+                            <a class="panel-1-container__back mega-menu-panel-back">
+                            < <?php echo esc_html( $menu_item_label ); ?>
                             </a>
                             <div class="panel-1-container__image">
                                 <?php echo get_the_post_thumbnail($featured_post_id); ?>

@@ -16,11 +16,16 @@
         position: relative;
 
         .main-nav__list{
-            position: static;
+            // position: static;
+            width: 100%;
+
+            @include variables.media-up(lg){
+                width: calc(100% - 30px);
+            }
 
             .main-nav__image{
                 &.logo{
-                    z-index: 30;
+                    // z-index: 30;
                 }
             }
 
@@ -101,11 +106,13 @@
                 border-top-left-radius: 6px;
 
                 &:hover{
-                    background-color: variables.$navyBlueLight;
                     border-top-right-radius: 6px;
                     border-top-left-radius: 6px;
                     transition: all 0.5s ease;
 
+                    @include variables.media-up(lg){
+                        background-color: variables.$navyBlueLight;
+                    }
                         span{
                             cursor: pointer;
                             
@@ -143,26 +150,39 @@
             }
 
             &.main-nav__mega-menu-panel-1{
-                &:hover, &.active{
+                &.active{
                     .panel-1-container{
                         opacity: 1;
                         visibility: visible;
+                        left: 0;
+                        transition: all 0.3s ease;
+                    }
+                }
+
+                &:hover{
+                    @include variables.media-up(lg){
+                        opacity: 1;
+                        visibility: visible;
+                        left: 0;
+                        transition: all 0.3s ease;
                     }
                 }
 
                 .panel-1-container{
                     @include variables.media-down(lg){
                         top: 0;
+                        background-color: variables.$navyBlue;
                     }
                     background-color: variables.$navyBlueLight;
                     position: absolute;
                     z-index: 20;
-                    left: 0;
+                    left: 100%;
                     right: 0;
                     width: 100%;
                     opacity: 0;
                     visibility: hidden;
                     border-radius: 10px;
+                    transition: all 0.3s ease;
 
                     @include variables.media-up(lg){
                         left: -54px;
@@ -184,9 +204,11 @@
                 width: 30px;
                 height: 30px;
                 cursor: pointer;
+                display: none;
 
                 @include variables.media-down(lg){
                     margin-right: 20px;
+                    display: inline-block;
                 }
 
                 &.active{
