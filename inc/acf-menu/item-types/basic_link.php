@@ -8,7 +8,7 @@
         $id_attribute = ($custom_id = get_sub_field('custom_id')) ? 'id="' . $custom_id . '"' : ''; 
 ?>
         
-        <li <?= $id_attribute; ?> class="main-nav__list-item main-nav__basic-link <?= esc_html($custom_classes); ?>">
+        <li <?= $id_attribute; ?> class="main-nav__list-item main-nav__basic-link mobile-expandable <?= esc_html($custom_classes); ?>">
             <a class="" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
         </li>
     <?php

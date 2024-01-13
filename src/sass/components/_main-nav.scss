@@ -1,13 +1,29 @@
 @use '../variables';
 
 .main-nav{
+    min-height: 30px;
+
+    &.active{
+        .mobile-expandable{
+            max-height: 300px;
+            transition: all 0.4s ease;
+        }
+    }
+
     &__list{
-        width: 100%;
+        width: calc(100% - 30px);
         display: flex;
         justify-content: center;
         align-items: center;
-        position: relative;
+        // position: relative;
         flex-wrap: wrap;
+        position: absolute;
+        background-color: variables.$navyBlue;
+        z-index: 8;
+
+        @include variables.media-up(lg){
+            position: static;
+        }
 
         &-item{
             font-family: 'Roboto Flex', sans-serif;
@@ -23,6 +39,15 @@
             &--right{
                 margin-right: 0;
                 margin-left: auto;
+            }
+
+            &.mobile-expandable{
+                @include variables.media-down(lg){
+                    width: 100%;
+                    max-height: 0;
+                    overflow: hidden;
+                    transition: all 0.4s ease;
+                }
             }
 
             &.main-nav__image{
@@ -51,10 +76,6 @@
                 transition: all 0.2s ease;
                 border-top-right-radius: 6px;
                 border-top-left-radius: 6px;
-
-                @include variables.media-down(lg){
-                    width: 100%;
-                }
 
                 &:hover{
                     background-color: variables.$navyBlueLight;
@@ -122,6 +143,7 @@
             &.main-nav__button{
                 @include variables.media-down(lg){
                     width: 100%;
+                    margin: 15px 0;
                 }
             }
 

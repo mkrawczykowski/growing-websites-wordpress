@@ -9,7 +9,7 @@
         $id_attribute = ($custom_id = get_sub_field('custom_id')) ? 'id="' . $custom_id . '"' : ''; 
 ?>
 
-    <li <?= $id_attribute; ?> class="main-nav__list-item main-nav__button <?= $align_right_class . ' ' . esc_html($custom_classes); ?>">
+    <li <?= $id_attribute; ?> class="main-nav__list-item main-nav__button mobile-expandable <?= $align_right_class . ' ' . esc_html($custom_classes); ?>">
         <a class="button button--transparent-light" href="<?php echo esc_url( $button_url ); ?>" target="<?php echo esc_attr( $button_target ); ?>"><?php echo esc_html( $button_title ); ?></a>
     </li>
 

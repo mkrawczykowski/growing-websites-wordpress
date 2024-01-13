@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function(){
+    const mainNav = document.querySelector('.main-nav');
     const mainMenuItemHasChildren = document.querySelectorAll('.main-nav__has-children');
     const coveringLayer = document.querySelector('.covering-layer');
     const hamburger = document.getElementById('main-nav__hamburger');
@@ -21,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     hamburger.addEventListener('click', function(){
         hamburger.classList.toggle('active');
+        mainNav.classList.toggle('active');
     })
 
     console.log(mainMenuItemHasChildren)    
