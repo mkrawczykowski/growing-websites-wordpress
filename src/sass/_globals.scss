@@ -10,6 +10,7 @@ html {
   font-size: 62.5%;
   // scrollbar-color: variables.$main300 variables.$secondary50;
   scrollbar-width: thin;
+  margin-top: 0 !important;
 }
 
 ::-webkit-scrollbar {
@@ -25,8 +26,12 @@ html {
 body {
   position: relative;
   overflow-x: hidden;
-  padding: 30px;
   min-height: 100vw;
+  padding: 15px;
+
+  @include variables.media-up(lg){
+    padding: 30px;
+  }
 }
 
 img {

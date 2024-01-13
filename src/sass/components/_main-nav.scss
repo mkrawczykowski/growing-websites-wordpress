@@ -7,6 +7,7 @@
         justify-content: center;
         align-items: center;
         position: relative;
+        flex-wrap: wrap;
 
         &-item{
             font-family: 'Roboto Flex', sans-serif;
@@ -22,6 +23,13 @@
             &--right{
                 margin-right: 0;
                 margin-left: auto;
+            }
+
+            &.main-nav__image{
+                @include variables.media-down(lg){
+                    margin-left: 20px;
+                    line-height: 0;
+                }
             }
 
             &.main-nav__basic-link{
@@ -43,6 +51,10 @@
                 transition: all 0.2s ease;
                 border-top-right-radius: 6px;
                 border-top-left-radius: 6px;
+
+                @include variables.media-down(lg){
+                    width: 100%;
+                }
 
                 &:hover{
                     background-color: variables.$navyBlueLight;
@@ -105,6 +117,75 @@
                     visibility: hidden;
                     border-radius: 10px;
                 }
+            }
+
+            &.main-nav__button{
+                @include variables.media-down(lg){
+                    width: 100%;
+                }
+            }
+
+            &.main-nav__hamburger{
+                position: relative;
+                width: 30px;
+                height: 30px;
+                cursor: pointer;
+
+                @include variables.media-down(lg){
+                    margin-right: 20px;
+                }
+
+                &.active{
+                    span{
+                        transition: all 0.2s ease;
+
+                        &:nth-of-type(1){
+                            opacity: 0;
+                            visibility: hidden;
+                        }
+                        &:nth-of-type(2){
+                            transform: rotateZ(45deg);
+                        }
+                        &:nth-of-type(3){
+                            transform: rotateZ(-45deg);
+                        }
+                        &:nth-of-type(4){
+                            opacity: 0;
+                            visibility: hidden;
+                        }
+                    }
+                }
+
+                span{
+                    position: absolute;
+                    background-color: variables.$white;
+                    display: inline-block;
+                    width: 30px;
+                    height: 2px;
+                    border-radius: 3px;
+                    left: 0;
+                    transition: all 0.2s ease;
+
+                    &:nth-of-type(1){
+                        top: 5px;
+                        visibility: visible;
+                    }
+                    &:nth-of-type(2){
+                        top: 14px;
+                        transform-origin: center;
+                        transform: rotateZ(0);
+                    }
+                    &:nth-of-type(3){
+                        top: 14px;
+                        transform-origin: center;
+                        transform: rotateZ(0);
+                    }
+                    &:nth-of-type(4){
+                        top: 23px;
+                        visibility: visible;
+                    }
+                }
+
             }
         }
     }

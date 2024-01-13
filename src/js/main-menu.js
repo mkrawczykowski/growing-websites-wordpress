@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function(){
     const mainMenuItemHasChildren = document.querySelectorAll('.main-nav__has-children');
     const coveringLayer = document.querySelector('.covering-layer');
+    const hamburger = document.getElementById('main-nav__hamburger');
 
     if (mainMenuItemHasChildren.length){
         mainMenuItemHasChildren.forEach(itemHasChildren=>{
@@ -17,6 +18,12 @@ document.addEventListener('DOMContentLoaded', function(){
             })
         })
     }
+
+    console.log(hamburger)
+
+    hamburger.addEventListener('click', function(){
+        hamburger.classList.toggle('active');
+    })
 
     console.log(mainMenuItemHasChildren)    
 });
