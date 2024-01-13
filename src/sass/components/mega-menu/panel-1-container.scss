@@ -2,12 +2,21 @@
 
 .panel-1-container{
     &__post{
-        padding: 34px 54px;
+        padding: 15px;
+
+        @include variables.media-up(lg){
+            padding: 34px 54px;
+        }
     }
 
     &__row-1{
         display: flex;
         column-gap: 29px;
+        flex-direction: column;
+
+        @include variables.media-up(lg){
+            flex-direction: row;
+        }
 
         .panel-1-container__col-1{
             max-width: 435px;
@@ -16,13 +25,20 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
+            margin-bottom: 20px;
+
+            @include variables.media-up(lg){
+                flex-direction: row;
+                margin-bottom: 0;
+            }
         }
     }
 
     &__row-2{
         display: flex;
         justify-content: space-between;
-
+        flex-direction: column;
+            flex-direction: column;
         .panel-1-container__col-1{
             max-width: 435px;
         }
@@ -35,9 +51,14 @@
     }
 
     &__image{
-        height: 208px;
-        overflow: hidden;
-        border-radius: 8px;
+        display: none;
+
+        @include variables.media-up(lg){
+            height: 208px;
+            overflow: hidden;
+            border-radius: 8px;
+            display: inline-block;
+        }
 
         img{
             object-fit: cover;
@@ -47,7 +68,11 @@
     &__post-meta{
         display: flex;
         margin-bottom: 14px;
-        margin-top: 37px;
+        margin-top: 25px;
+
+        @include variables.media-up(lg){
+            margin-top: 37px;
+        }
     }
 
     &__post-categories{
@@ -61,14 +86,17 @@
             color: variables.$navyBlue;
 
             &-link{
-                font-family: 'Roboto Flex', sans-serif;
-                font-size: 10px;
-                font-style: normal;
-                font-weight: 800;
-                line-height: 120%; /* 12px */
-                text-transform: uppercase;
-                padding: 10px 12px 8px 12px;
-                display: inline-block;
+                display: none;
+                @include variables.media-up(lg){
+                    font-family: 'Roboto Flex', sans-serif;
+                    font-size: 10px;
+                    font-style: normal;
+                    font-weight: 800;
+                    line-height: 120%;
+                    text-transform: uppercase;
+                    padding: 10px 12px 8px 12px;
+                    display: inline-block;    
+                }
             }
         }
     }
@@ -95,16 +123,24 @@
             color: variables.$white;
             font-family: 'Roboto Flex', sans-serif;
             text-align: left;
-            font-size: 29px;
+            font-size: 24px;
             font-style: normal;
             font-weight: 700;
             line-height: 150%;
             font-weight: 700;
+
+            @include variables.media-up(lg){
+                font-size: 29px;
+            }
         }
     }
 
     &__post-button{
-        margin: 27px 0 0 auto;
+        margin: 10px 0 0 auto;
+
+        @include variables.media-up(lg){
+            margin: 27px 0 0 auto;
+        }
     }
 
     &__featured-categories-title{

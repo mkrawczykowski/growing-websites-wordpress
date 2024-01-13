@@ -4,7 +4,11 @@
     background-color: variables.$navyBlue;
     border-radius: 10px;
     min-height: 554px;
-    padding: 38px 0;
+    padding: 0;
+
+    @include variables.media-up(lg){
+        padding: 38px 0;
+    }
 
     &__page-title{
         color:variables.$white;

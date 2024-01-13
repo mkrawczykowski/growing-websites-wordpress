@@ -9,7 +9,7 @@
         $id_attribute = ($custom_id = get_sub_field('custom_id')) ? 'id="' . $custom_id . '"' : '';
 ?>
 		
-	<li <?= $id_attribute; ?> class="main-nav__list-item main-nav__image <?= $align_left_class . ' ' . esc_html($custom_classes); ?>">
+	<li <?= $id_attribute; ?> class="main-nav__list-item logo main-nav__image <?= $align_left_class . ' ' . esc_html($custom_classes); ?>">
 		<img class="" <?php acf_responsive_image($image_id,$image_size,$max_width); ?> alt="" />
 	</li>
 

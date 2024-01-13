@@ -2,8 +2,32 @@
 
 .main-nav{
     min-height: 30px;
+    margin-top: 15px;
+
+    @include variables.media-up(lg){
+        margin-top: 38px;
+    }
+
+    @include variables.media-up(lg){
+        margin-top: 0;
+    }
 
     &.active{
+        position: relative;
+
+        .main-nav__list{
+            position: static;
+
+            .main-nav__image{
+                &.logo{
+                    z-index: 30;
+                }
+            }
+
+            .main-nav__hamburger{
+                z-index: 30;
+            }
+        }
         .mobile-expandable{
             max-height: 300px;
             transition: all 0.4s ease;
@@ -15,14 +39,13 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        // position: relative;
         flex-wrap: wrap;
         position: absolute;
         background-color: variables.$navyBlue;
         z-index: 8;
 
         @include variables.media-up(lg){
-            position: static;
+            position: relative;
         }
 
         &-item{
@@ -128,15 +151,24 @@
                 }
 
                 .panel-1-container{
+                    @include variables.media-down(lg){
+                        top: 0;
+                    }
                     background-color: variables.$navyBlueLight;
                     position: absolute;
                     z-index: 20;
-                    left: -54px;
-                    right: -54px;
-                    width: calc(100% + 108px);
+                    left: 0;
+                    right: 0;
+                    width: 100%;
                     opacity: 0;
                     visibility: hidden;
                     border-radius: 10px;
+
+                    @include variables.media-up(lg){
+                        left: -54px;
+                        right: -54px;
+                        width: calc(100% + 108px);
+                    }
                 }
             }
 
