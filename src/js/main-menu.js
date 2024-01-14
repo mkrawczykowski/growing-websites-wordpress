@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function(){
                     if (window.innerWidth > 1024){
                         coveringLayer.classList.remove('active');
                     }
-                    itemHasChildren.classList.add('active');
+                    itemHasChildren.classList.remove('active');
                 }
             })
         })

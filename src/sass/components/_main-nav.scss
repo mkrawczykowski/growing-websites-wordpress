@@ -1,7 +1,7 @@
 @use '../variables';
 
 .main-nav{
-    min-height: 30px;
+    min-height: 0;
     margin-top: 15px;
 
     @include variables.media-up(lg){
@@ -40,6 +40,9 @@
     }
 
     &__list{
+        @include variables.media-down(lg){
+            z-index: 8;
+        }
         width: calc(100% - 30px);
         display: flex;
         justify-content: center;
@@ -47,7 +50,6 @@
         flex-wrap: wrap;
         position: absolute;
         background-color: variables.$navyBlue;
-        z-index: 8;
 
         @include variables.media-up(lg){
             position: relative;
