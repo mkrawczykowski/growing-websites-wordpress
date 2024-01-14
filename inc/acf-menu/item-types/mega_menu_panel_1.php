@@ -22,13 +22,14 @@
                     <div class="panel-1-container__row-1">
                         <div class="panel-1-container__col-1">
                             <a class="panel-1-container__back mega-menu-panel-back">
-                            < <?php echo esc_html( $menu_item_label ); ?>
+                                <?php echo esc_html( $menu_item_label ); ?>
                             </a>
                             <div class="panel-1-container__image">
                                 <?php echo get_the_post_thumbnail($featured_post_id); ?>
                             </div>
                         </div>
                         <div class="panel-1-container__col-2">
+                            <h4 class="panel-1-container__featured-post-heading">Featured post</h4>
                             <div class="panel-1-container__post-meta">
                                 <ul class="panel-1-container__post-categories">
                                     <?php 

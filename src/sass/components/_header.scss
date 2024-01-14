@@ -7,6 +7,10 @@
     padding: 0;
 
     @include variables.media-up(lg){
+        padding: 20px;
+    }
+
+    @include variables.media-up(xxl){
         padding: 38px 0;
     }
 

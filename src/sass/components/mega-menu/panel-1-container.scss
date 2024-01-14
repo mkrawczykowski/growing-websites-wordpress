@@ -1,9 +1,15 @@
 @use '../../variables';
 
 .panel-1-container{
-    &__post{
-        padding: 15px;
+    border-bottom: 3px solid variables.$whiteAlpha20;
 
+    @include variables.media-up(lg){
+        border: none;
+    }
+
+    &__post{
+        padding: 5px 15px;
+        
         @include variables.media-up(lg){
             padding: 34px 54px;
         }
@@ -20,16 +26,23 @@
 
         .panel-1-container__col-1{
             max-width: 435px;
+            display: flex;
         }
         .panel-1-container__col-2{
             display: flex;
             flex-direction: column;
             align-items: flex-start;
             margin-bottom: 20px;
+            border: 6px solid variables.$whiteAlpha20;
+            border-top-width: 32px;
+            margin-top: 15px;
+            padding: 8px 10px 5px 10px;
+            position: relative;
 
             @include variables.media-up(lg){
-                flex-direction: row;
+                // flex-direction: row;
                 margin-bottom: 0;
+                border: none;
             }
         }
     }
@@ -38,15 +51,49 @@
         display: flex;
         justify-content: space-between;
         flex-direction: column;
-            flex-direction: column;
+        flex-direction: column;
+        
         .panel-1-container__col-1{
-            max-width: 435px;
+            display: none;
+
+            @include variables.media-up(lg){
+                display: inline-block;
+                max-width: 435px;
+            }
         }
         .panel-1-container__col-2{
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            align-items: flex-end;
             justify-content: center;
+
+            @include variables.media-up(lg){
+                align-items: flex-start;
+            }
+        }
+    }
+
+    &__back{
+        position: relative;
+        padding-left: 24px;
+
+        @include variables.media-up(lg){
+            display: none;
+        }
+
+        &:before{
+            content: '';
+            position: absolute;
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.41 8.59L6 10L12 16L18 10L16.59 8.59L12 13.17L7.41 8.59Z" fill="white"/></svg>');
+            background-position: center;
+            background-repeat: no-repeat;
+            top: -2px;
+            left: 0;
+            transform: rotateZ(90deg);
+            transition: all 0.2s ease;
         }
     }
 
@@ -65,13 +112,22 @@
         }
     }
 
+    &__featured-post-heading{
+        position: absolute;
+        top: -26px;
+
+        @include variables.media-up(lg){
+            display: none;
+        }
+    }
+
     &__post-meta{
         display: flex;
         margin-bottom: 14px;
-        margin-top: 25px;
+        margin-top: 9px;
 
         @include variables.media-up(lg){
-            margin-top: 37px;
+            margin-top: 0;
         }
     }
 
@@ -114,6 +170,7 @@
         font-weight: 600;
         line-height: 120%; /* 12px */
         text-transform: uppercase;
+        margin-left: -10px;
     }
 
     &__post-title{
@@ -136,7 +193,7 @@
     }
 
     &__post-button{
-        margin: 10px 0 0 auto;
+        margin: 10px 0 8px auto;
 
         @include variables.media-up(lg){
             margin: 27px 0 0 auto;
@@ -187,6 +244,28 @@
         font-weight: 600;
         line-height: 140%;
         letter-spacing: 0.36px;
-        margin-top: 42px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        position: relative;
+        padding-right: 25px;
+
+        @include variables.media-up(lg){
+            margin-top: 42px;
+        }
+
+        &:after{
+            content: '';
+            position: absolute;
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-image: url('data:image/svg+xml,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.41 8.59L6 10L12 16L18 10L16.59 8.59L12 13.17L7.41 8.59Z" fill="white"/></svg>');
+            background-position: center;
+            background-repeat: no-repeat;
+            top: 2px;
+            right: 0px;
+            transform: rotateZ(-90deg);
+            transition: all 0.2s ease;
+        }
     }
 }

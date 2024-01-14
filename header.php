@@ -39,7 +39,6 @@
 
       <div class="container">
         <div class="header__category">
-          <?php if (is_front_page()){echo 'front';} ?>
         </div>
         <h1 class="header__page-title">
           <?php the_title(); ?>

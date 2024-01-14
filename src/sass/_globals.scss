@@ -43,12 +43,12 @@ img {
   display: block;
   margin: 0 auto;
   
-  @include variables.media-up(xxxl){
+  @include variables.media-up(xl){
     max-width: 970px;
   }
 
   &--wider{
-    @include variables.media-up(xxxl){
+    @include variables.media-up(xl){
       max-width: 1266px;
     }
   }

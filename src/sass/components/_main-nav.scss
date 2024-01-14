@@ -2,14 +2,15 @@
 
 .main-nav{
     min-height: 0;
-    margin-top: 15px;
-
-    @include variables.media-up(lg){
-        margin-top: 38px;
-    }
+    padding-top: 15px;
 
     @include variables.media-up(lg){
         margin-top: 0;
+        padding-top: 0;
+    }
+
+    @include variables.media-up(xxxl){
+        margin-top: 38px;
     }
 
     &.active{
@@ -19,7 +20,7 @@
             // position: static;
             width: 100%;
 
-            @include variables.media-up(lg){
+            @include variables.media-up(xxxl){
                 width: calc(100% - 30px);
             }
 
@@ -34,8 +35,12 @@
             }
         }
         .mobile-expandable{
-            max-height: 300px;
+            max-height: 50px;
             transition: all 0.4s ease;
+        }
+
+        .mobile-margin-top{
+            margin-top: 20px;
         }
     }
 
@@ -52,7 +57,11 @@
         background-color: variables.$navyBlue;
 
         @include variables.media-up(lg){
-            position: relative;
+            position: relative;width: calc(100%);
+        }
+
+        @include variables.media-up(xl){
+            
         }
 
         &-item{
@@ -187,9 +196,11 @@
                     transition: all 0.3s ease;
 
                     @include variables.media-up(lg){
-                        left: -54px;
-                        right: -54px;
-                        width: calc(100% + 108px);
+                        // left: -54px;
+                        // right: -54px;
+                        left: 5%;
+                        width: 100%;
+                        // width: calc(100% + 108px);
                     }
                 }
             }
@@ -197,7 +208,7 @@
             &.main-nav__button{
                 @include variables.media-down(lg){
                     width: 100%;
-                    margin: 15px 0;
+                    margin-top: 15px;
                 }
             }
 
