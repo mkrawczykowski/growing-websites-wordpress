@@ -2,33 +2,23 @@
   "name": "tg",
   "version": "1.0.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack --watch --mode=development",
-    "build": "webpack --mode=production"
+    "start": "wp-scripts start src/index.js --output-path=build/theme",
+    "admin-styles": "wp-scripts start src/admin.js --output-path=build/admin",
+    "build": "wp-scripts build src/index.js --output-path=build/theme",
+    "blocks-start": "wp-scripts start --webpack-src-dir=blocks --webpack-copy-php --output-path=build/blocks",
+    "blocks-build": "wp-scripts build --webpack-src-dir=blocks --webpack-copy-php --output-path=build/blocks",
+    "develop": "npm-run-all --parallel start blocks-start"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.21.4",
-    "@babel/preset-env": "^7.21.4",
-    "babel-loader": "^9.1.2",
-    "css-loader": "^6.7.3",
-    "css-minimizer-webpack-plugin": "^5.0.0",
-    "file-loader": "^6.2.0",
-    "mini-css-extract-plugin": "^2.7.5",
-    "postcss": "^8.4.23",
-    "postcss-loader": "^7.2.4",
-    "sass": "^1.62.0",
-    "sass-loader": "^13.2.2",
-    "style-loader": "^3.3.2",
-    "webpack": "^5.80.0",
-    "webpack-cli": "^5.0.2"
+    "@wordpress/scripts": "^26.8.0",
+    "browser-sync": "^2.29.3",
+    "npm-run-all": "^4.1.5"
   },
-  "description": "",
   "dependencies": {
-    "autoprefixer": "^10.4.14",
-    "swiper": "^9.3.2",
-    "venobox": "^2.0.4"
+    "@splidejs/splide": "^4.1.4",
+    "swiper": "^10.0.4"
   }
 }
