@@ -1,1 +1,0 @@
-{"version":3,"file":"post-blocks/index.css","mappings":";;;AAEA;EACI;AADJ,C","sources":["webpack://tg/./blocks/post-blocks/index.scss"],"sourcesContent":["@use '../../src/sass/variables' as variables;\r\n\r\n.post-blocks {\r\n    background-color: red;\r\n}"],"names":[],"sourceRoot":""}
