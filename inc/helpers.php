@@ -24,10 +24,14 @@ function acf_responsive_image($image_id,$image_size,$max_width){
  */
 
 function the_posts_by_ids($posts_ids){
+	if (!is_array($posts_ids) || empty($posts_ids)) {
+		return;
+    }
+
     foreach($posts_ids as $post_id) : 
         get_template_part('template-parts/post','box',
         	array('post_id' => $post_id)
         );
     endforeach;
 }
-?>
+?>   
