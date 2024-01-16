@@ -18,26 +18,16 @@ function acf_responsive_image($image_id,$image_size,$max_width){
 
 
 /**
- * Show
+ * Function to display posts by IDs
  *
- * @param string $image_id the id of the image (from ACF or similar)
- * @param string $image_size the size of the thumbnail image or custom image size
- * @param string $max_width the max width this image will be shown to build the sizes attribute 
+ * @param array $posts_ids array od posts IDs
  */
 
-function get_yoast_primary_category($taxonomy, $post_id_or_object){
-	echo 'test';
-	echo $taxonomy;
-	echo $post_id_or_object;
-	$primary_term_id = yoast_get_primary_term_id($taxonomy, $post_id_or_object);
-echo $primary_term_id;
-// 	if ($primary_term_id) {
-// 		$primary_term = get_term($primary_term_id);
-
-// 		$primary_term;
-// 	}
+function the_posts_by_ids($posts_ids){
+    foreach($posts_ids as $post_id) : 
+        get_template_part('template-parts/post','box',
+        	array('post_id' => $post_id)
+        );
+    endforeach;
 }
-
-
-
 ?>
