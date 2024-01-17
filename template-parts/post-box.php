@@ -4,7 +4,7 @@
 ?>
 
 <div class="post-box">
-    <div class="post_texts">
+    <div class="post-box__texts">
         <div class="post-box__meta">
             <?php if ($post_categories) : ?>
                 <ul class="post-box__categories">
@@ -16,12 +16,14 @@
                         </li>
                     <?php endforeach; ?>
                 </ul>
+                <div class="post-box__data"><?= get_the_date('F d Y', $post_id); ?></div>
             <?php endif; ?>
-        <div class="post-box__data"><?= get_the_date('F d Y', $post_id); ?></div>
+        </div>
+        
         <h3 class="post-box__title"><?= get_the_title($post_id); ?></h3>
         <p class="post-box__excerpt"><?= get_the_excerpt($post_id) ?></p>
     </div>
-    <div class="post-box_image">
+    <div class="post-box__image">
         <img class="" <?php acf_responsive_image(get_post_thumbnail_id($post_id),'full',1024); ?> alt="" />
     </div>
 </div>
