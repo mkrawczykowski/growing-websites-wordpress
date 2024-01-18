@@ -1,0 +1,31 @@
+{
+  "name": "acf/portfolio-experience",
+  "title": "Portfolio experience",
+  "description": "A timeline with filtering displaying Project CPTs",
+  "style": "file:./index.css",
+  "script": "file:./index.js",
+  "category": "design",
+  "icon": "list-view",
+  "keywords": [
+    "columns",
+    "text",
+    "image",
+    "heading"
+  ],
+  "apiVersion": 2,
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "portfolio-experience.php"
+  },
+  "align": "full",
+  "supports": {
+    "align": true,
+    "anchor": true
+  },
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": "full"
+    }
+  }
+}
