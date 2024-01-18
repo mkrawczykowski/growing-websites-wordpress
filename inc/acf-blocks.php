@@ -22,16 +22,19 @@ add_action( 'wp_enqueue_scripts', 'remove_wp_block_library_css', 100 );
 $GLOBALS['gw_gutenberg_blocks_array_with_scripts_gw'] = array(
   array(
     'block-name' => 'post-blocks', 
-    'block-scripts' => array('checkbox-dropdowns-filters', 'another-test-script', 'and-another-one-script')
+    'block-scripts' => array('checkbox-dropdowns-filters')
   ),
   array(
     'block-name' => 'portfolio-experience', 
-    'block-scripts' => array('checkbox-dropdowns-filters', 'another-test-script', 'and-another-one-script')
+    'block-scripts' => array('checkbox-dropdowns-filters')
   )
 );
  
 function register_acf_blocks() {
-  register_block_type( get_template_directory() . '/build/blocks/post-blocks');
-  register_block_type( get_template_directory() . '/build/blocks/portfolio-experience');
+  $global_blocks_array = $GLOBALS['gw_gutenberg_blocks_array_with_scripts_gw'];
+
+  foreach($global_blocks_array as $block){
+    register_block_type( get_template_directory() . '/build/blocks/' . $block['block-name']);
+  }
 }
 add_action( 'init', 'register_acf_blocks', 5 );

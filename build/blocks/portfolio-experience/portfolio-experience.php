@@ -28,15 +28,17 @@
 </section> -->
 
 <?php
-    $gw_gutenberg_blocks_array_with_scripts_gw = $GLOBALS['gw_gutenberg_blocks_array_with_scripts_gw'];
-    // var_dump($gw_gutenberg_blocks_array_with_scripts_gw);
+// $global_blocks_array = $GLOBALS['gw_gutenberg_blocks_array_with_scripts_gw'];
 
-    foreach($gw_gutenberg_blocks_array_with_scripts_gw as $block){
-        var_dump($block['block-name']);
-        echo '<br>';
-        var_dump($block['block-scripts'][0]);
-        echo '<br>';
-        echo '============================';
-        echo '<br>';
-    }
+
+// foreach($global_blocks_array as $block){
+//     // var_dump($global_blocks_array);
+//     $global_scripts_array = $block['block-scripts'];
+//     var_dump($global_scripts_array);
+//     echo '<br>';
+//     echo '======================';
+//     echo '<br>';
+// }
+
+
 ?>
