@@ -10,7 +10,7 @@
                 <ul class="post-box__categories">
                     <?php foreach($post_categories as $post_category) : ?>
                         <li class="post-box__category">
-                            <a href="<?= get_category_link($post_category->term_id); ?>" class="post__link">
+                            <a href="<?= get_category_link($post_category->term_id); ?>" class="post-box__category-link">
                                 <?= $post_category->name; ?>
                             </a>
                         </li>
@@ -20,7 +20,11 @@
             <?php endif; ?>
         </div>
         
-        <h3 class="post-box__title"><?= get_the_title($post_id); ?></h3>
+        <h3 class="post-box__title">
+            <a href="<?= get_permalink($post_id); ?>" class="post-box__title-post">
+                <?= get_the_title($post_id); ?>
+            </a>
+        </h3>
         <p class="post-box__excerpt"><?= get_the_excerpt($post_id) ?></p>
     </div>
     <div class="post-box__image">
