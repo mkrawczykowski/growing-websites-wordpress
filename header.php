@@ -30,7 +30,7 @@
   <?php wp_head(); ?>
 </head>
 
-<body>
+<body <?php body_class(); ?>>
   <div class="covering-layer"></div>
   <header class="header">
     <div class="container container--wider">
