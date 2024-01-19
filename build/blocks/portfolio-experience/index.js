@@ -106,12 +106,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 document.addEventListener('DOMContentLoaded', function () {
-  const activeList = document.querySelectorAll('.dropdown-checkboxes__active-list');
+  const activeList = document.querySelector('.dropdown-checkboxes__active-list');
+  const activeListItemClassName = 'dropdown-checkboxes__active-list-item';
+  const activeListItemDataName = 'data-active-item';
+  const activeListItems = document.querySelectorAll(`[${activeListItemDataName}]`);
   let activeListArray = [];
   const choicesList = document.querySelector('.dropdown-checkboxes__choices-list');
+  const choicesListItemClassName = 'dropdown-checkboxes__choices-list-item';
+  const choicesListItemDataName = 'data-choice-item';
+  const choicesListItems = document.querySelectorAll(`[${choicesListItemDataName}]`);
   let choicesListArray = [];
-  const activeListItems = document.querySelectorAll('[data-active-item]');
-  const choicesListItems = document.querySelectorAll('[data-choice-item]');
   const dataArraySortDescending = arrayToSort => {
     if (arrayToSort && Array.isArray(arrayToSort)) {
       arrayToSort.sort();
@@ -134,11 +138,8 @@ document.addEventListener('DOMContentLoaded', function () {
   };
   activeListArray = fillArrayFromElementsList(activeListArray, activeListItems);
   choicesListArray = fillArrayFromElementsList(choicesListArray, choicesListItems);
-  console.log('---- activeListArray ----');
-  console.log(activeListArray);
-  console.log('---- choicesListArray ----');
-  console.log(choicesListArray);
   const rebuildHTMLListFromArray = (listElementToRebuild, itemClassName, itemDataName, dataArray) => {
+    console.log(dataArray);
     listElementToRebuild.innerHTML = '';
     dataArraySortDescending(dataArray);
     dataArray.forEach(dataArrayItem => {
@@ -151,13 +152,17 @@ document.addEventListener('DOMContentLoaded', function () {
       listElementToRebuild.appendChild(newListItem);
     });
   };
-  activeListItems.forEach(activeListItem => {
-    activeListItem.addEventListener('click', () => {
-      choicesListArray.push(activeListItem.dataset.value);
-      rebuildHTMLListFromArray(choicesList, 'dropdown-checkboxes__choices-list', 'data-choice-item', choicesListArray);
-      activeListItem.remove();
+  const handleListItemClick = (elementsList, theOtherArray, theOtherList, theOtherListClassName, dataAttributeName) => {
+    elementsList.forEach(elementsListItem => {
+      elementsListItem.addEventListener('click', () => {
+        theOtherArray.push(elementsListItem.dataset.value);
+        rebuildHTMLListFromArray(theOtherList, theOtherListClassName, dataAttributeName, theOtherArray);
+        elementsListItem.remove();
+      });
     });
-  });
+  };
+  handleListItemClick(activeListItems, choicesListArray, choicesList, choicesListItemClassName, choicesListItemDataName);
+  handleListItemClick(choicesListItems, activeListArray, activeList, activeListItemClassName, activeListItemDataName);
 });
 })();
 

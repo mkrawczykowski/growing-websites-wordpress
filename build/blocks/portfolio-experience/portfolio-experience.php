@@ -21,7 +21,7 @@
                         <option value="2019">2019</option>
                     </select>
                     <div class="dropdown-checkboxes__active-wrapper">
-                        <ul class="dropdown-checkboxes__active-list">
+                        <ul class="dropdown-checkboxes__active-list" data-active-list>
                             <li class="dropdown-checkboxes__active-list-item" data-active-item data-value="2022">2022</li>
                             <li class="dropdown-checkboxes__active-list-item" data-active-item data-value="2021">2021</li>
                             <li class="dropdown-checkboxes__active-list-item" data-active-item data-value="2020">2020</li>
@@ -30,7 +30,7 @@
                             <li class="dropdown-checkboxes__active-list-item" data-active-item data-value="2017">2017</li>
                         </ul>
                     </div>
-                    <ul class="dropdown-checkboxes__choices-list">
+                    <ul class="dropdown-checkboxes__choices-list" data-choices-list>
                         <li class="dropdown-checkboxes__choices-list-item" data-choice-item data-value="2016">2016</li>
                         <li class="dropdown-checkboxes__choices-list-item" data-choice-item data-value="2015">2015</li>
                         <li class="dropdown-checkboxes__choices-list-item" data-choice-item data-value="2014">2014</li>
