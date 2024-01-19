@@ -7,38 +7,36 @@
 //   $posts_in_section = get_field('posts_in_section');
 ?>
 
-<!-- <section class="portfolio-experience">
+<section class="portfolio-experience">
     <div class="container">
         <div class="filters">
-            <div class="dropdown-checkboxes">
-                <ul class="dropdown-checkboxes__active-list">
-                    <li class="dropdown-checkboxes__active-list-item" data-active-item="2022">2022</li>
-                    <li class="dropdown-checkboxes__active-list-item" data-active-item="2021">2021</li>
-                    <li class="dropdown-checkboxes__active-list-item" data-active-item="2020">2020</li>
-                    <li class="dropdown-checkboxes__active-list-item" data-active-item="2019">2019</li>
-                </ul>
-                <ul class="dropdown-checkboxes__choices-list">
-                    <li class="dropdown-checkboxes__choices-list" data-choice-item="2018">2018</li>
-                    <li class="dropdown-checkboxes__choices-list" data-choice-item="2017">2017</li>
-                    <li class="dropdown-checkboxes__choices-list" data-choice-item="2016">2016</li>
-                </ul>
+            <div class="filters__filter">
+                <div class="dropdown-checkboxes">
+                    <select class="dropdown-checkboxes__select">
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                        <option value="2019">2019</option>
+                        <option value="2019">2019</option>
+                    </select>
+                    <div class="dropdown-checkboxes__active-wrapper">
+                        <ul class="dropdown-checkboxes__active-list">
+                            <li class="dropdown-checkboxes__active-list-item" data-active-item="2022">2022</li>
+                            <li class="dropdown-checkboxes__active-list-item" data-active-item="2021">2021</li>
+                            <li class="dropdown-checkboxes__active-list-item" data-active-item="2020">2020</li>
+                            <li class="dropdown-checkboxes__active-list-item" data-active-item="2019">2019</li>
+                            <li class="dropdown-checkboxes__active-list-item" data-active-item="2020">2020</li>
+                            <li class="dropdown-checkboxes__active-list-item" data-active-item="2019">2019</li>
+                        </ul>
+                    </div>
+                    <ul class="dropdown-checkboxes__choices-list">
+                        <li class="dropdown-checkboxes__choices-list-item" data-choice-item="2018">2018</li>
+                        <li class="dropdown-checkboxes__choices-list-item" data-choice-item="2017">2017</li>
+                        <li class="dropdown-checkboxes__choices-list-item" data-choice-item="2016">2016</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-</section> -->
-
-<?php
-// $global_blocks_array = $GLOBALS['gw_gutenberg_blocks_array_with_scripts_gw'];
-
-
-// foreach($global_blocks_array as $block){
-//     // var_dump($global_blocks_array);
-//     $global_scripts_array = $block['block-scripts'];
-//     var_dump($global_scripts_array);
-//     echo '<br>';
-//     echo '======================';
-//     echo '<br>';
-// }
-
-
-?>
+</section>

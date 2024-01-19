@@ -1,4 +1,74 @@
 /*!***************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./blocks/portfolio-experience/index.scss ***!
   \***************************************************************************************************************************************************************************************************************************************************************/
+.portfolio-experience .filters__filter {
+  max-width: 33%;
+}
+.portfolio-experience .dropdown-checkboxes__select {
+  display: none;
+}
+.portfolio-experience .dropdown-checkboxes__active-wrapper {
+  position: relative;
+  background-color: #EFF3FF;
+  border-radius: 6px;
+}
+.portfolio-experience .dropdown-checkboxes__active-wrapper:after {
+  content: "";
+  position: absolute;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 0;
+  border-bottom: 2px solid #232E52;
+  border-right: 2px solid #232E52;
+  transform: rotateZ(45deg);
+  top: calc(50% - 8px);
+  right: 12px;
+}
+.portfolio-experience .dropdown-checkboxes__active-list {
+  width: calc(100% - 33px);
+  display: flex;
+  flex-wrap: wrap;
+  padding: 6px 34px 6px 6px;
+  overflow: hidden;
+  gap: 6px;
+}
+.portfolio-experience .dropdown-checkboxes__active-list-item {
+  background-color: #232E52;
+  font-family: "Roboto Flex", sans-serif;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 120%;
+  text-transform: uppercase;
+  padding: 10px 23px 8px 12px;
+  display: inline-block;
+  color: #EFF3FF;
+  border-radius: 6px;
+  position: relative;
+}
+.portfolio-experience .dropdown-checkboxes__active-list-item:hover {
+  background-color: #EBF2FE;
+  color: #232E52;
+  cursor: pointer;
+}
+.portfolio-experience .dropdown-checkboxes__active-list-item:hover:after {
+  background-image: url("data:image/svg+xml,<svg viewPort=\"0 0 11 11\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\"><line x1=\"1\" y1=\"11\" x2=\"11\" y2=\"1\" stroke=\"black\" stroke-width=\"2\"/><line x1=\"1\" y1=\"1\" x2=\"11\" y2=\"11\" stroke=\"black\" stroke-width=\"2\"/></svg>");
+}
+.portfolio-experience .dropdown-checkboxes__active-list-item:after {
+  content: "";
+  position: absolute;
+  background-image: url("data:image/svg+xml,<svg viewPort=\"0 0 11 11\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\"><line x1=\"1\" y1=\"11\" x2=\"11\" y2=\"1\" stroke=\"white\" stroke-width=\"2\"/><line x1=\"1\" y1=\"1\" x2=\"11\" y2=\"11\" stroke=\"white\" stroke-width=\"2\"/></svg>");
+  background-position: center;
+  background-repeat: no-repeat;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  transform: scale(80%);
+  top: 9px;
+  right: 8px;
+}
 
+/*# sourceMappingURL=index.css.map*/
