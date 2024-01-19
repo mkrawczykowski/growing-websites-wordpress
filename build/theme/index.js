@@ -58,12 +58,10 @@ document.addEventListener('DOMContentLoaded', function () {
   megaMenuPanelsBack.forEach(megaMenuPanelBack => {
     megaMenuPanelBack.addEventListener('click', () => {
       const closestParentListItem = megaMenuPanelBack.closest('.main-nav__list-item');
-      console.log(closestParentListItem);
       closestParentListItem.classList.remove('active');
       closestParentListItem.blur();
     });
   });
-  console.log(mainMenuItemHasChildren);
 });
 
 /***/ }),

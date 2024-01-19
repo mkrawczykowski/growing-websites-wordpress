@@ -22,18 +22,18 @@
                     </select>
                     <div class="dropdown-checkboxes__active-wrapper">
                         <ul class="dropdown-checkboxes__active-list">
-                            <li class="dropdown-checkboxes__active-list-item" data-active-item="2022">2022</li>
-                            <li class="dropdown-checkboxes__active-list-item" data-active-item="2021">2021</li>
-                            <li class="dropdown-checkboxes__active-list-item" data-active-item="2020">2020</li>
-                            <li class="dropdown-checkboxes__active-list-item" data-active-item="2019">2019</li>
-                            <li class="dropdown-checkboxes__active-list-item" data-active-item="2020">2020</li>
-                            <li class="dropdown-checkboxes__active-list-item" data-active-item="2019">2019</li>
+                            <li class="dropdown-checkboxes__active-list-item" data-active-item data-value="2022">2022</li>
+                            <li class="dropdown-checkboxes__active-list-item" data-active-item data-value="2021">2021</li>
+                            <li class="dropdown-checkboxes__active-list-item" data-active-item data-value="2020">2020</li>
+                            <li class="dropdown-checkboxes__active-list-item" data-active-item data-value="2019">2019</li>
+                            <li class="dropdown-checkboxes__active-list-item" data-active-item data-value="2018">2018</li>
+                            <li class="dropdown-checkboxes__active-list-item" data-active-item data-value="2017">2017</li>
                         </ul>
                     </div>
                     <ul class="dropdown-checkboxes__choices-list">
-                        <li class="dropdown-checkboxes__choices-list-item" data-choice-item="2018">2018</li>
-                        <li class="dropdown-checkboxes__choices-list-item" data-choice-item="2017">2017</li>
-                        <li class="dropdown-checkboxes__choices-list-item" data-choice-item="2016">2016</li>
+                        <li class="dropdown-checkboxes__choices-list-item" data-choice-item data-value="2016">2016</li>
+                        <li class="dropdown-checkboxes__choices-list-item" data-choice-item data-value="2015">2015</li>
+                        <li class="dropdown-checkboxes__choices-list-item" data-choice-item data-value="2014">2014</li>
                     </ul>
                 </div>
             </div>
