@@ -4,16 +4,36 @@
     padding: 100px 0;
 
     .years-filter{
-        display: flex;
-        flex-wrap: wrap;
-        position: relative;
         background-color: variables.$lightBlue;
-        border-radius: 6px;
-        width: 100%;
         padding: 6px;
         overflow: hidden;
-        gap: 6px;
+        border-radius: 6px;
         margin-bottom: 40px;
+        width: 100%;
+
+        &__heading{
+            font-family: "Roboto Flex", sans-serif;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 800;
+            line-height: 120%;
+            text-transform: uppercase;
+            margin: 12px 6px 6px;
+            display: inline-block;
+        }
+        &__list{
+            display: flex;
+            flex-wrap: wrap;
+            position: relative;
+            
+            
+            
+            
+            
+            gap: 6px;
+              
+        }
+        
 
         &__item{
             background-color: variables.$white;
@@ -61,6 +81,17 @@
     .dropdown-checkboxes{
         &__select{
             display: none;
+        }
+
+        &__heading{
+            font-family: "Roboto Flex", sans-serif;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 800;
+            line-height: 120%;
+            text-transform: uppercase;
+            margin: 12px 6px 6px;
+            display: inline-block;
         }
 
         &__active-wrapper{

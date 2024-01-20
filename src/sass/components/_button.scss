@@ -11,9 +11,12 @@
     color: variables.$white;
     transition: all 0.2s ease;
     font-weight: 600;
+    background-color: variables.$navyBlue;
 
     &:hover{
         transition: all 0.2s ease;
+        background-color: variables.$lightBlue;
+        color: variables.$navyBlue;
     }
 
     &--smaller{
