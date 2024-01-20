@@ -74,38 +74,23 @@ export const buildArrayFromDOM = (itemDataType) => {
 
 
 export const updateListArray = (itemToAdd, arrayToModify, operation = 'add') => {
-    // console.log(typeof itemToAdd);
     if (!itemToAdd || typeof itemToAdd !== 'string' || !arrayToModify || !Array.isArray(arrayToModify) || typeof operation !== 'string' ){
         console.error('updateListArray error: invalid function parameter')
         return;
     }
-
-    console.log(operation);
     
     switch(operation){
         case 'add' :
             if (!arrayToModify.includes(itemToAdd)) {
                 arrayToModify.push(itemToAdd);
-            // console.log(`updateListArray, ${arrayToModify}:`)
-            // console.log(arrayToModify)
-        }    
+            }    
         break;
         case 'remove' :
             arrayToModify
             const index = arrayToModify.indexOf(itemToAdd);
             arrayToModify = arrayToModify.splice(index, 1);
-            // console.log('arrayModified');
-            // console.log(arrayModified);
-            // arrayToModify = [];
-            // arrayToModify = [...arrayModified];
-            
         break;
-    }
-console.log(`updateListArray, ${arrayToModify}:`)
-            console.log(arrayToModify)
-
-    
-
+    }  
 }
 
 

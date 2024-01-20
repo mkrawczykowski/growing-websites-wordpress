@@ -5,8 +5,7 @@ import {active, choices, buildListFromDOM, buildArrayFromDOM, addClickHandlers, 
 document.addEventListener('DOMContentLoaded', function(){
 
     initData();
-
-    console.log(active)
+    
     buildListFromDOM('active');
     buildListFromDOM('choice');
 
