@@ -5,14 +5,33 @@ document.addEventListener('DOMContentLoaded', function(){
     const activeList = document.querySelector('.dropdown-checkboxes__active-list');
     const activeListItemClassName = 'dropdown-checkboxes__active-list-item';
     const activeListItemDataName = 'data-active-item';
-    const activeListItems = document.querySelectorAll(`[${activeListItemDataName}]`);
+    let activeListItems;
     let activeListArray = [];
 
     const choicesList = document.querySelector('.dropdown-checkboxes__choices-list');
     const choicesListItemClassName = 'dropdown-checkboxes__choices-list-item';
     const choicesListItemDataName = 'data-choice-item';
-    const choicesListItems = document.querySelectorAll(`[${choicesListItemDataName}]`);
     let choicesListArray = [];
+    let choicesListItems;
+
+    const getDOMListItems = (itemsDataName) => {
+        if (itemsDataName) {
+            switch(itemsDataName){
+                case activeListItemDataName :
+                    activeListItems = document.querySelectorAll(`[${activeListItemDataName}]`);
+                break;
+                case choicesListItemDataName : 
+                    choicesListItems = document.querySelectorAll(`[${choicesListItemDataName}]`);
+                break;
+            }
+        } else {
+            console.error('getDOMListItems - no function parameter')
+        }
+        
+    }
+
+    getDOMListItems(activeListItemDataName);
+    getDOMListItems(choicesListItemDataName);
     
     const dataArraySortDescending = (arrayToSort) => {
         if (arrayToSort && Array.isArray(arrayToSort)){
@@ -54,6 +73,8 @@ document.addEventListener('DOMContentLoaded', function(){
             newListItem.appendChild(newListItemText);
             listElementToRebuild.appendChild(newListItem);
         })
+
+        getDOMListItems(itemDataName);
     }
 
     const handleListItemClick = (elementsList, theOtherArray, theOtherList, theOtherListClassName, dataAttributeName) => {
