@@ -85,33 +85,22 @@ const buildArrayFromDOM = itemDataType => {
   }
 };
 const updateListArray = (itemToAdd, arrayToModify, operation = 'add') => {
-  // console.log(typeof itemToAdd);
   if (!itemToAdd || typeof itemToAdd !== 'string' || !arrayToModify || !Array.isArray(arrayToModify) || typeof operation !== 'string') {
     console.error('updateListArray error: invalid function parameter');
     return;
   }
-  console.log(operation);
   switch (operation) {
     case 'add':
       if (!arrayToModify.includes(itemToAdd)) {
         arrayToModify.push(itemToAdd);
-        // console.log(`updateListArray, ${arrayToModify}:`)
-        // console.log(arrayToModify)
       }
       break;
     case 'remove':
       arrayToModify;
       const index = arrayToModify.indexOf(itemToAdd);
       arrayToModify = arrayToModify.splice(index, 1);
-      // console.log('arrayModified');
-      // console.log(arrayModified);
-      // arrayToModify = [];
-      // arrayToModify = [...arrayModified];
-
       break;
   }
-  console.log(`updateListArray, ${arrayToModify}:`);
-  console.log(arrayToModify);
 };
 const addClickHandlers = listItems => {
   listItems.forEach(listItem => {
@@ -267,13 +256,18 @@ __webpack_require__.r(__webpack_exports__);
 
 document.addEventListener('DOMContentLoaded', function () {
   (0,_helpers__WEBPACK_IMPORTED_MODULE_2__.initData)();
-  console.log(_helpers__WEBPACK_IMPORTED_MODULE_2__.active);
   (0,_helpers__WEBPACK_IMPORTED_MODULE_2__.buildListFromDOM)('active');
   (0,_helpers__WEBPACK_IMPORTED_MODULE_2__.buildListFromDOM)('choice');
   (0,_helpers__WEBPACK_IMPORTED_MODULE_2__.buildArrayFromDOM)('active');
   (0,_helpers__WEBPACK_IMPORTED_MODULE_2__.buildArrayFromDOM)('choice');
   (0,_helpers__WEBPACK_IMPORTED_MODULE_2__.addClickHandlers)(_helpers__WEBPACK_IMPORTED_MODULE_2__.active.listItems);
   (0,_helpers__WEBPACK_IMPORTED_MODULE_2__.addClickHandlers)(_helpers__WEBPACK_IMPORTED_MODULE_2__.choices.listItems);
+  const yearsFilters = document.querySelectorAll('[data-years-filter]');
+  yearsFilters.forEach(yearsFilter => {
+    yearsFilter.addEventListener('click', () => {
+      yearsFilter.classList.toggle('active');
+    });
+  });
 });
 })();
 

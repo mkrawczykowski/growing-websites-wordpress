@@ -1,8 +1,55 @@
 /*!***************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./blocks/portfolio-experience/index.scss ***!
   \***************************************************************************************************************************************************************************************************************************************************************/
-.portfolio-experience .filters__filter {
-  max-width: 33%;
+.portfolio-experience {
+  padding: 100px 0;
+}
+.portfolio-experience .years-filter {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  background-color: #EFF3FF;
+  border-radius: 6px;
+  width: 100%;
+  padding: 6px;
+  overflow: hidden;
+  gap: 6px;
+  margin-bottom: 40px;
+}
+.portfolio-experience .years-filter__item {
+  background-color: #ffffff;
+  font-family: "Roboto Flex", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 120%;
+  text-transform: uppercase;
+  padding: 10px 12px 8px 12px;
+  display: inline-block;
+  color: #232E52;
+  border-radius: 6px;
+  position: relative;
+  transition: all 0.2s ease;
+}
+.portfolio-experience .years-filter__item:hover {
+  background-color: #EBF2FE;
+  color: #232E52;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.portfolio-experience .years-filter__item.active {
+  background-color: #232E52;
+  color: #EBF2FE;
+}
+.portfolio-experience .years-filter__item.active:hover {
+  background-color: #EBF2FE;
+  color: #232E52;
+}
+.portfolio-experience .filters-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  -moz-column-gap: 50px;
+       column-gap: 50px;
 }
 .portfolio-experience .dropdown-checkboxes__select {
   display: none;
@@ -38,7 +85,7 @@
 .portfolio-experience .dropdown-checkboxes__active-list-item {
   background-color: #232E52;
   font-family: "Roboto Flex", sans-serif;
-  font-size: 10px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 800;
   line-height: 120%;
@@ -48,11 +95,13 @@
   color: #EFF3FF;
   border-radius: 6px;
   position: relative;
+  transition: all 0.2s ease;
 }
 .portfolio-experience .dropdown-checkboxes__active-list-item:hover {
   background-color: #EBF2FE;
   color: #232E52;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 .portfolio-experience .dropdown-checkboxes__active-list-item:hover:after {
   background-image: url("data:image/svg+xml,<svg viewPort=\"0 0 11 11\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\"><line x1=\"1\" y1=\"11\" x2=\"11\" y2=\"1\" stroke=\"black\" stroke-width=\"2\"/><line x1=\"1\" y1=\"1\" x2=\"11\" y2=\"11\" stroke=\"black\" stroke-width=\"2\"/></svg>");

@@ -5,7 +5,7 @@ import {active, choices, buildListFromDOM, buildArrayFromDOM, addClickHandlers, 
 document.addEventListener('DOMContentLoaded', function(){
 
     initData();
-    
+
     buildListFromDOM('active');
     buildListFromDOM('choice');
 
@@ -14,5 +14,12 @@ document.addEventListener('DOMContentLoaded', function(){
 
     addClickHandlers(active.listItems);
     addClickHandlers(choices.listItems);
+
+    const yearsFilters = document.querySelectorAll('[data-years-filter]');
+    yearsFilters.forEach(yearsFilter => {
+        yearsFilter.addEventListener('click', () => {
+            yearsFilter.classList.toggle('active');
+        })
+    })
 
 })

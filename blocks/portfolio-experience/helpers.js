@@ -1,14 +1,16 @@
 export let active = {};
 export let choices = {};
 
+
 export const initData = () => {
+
     active = {
-            list: document.querySelector('.dropdown-checkboxes__active-list'),
-            listItemClassName: 'dropdown-checkboxes__active-list-item',
-            listitemDataType: 'data-active-item',
-            listItems:'',
-            listArray: []
-        }
+        list: document.querySelector('.dropdown-checkboxes__active-list'),
+        listItemClassName: 'dropdown-checkboxes__active-list-item',
+        listitemDataType: 'data-active-item',
+        listItems:'',
+        listArray: []
+    }
 
     choices = {
         list: document.querySelector('.dropdown-checkboxes__choices-list'),
@@ -16,7 +18,7 @@ export const initData = () => {
         listitemDataType: 'data-choice-item',
         listItems:'',
         listArray: []
-    }    
+    }
 }
 
 

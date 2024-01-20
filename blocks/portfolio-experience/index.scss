@@ -1,9 +1,61 @@
 @use '../../src/sass/variables' as variables;
 
 .portfolio-experience {
-    .filters{
+    padding: 100px 0;
+
+    .years-filter{
+        display: flex;
+        flex-wrap: wrap;
+        position: relative;
+        background-color: variables.$lightBlue;
+        border-radius: 6px;
+        width: 100%;
+        padding: 6px;
+        overflow: hidden;
+        gap: 6px;
+        margin-bottom: 40px;
+
+        &__item{
+            background-color: variables.$white;
+            font-family: "Roboto Flex", sans-serif;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 800;
+            line-height: 120%;
+            text-transform: uppercase;
+            padding: 10px 12px 8px 12px;
+            display: inline-block;
+            color: variables.$navyBlue;
+            border-radius: 6px;
+            position: relative;
+            transition: all 0.2s ease;
+
+            &:hover{
+                background-color: variables.$navyBlueLight2;
+                color: variables.$navyBlue;
+                cursor: pointer;
+                transition: all 0.2s ease;
+            }
+
+            &.active{
+                background-color: variables.$navyBlue;
+                color: variables.$navyBlueLight2;
+
+                &:hover{
+                    background-color: variables.$navyBlueLight2;
+                    color: variables.$navyBlue;
+                }
+            }
+        }
+    }
+
+    .filters-columns{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 50px;
+
         &__filter{
-            max-width: 33%;
+            
         }
     }
     .dropdown-checkboxes{
@@ -45,7 +97,7 @@
             &-item{
                 background-color: variables.$navyBlue;
                 font-family: "Roboto Flex", sans-serif;
-                font-size: 10px;
+                font-size: 12px;
                 font-style: normal;
                 font-weight: 800;
                 line-height: 120%;
@@ -55,11 +107,13 @@
                 color: variables.$lightBlue;
                 border-radius: 6px;
                 position: relative;
+                transition: all 0.2s ease;
 
                 &:hover{
                     background-color: variables.$navyBlueLight2;
                     color: variables.$navyBlue;
                     cursor: pointer;
+                    transition: all 0.2s ease;
 
                     &:after{
                         background-image: url('data:image/svg+xml,<svg viewPort="0 0 11 11" version="1.1" xmlns="http://www.w3.org/2000/svg"><line x1="1" y1="11" x2="11" y2="1" stroke="black" stroke-width="2"/><line x1="1" y1="1" x2="11" y2="11" stroke="black" stroke-width="2"/></svg>');
