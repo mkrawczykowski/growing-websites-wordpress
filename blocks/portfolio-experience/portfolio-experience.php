@@ -83,5 +83,39 @@
                 
         </div>
         <a class="button" href="#">Apply filters</a>
+
+        <div class="posts-list">
+            <?php
+                
+            ?>
+
+            <?php
+                $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+                $args = array( 
+                    'posts_per_page' => 10, 
+                    'paged' => $paged, 
+                    'post_type' => 'project'
+                );
+                $cpt_query = new WP_Query($args);
+            ?>
+
+            <?php if ($cpt_query->have_posts()) : while ($cpt_query->have_posts()) : $cpt_query->the_post(); ?>
+                
+                <?php
+                echo 'test';
+                    get_template_part('template-parts/post','box',
+                        array('post_id' => get_the_ID())
+                    );
+                ?>
+
+            <?php endwhile; endif; ?>
+
+            <nav>
+                <ul>
+                    <li><?php previous_posts_link( '&laquo; PREV', $cpt_query->max_num_pages) ?></li> 
+                    <li><?php next_posts_link( 'NEXT &raquo;', $cpt_query->max_num_pages) ?></li>
+                </ul>
+            </nav>
+        </div>
     </div>
 </section>
