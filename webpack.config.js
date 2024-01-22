@@ -9,19 +9,19 @@ module.exports = {
         const basePath = './src/scripts';
         const entryFiles = glob.sync(path.join(basePath, '*.js'));
         console.log(entryFiles);
-        const entry = {};
+        // const entry = {};
 
-        entryFiles.forEach((file) => {
-        console.log(file)
-        const fileName = path.basename(file, '.js');
-        entry[fileName] = file;
-        });
+        // entryFiles.forEach((file) => {
+        // console.log(file)
+        // const fileName = path.basename(file, '.js');
+        // entry[fileName] = file;
+        // });
 
-        return entry;
+        // return entry;
     },
-    output: {
-        filename: 'build/scripts/[name].js',
-        path: path.resolve(__dirname),
-    },    
+    // output: {
+    //     filename: 'build/scripts/[name].js',
+    //     path: path.resolve(__dirname),
+    // },    
     }
 };

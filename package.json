@@ -5,7 +5,7 @@
     "start": "wp-scripts start src/index.js --output-path=build/theme",
     "admin-styles": "wp-scripts start src/admin.js --output-path=build/admin",
     "build": "wp-scripts build src/index.js --output-path=build/theme",
-    "scripts-start": "wp-scripts start --config webpack-config.js",
+    "scripts-start": "wp-scripts start --config webpack.config.js",
     "blocks-start": "wp-scripts start --webpack-src-dir=blocks --webpack-copy-php --output-path=build/blocks",
     "blocks-build": "wp-scripts build --webpack-src-dir=blocks --webpack-copy-php --output-path=build/blocks",
     "develop": "npm-run-all --parallel start blocks-start"
