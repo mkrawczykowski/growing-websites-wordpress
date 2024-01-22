@@ -29,7 +29,7 @@
 
 
             <div class="filters-columns__filter">
-                <div class="dropdown-checkboxes">
+                <div class="dropdown-checkboxes" data-dropdown-checkboxes="1">
                     <select class="dropdown-checkboxes__select">
                         <option value="2022">2022</option>
                         <option value="2021">2021</option>
@@ -47,14 +47,14 @@
                         </ul>
                     </div>
                     <ul class="dropdown-checkboxes__choices-list" data-choices-list>
-                        <li class="dropdown-checkboxes__choices-list-item" data-item-type="choice" data-value="websites">websites</li>
+                        <li class="dropdown-checkboxes__choices-list-item" data-item-type="choices" data-value="websites">websites</li>
                     </ul>
                 </div>
             </div>
 
 
             <div class="filters-columns__filter">
-                <div class="dropdown-checkboxes">
+                <div class="dropdown-checkboxes" data-dropdown-checkboxes="2">
                     <select class="dropdown-checkboxes__select">
                         <option value="2022">2022</option>
                         <option value="2021">2021</option>
@@ -76,7 +76,7 @@
                         </ul>
                     </div>
                     <ul class="dropdown-checkboxes__choices-list" data-choices-list>
-                        <li class="dropdown-checkboxes__choices-list-item" data-item-type="choice" data-value="websites">websites</li>
+                        <li class="dropdown-checkboxes__choices-list-item" data-item-type="choices" data-value="websites">websites</li>
                     </ul>
                 </div>
             </div>
