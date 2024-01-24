@@ -1,10 +1,31 @@
 <?php defined('ABSPATH') or die; ?>
 
 <?php
-//   $heading = get_field('heading');
-//   $which_posts = get_field('which_posts');
-//   $post_type = get_field('post_type');
-//   $posts_in_section = get_field('posts_in_section');
+  $active_year_filters = get_field('active_year_filters');
+  $project_type_filters = get_field('project_type_filters');
+  $project_technology_filters = get_field('project_technology_filters');
+  $posts_per_page = get_field('posts_per_page');
+
+  function clearTrash($stringToClear){
+    return str_replace(' ', '', trim($stringToClear));
+  }
+
+  function terms_from_acf_field_exist($array_from_acf_field, $taxonomy){
+    foreach($array_from_acf_field as $type_name) {
+        $term = get_term_by('slug', $type_name, $taxonomy);
+        if ($term) {
+            return true;
+        }
+      }
+      return false;
+  }
+
+  echo esc_html(clearTrash($active_year_filters));
+  echo '<br>';
+  $project_type_filters_array = explode(",", $project_type_filters);
+echo terms_from_acf_field_exist($project_type_filters_array, 'project-category');
+  
+
 ?>
 
 <section class="portfolio-experience">
@@ -40,8 +61,9 @@
                     </select>
                     <div class="dropdown-checkboxes__active-wrapper">
                         <h4 class="dropdown-checkboxes__heading">project type</h4>
+                    
                         <ul class="dropdown-checkboxes__active-list" data-active-list>
-                            <li class="dropdown-checkboxes__active-list-item" data-item-type="active" data-value="blogs">blogs</li>
+                            
                             <li class="dropdown-checkboxes__active-list-item" data-item-type="active" data-value="online stores">online stores</li>
                             <li class="dropdown-checkboxes__active-list-item" data-item-type="active" data-value="user interfaces">user interfaces</li>
                         </ul>
@@ -92,7 +114,7 @@
             <?php
                 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
                 $args = array( 
-                    'posts_per_page' => 10, 
+                    'posts_per_page' => $posts_per_page, 
                     'paged' => $paged, 
                     'post_type' => 'project'
                 );
@@ -102,7 +124,6 @@
             <?php if ($cpt_query->have_posts()) : while ($cpt_query->have_posts()) : $cpt_query->the_post(); ?>
                 
                 <?php
-                echo 'test';
                     get_template_part('template-parts/post','box',
                         array('post_id' => get_the_ID())
                     );
