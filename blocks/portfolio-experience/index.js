@@ -1,5 +1,4 @@
 import './index.scss';
-import '../../scripts/checkbox-dropdowns-filters';
 
 document.addEventListener('DOMContentLoaded', function(){
     const dropdownCheckboxesInstances = [];

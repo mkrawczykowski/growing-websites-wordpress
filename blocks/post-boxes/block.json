@@ -1,0 +1,32 @@
+{
+    "name": "acf/post-boxes",
+    "title": "Post boxes",
+    "description": "BlockBoxess with post image, title and some excerpt",
+    "style": "file:./index.css",
+    "script": "file:./index.js",
+    "category": "design",
+    "icon": "list-view",
+    "keywords": [
+      "columns",
+      "text",
+      "image",
+      "heading",
+      "box"
+    ],
+    "apiVersion": 2,
+    "acf": {
+      "mode": "edit",
+      "renderTemplate": "post-boxes.php"
+    },
+    "align": "full",
+    "supports": {
+      "align": true,
+      "anchor": true
+    },
+    "attributes": {
+      "align": {
+        "type": "string",
+        "default": "full"
+      }
+    }
+  }

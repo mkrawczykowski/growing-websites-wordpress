@@ -1,0 +1,14 @@
+@use '../../src/sass/variables' as variables;
+
+.post-boxes {
+    &__heading{
+        color: variables.$navyBlueDark;
+        font-family: 'Roboto Flex', sans-serif;
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 130%;
+        margin-bottom: 65px;
+        margin-top: 140px;
+    }
+}
