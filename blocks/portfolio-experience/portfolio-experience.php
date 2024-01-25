@@ -6,32 +6,39 @@
   $project_technology_filters = get_field('project_technology_filters');
   $posts_per_page = get_field('posts_per_page');
 
-  function clearTrash($stringToClear){
-    return str_replace(' ', '', trim($stringToClear));
+  if (!function_exists('removeSpacesFromTextField')){
+    function removeSpacesFromTextField($stringToClear){
+        return str_replace(' ', '', trim($stringToClear));
+    }    
   }
-
-  function terms_from_acf_field_exist($array_from_acf_field, $taxonomy){
-    foreach($array_from_acf_field as $type_name) {
-        $term = get_term_by('slug', $type_name, $taxonomy);
-        if ($term) {
-            return true;
-        }
-      }
-      return false;
-  }
-
-  echo esc_html(clearTrash($active_year_filters));
-  echo '<br>';
-  $project_type_filters_array = explode(",", $project_type_filters);
-echo terms_from_acf_field_exist($project_type_filters_array, 'project-category');
   
+    if (!function_exists('get_existing_terms_list')){
+        function get_existing_terms_list($array_from_acf_field, $taxonomy){
+                $existing_terms_array = [];
+                foreach($array_from_acf_field as $type_name) {
+                    $term = get_term_by('slug', $type_name, $taxonomy);
+                    if ($term) {
+                        array_push($existing_terms_array, $term);
+                    }
+                }
+                 return $existing_terms_array;
+            }    
+    }
+    
 
+    echo esc_html(removeSpacesFromTextField($active_year_filters));
+    echo '<br>';
+    $project_type_filters_array = explode(",", $project_type_filters);
+    get_existing_terms_list($project_type_filters_array, 'project-category');
+    $existing_terms_list = get_existing_terms_list($project_type_filters_array, 'project-category'); 
+    echo '<br><br>';
+    echo $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 ?>
 
 <section class="portfolio-experience">
     <div class="container">
         <div class="years-filter">
-        <h4 class="years-filter__heading">project year</h4>
+            <h4 class="years-filter__heading">project year</h4>
             <ul class="years-filter__list">
                 <li class="years-filter__item active" data-years-filter>2022</li>
                 <li class="years-filter__item active" data-years-filter>2021</li>
@@ -46,6 +53,8 @@ echo terms_from_acf_field_exist($project_type_filters_array, 'project-category')
                 <li class="years-filter__item" data-years-filter>2012</li>
             </ul>
         </div>
+
+        
         <div class="filters-columns">
 
 
@@ -61,6 +70,13 @@ echo terms_from_acf_field_exist($project_type_filters_array, 'project-category')
                     </select>
                     <div class="dropdown-checkboxes__active-wrapper">
                         <h4 class="dropdown-checkboxes__heading">project type</h4>
+
+                        <?php if (!empty($existing_terms_list)) : ?>
+
+
+
+
+                        <?php endif; ?>
                     
                         <ul class="dropdown-checkboxes__active-list" data-active-list>
                             
@@ -107,9 +123,63 @@ echo terms_from_acf_field_exist($project_type_filters_array, 'project-category')
         <a class="button" href="#">Apply filters</a>
 
         <div class="posts-list">
-            <?php
-                
-            ?>
+        <?php
+    $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+    $query = new WP_Query( array(
+        'posts_per_page' => $posts_per_page, 
+                    'paged' => $paged, 
+                    'post_type' => 'project'
+    ) );
+?>
+
+<?php if ( $query->have_posts() ) : ?>
+
+<!-- begin loop -->
+<?php while ( $query->have_posts() ) : $query->the_post(); ?>
+
+<?php
+get_template_part('template-parts/post','box',
+                        array('post_id' => get_the_ID())
+                    );
+?>
+<?php endwhile; ?>
+<!-- end loop -->
+
+
+<div class="pagination">
+    <?php 
+        echo paginate_links( array(
+            'base'         => str_replace( 999999999, '%#%', esc_url( get_pagenum_link( 999999999 ) ) ),
+            'total'        => $query->max_num_pages,
+            'current'      => max( 1, get_query_var( 'paged' ) ),
+            'format'       => '?paged=%#%',
+            'show_all'     => false,
+            'type'         => 'plain',
+            'end_size'     => 2,
+            'mid_size'     => 1,
+            'prev_next'    => true,
+            'prev_text'    => sprintf( '<i></i> %1$s', __( 'Newer Posts', 'text-domain' ) ),
+            'next_text'    => sprintf( '%1$s <i></i>', __( 'Older Posts', 'text-domain' ) ),
+            'add_args'     => false,
+            'add_fragment' => '',
+        ) );
+    ?>
+</div>
+
+
+<?php wp_reset_postdata(); ?>
+
+<?php else : ?>
+    <p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
+<?php endif; ?>
+
+
+
+
+
+
+
+
 
             <?php
                 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
@@ -124,19 +194,19 @@ echo terms_from_acf_field_exist($project_type_filters_array, 'project-category')
             <?php if ($cpt_query->have_posts()) : while ($cpt_query->have_posts()) : $cpt_query->the_post(); ?>
                 
                 <?php
-                    get_template_part('template-parts/post','box',
-                        array('post_id' => get_the_ID())
-                    );
+                    
                 ?>
 
             <?php endwhile; endif; ?>
 
-            <nav>
+            <?php echo my_pagination(); ?>
+
+            <!-- <nav>
                 <ul>
                     <li><?php previous_posts_link( '&laquo; PREV', $cpt_query->max_num_pages) ?></li> 
                     <li><?php next_posts_link( 'NEXT &raquo;', $cpt_query->max_num_pages) ?></li>
                 </ul>
-            </nav>
+            </nav> -->
         </div>
     </div>
 </section>
