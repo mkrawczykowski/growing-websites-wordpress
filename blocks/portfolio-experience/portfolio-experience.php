@@ -199,8 +199,6 @@ get_template_part('template-parts/post','box',
 
             <?php endwhile; endif; ?>
 
-            <?php echo my_pagination(); ?>
-
             <!-- <nav>
                 <ul>
                     <li><?php previous_posts_link( '&laquo; PREV', $cpt_query->max_num_pages) ?></li> 
