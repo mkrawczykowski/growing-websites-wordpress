@@ -1,0 +1,58 @@
+.all-at-once{
+    background-color: variables.$lightBlue;
+    padding: 6px;
+    overflow: hidden;
+    border-radius: 6px;
+    margin-bottom: 40px;
+    width: 100%;
+
+    &__heading{
+        font-family: "Roboto Flex", sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 120%;
+        text-transform: uppercase;
+        margin: 12px 6px 6px;
+        display: inline-block;
+    }
+    &__list{
+        display: flex;
+        flex-wrap: wrap;
+        position: relative;
+        gap: 6px;
+    }
+
+    &__item{
+        background-color: variables.$white;
+        font-family: "Roboto Flex", sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 120%;
+        text-transform: uppercase;
+        padding: 10px 12px 8px 12px;
+        display: inline-block;
+        color: variables.$navyBlue;
+        border-radius: 6px;
+        position: relative;
+        transition: all 0.2s ease;
+
+        &:hover{
+            background-color: variables.$navyBlueLight2;
+            color: variables.$navyBlue;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        &.active{
+            background-color: variables.$navyBlue;
+            color: variables.$navyBlueLight2;
+
+            &:hover{
+                background-color: variables.$navyBlueLight2;
+                color: variables.$navyBlue;
+            }
+        }
+    }
+}

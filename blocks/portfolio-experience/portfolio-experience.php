@@ -56,8 +56,6 @@
 
         
         <div class="filters-columns">
-
-
             <div class="filters-columns__filter">
                 <div class="dropdown-checkboxes" data-dropdown-checkboxes="1">
                     <select class="dropdown-checkboxes__select">
