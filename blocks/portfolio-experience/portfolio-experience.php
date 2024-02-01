@@ -140,7 +140,8 @@
                     'taxonomy' => $active_filters_taxonomy,
                     'field' => 'term_id', 
                     'terms' => $global_active_portfolio_filters[$active_filters_taxonomy]['active_terms_ids'],
-                    'include_children' => false
+                    'include_children' => false,
+                    'operator' => $global_active_portfolio_filters[$active_filters_taxonomy]['default_filtering_type']
                   )
                 )
               ));
