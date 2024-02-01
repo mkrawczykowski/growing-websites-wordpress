@@ -17,6 +17,7 @@ function acf_responsive_image($image_id,$image_size,$max_width){
 }
 
 
+
 /**
  * Function to display posts by IDs
  *
@@ -34,4 +35,49 @@ function the_posts_by_ids($posts_ids){
         );
     endforeach;
 }
-?>   
+
+
+
+/**
+ * Retrieves a list of existing terms in a given taxonomy based on an array of term slugs.
+ *
+ * @param array $array_from_acf_field An array of term slugs.
+ * @param string $taxonomy The taxonomy to search in.
+ * @return array An array of \WP_Term objects.
+ */
+
+function get_existing_terms_list($array_from_acf_field, $taxonomy){
+	$existing_terms_array = [];
+	foreach($array_from_acf_field as $type_name) {
+	    $term = get_term_by('slug', $type_name, $taxonomy);
+	    if ($term) {
+	        array_push($existing_terms_array, $term);
+	    }
+	}
+	return $existing_terms_array;
+} 
+
+
+
+/**
+ * Removes all spaces from a given string and trims it.
+ *
+ * @param string $stringToClear The string to clear of spaces.
+ * @return string The string without spaces.
+ */
+
+function removeSpacesFromTextField($stringToClear){
+	return str_replace(' ', '', trim($stringToClear));
+}   
+
+
+function has_term_id($terms_array, $term_id) {
+    foreach ($terms_array as $term) {
+        if ($term->term_id == $term_id) {
+            return true;
+        }
+    }
+    return false;
+}
+
+?>
