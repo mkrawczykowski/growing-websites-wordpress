@@ -10,6 +10,7 @@
     $array_of_active_terms = [];
     $array_of_active_terms_ids = [];
     $array_of_inactive_terms = [];
+    echo $default_filtering_type;
 
     $terms = get_terms( array(
         'taxonomy'   => $taxonomy_slug,

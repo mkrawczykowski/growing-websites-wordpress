@@ -9,6 +9,7 @@
     $default_filtering_type = $args['default_filtering_type'];
     $default_filtering_type_label = $args['default_filtering_type_label'];
     $array_of_active_terms_ids = [];
+    echo $default_filtering_type;
 ?>
 
 <div class="all-at-once">
