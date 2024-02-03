@@ -10,7 +10,6 @@
     $array_of_active_terms = [];
     $array_of_active_terms_ids = [];
     $array_of_inactive_terms = [];
-    echo $default_filtering_type;
 
     $terms = get_terms( array(
         'taxonomy'   => $taxonomy_slug,
@@ -47,12 +46,12 @@
         
         <?php
             if ($enable_change_filtering_type){ ?>
-                
-                    <label class="dropdown-checkboxes__checkbox-label"><?php echo $default_filtering_type_label ;?>
-                        <input type="dropdown-checkboxes__checkbox-input">
-                        <span class="chedropdown-checkboxes__checkbox-checkmark"></span>
+                    <label class="dropdown-checkboxes__checkbox">
+                        <?php $checked = $default_filtering_type === 'AND' ? 'checked' : '';?>
+                        <input type="checkbox" class="dropdown-checkboxes__checkbox-input" <?= $checked; ?> name="checkbox-<?= $taxonomy_slug ?>">
+                        <?php echo $default_filtering_type_label ;?>
+                        <!-- <span class="chedropdown-checkboxes__checkbox-checkmark"></span> -->
                     </label>
-
             <?php }
         ?>
         <?php

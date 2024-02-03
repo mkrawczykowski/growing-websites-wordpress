@@ -96,35 +96,13 @@
 
 
 
-        <a class="button" href="#">Apply filters</a>
+        <a class="button" href="#" id="js-portfolio-experience-apply-filters">Apply filters</a>
 <br>
 <br>
 <br>
 <br>
 <div>
-        <?php
-
-$args_test = array(
-    'post_type' => 'post',
-);
-
-$args_test['posts_per_page'] = 23;
-$args_test['tax_query'] = array();
-$args_test['tax_query']['relation'] = 'AND';
-$args_test['tax_query'][] = array(
-    'taxonomy' => 'taxonomy1',
-            'field'    => 'slug', // Możesz zmienić na 'term_id', 'name' lub 'slug', w zależności od sposobu identyfikacji
-            'terms'    => array( 'term1', 'term2' ), // Przykładowe termy z taxonomii 1
-            'operator' => 'IN', // Wybiera posty, które mają przynajmniej jeden z podanych termów
-);
-$args_test['tax_query'][] = array(
-    'taxonomy' => 'taxonomyDDD2',
-            'field'    => 'slug', // Możesz zmienić na 'term_id', 'name' lub 'slug', w zależności od sposobu identyfikacji
-            'terms'    => array( 'termDDD1', 'termDDD2' ), // Przykładowe termy z taxonomii 1
-            'operator' => 'IN', // Wybiera posty, które mają przynajmniej jeden z podanych termów
-);
-var_dump($args_test);
-?>
+       
 </div>
 <br>
 <br>
@@ -250,14 +228,7 @@ var_dump($args_test);
             // echo '<br>';
             // echo '<br>';echo '================================================================';
         endforeach;
-        echo 'args_test';
-        echo '<br>';
-        var_dump($args_test);
 
-
-echo '<br>';
-echo '<br>';
-echo '<br>';
         // echo 'all_queried_posts';
         // echo '<br>';
         // // var_dump($all_queried_posts);
@@ -267,7 +238,6 @@ echo '<br>';
         // endforeach;
         // $query_string .= "&numberposts=3&fields='ids'";
         // echo $query_string;
-        echo '<br>';
     }
 
                     $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;

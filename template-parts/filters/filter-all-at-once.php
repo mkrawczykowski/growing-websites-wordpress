@@ -9,7 +9,6 @@
     $default_filtering_type = $args['default_filtering_type'];
     $default_filtering_type_label = $args['default_filtering_type_label'];
     $array_of_active_terms_ids = [];
-    echo $default_filtering_type;
 ?>
 
 <div class="all-at-once">
@@ -26,7 +25,7 @@
     }
 
     if ($terms) : ?>
-        <ul class="all-at-once__list">
+        <ul class="all-at-once__list" data-filter-operator>
             <?php
                 foreach ($terms as $term) :
                     if (has_term_id($active_terms_in_this_filter_array, $term->term_id)){
