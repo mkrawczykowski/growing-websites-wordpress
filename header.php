@@ -33,11 +33,11 @@
 <body <?php body_class(); ?>>
   <div class="covering-layer"></div>
   <header class="header">
-    <div class="container container--wider">
+    <div class="container container--wider container--header">
       
       <?php include get_template_directory() . '/inc/acf-menu/acf-menu.php' ?>  
 
-      <div class="container">
+      <div class="container container--title">
         <div class="header__category">
         </div>
         <h1 class="header__page-title">
