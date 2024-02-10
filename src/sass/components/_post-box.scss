@@ -2,29 +2,48 @@
 @use '../variables' as variables;
 
 .post-box{
-    display: grid;
-    grid-template-columns: calc(70% - 30px) 30%;
-    grid-template-rows: auto auto;
-    padding-bottom: 40px;
-    margin-bottom: 40px;
+    padding-bottom: 30px;
+    margin-bottom: 60px;
     border-bottom: 1px solid variables.$navyBlueLight2;
-    column-gap: 30px;
+    display: flex;
+    flex-direction: column-reverse;
+
+    @include variables.media-up(md){
+        display: grid;
+        grid-template-columns: calc(70% - 30px) 30%;
+        grid-template-rows: auto auto;
+        column-gap: 30px;
+        margin-bottom: 40px;
+        align-items: center;
+    }
+
+    &__texts{
+        margin-top: 20px;
+
+        @include variables.media-up(md){
+            margin-top: 0;
+        }
+    }
 
     &__image{
-        border-radius: 8px;
-        overflow: hidden;
+        &-link{
+            display: inline-block;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
     }
 
     &__meta{
         display: flex;
         flex-direction: row;
-        margin-bottom: 25px;
+        margin-bottom: 20px;
 
         .post-box__categories{
             .post-box__category{
                 &-link{
                     background-color: variables.$navyBlueLight2;
-                    border-radius: 6px 0px 0px 6px;
+                    border-radius: 6px;
                     padding: 10px 12px 9px 12px;
                     display: inline-block;
                     color: variables.$navyBlue;
@@ -35,6 +54,10 @@
                     line-height: 120%;
                     text-transform: uppercase;
                     transition: all 0.2s ease;
+
+                    &:last-of-type{
+                        border-radius: 6px 0 0 6px;
+                    }
                     
                     &:hover{
                         background-color: variables.$navyBlue;
@@ -57,6 +80,37 @@
         }
     }
 
+    &__tags{
+        flex-wrap: wrap;
+        display: flex;
+        gap: 15px;
+        margin-top: -5px;
+        margin-bottom: 10px;
+
+        .post-box__tag{
+            &-link{
+                background-color: variables.$navyBlue;
+                border-radius: 6px;
+                padding: 8px 10px 7px 10px;
+                display: inline-block;
+                color: variables.$navyBlueLight2;
+                font-family: 'Roboto Flex';
+                font-size: 12px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 120%;
+                text-transform: uppercase;
+                transition: all 0.2s ease;
+                
+                &:hover{
+                    background-color: variables.$navyBlueLight2;
+                    color: variables.$navyBlue;
+                    transition: all 0.2s ease;
+                }
+            }
+        }
+    }
+
     &__title{
         color: variables.$navyBlue;
         font-family: 'Roboto Flex';
@@ -74,5 +128,10 @@
         font-style: normal;
         font-weight: 400;
         line-height: 150%;
+        margin-top: 20px;
+
+        @include variables.media-up(md){
+            margin-top: 0;
+        }
     }
 }

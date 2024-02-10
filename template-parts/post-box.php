@@ -1,6 +1,22 @@
 <?php
     $post_id = $args['post_id'];
-    $post_categories = get_the_category($post_id);
+    $date = array_key_exists('date', $args) ? $args['date'] : 'full';
+    $category_taxonomy = array_key_exists('category_taxonomy', $args) ? $args['category_taxonomy'] : 'category';
+    $tag_taxonomy = array_key_exists('tag_taxonomy', $args) ? $args['tag_taxonomy'] : 'post_tag';
+    $post_categories = get_the_terms($post_id, $category_taxonomy);
+    $post_tags = get_the_terms($post_id, $tag_taxonomy);
+
+    $display_date = '';
+    switch ($date){
+        case 'year': $names = array_column(get_the_terms($post_id, 'project-year'), 'name');
+            $display_date = implode(', ', $names);
+        break;
+        case 'full':
+            $display_date = get_the_date('F d Y', $post_id);
+        break;
+        case 'none':
+        break;
+    }
 ?>
 
 <div class="post-box">
@@ -16,7 +32,10 @@
                         </li>
                     <?php endforeach; ?>
                 </ul>
-                <div class="post-box__data"><?= get_the_date('F d Y', $post_id); ?></div>
+            <?php endif; ?>
+
+            <?php if ($display_date) : ?>
+                <div class="post-box__data"><?= $display_date; ?></div>
             <?php endif; ?>
         </div>
         
@@ -25,9 +44,24 @@
                 <?= get_the_title($post_id); ?>
             </a>
         </h3>
+
+        <?php if ($post_tags) : ?>
+            <ul class="post-box__tags">
+                <?php foreach($post_tags as $post_tag) : ?>
+                    <li class="post-box__tag">
+                        <a href="<?= get_category_link($post_tag->term_id); ?>" class="post-box__tag-link">
+                            <?= $post_tag->name; ?>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
+
         <p class="post-box__excerpt"><?= get_the_excerpt($post_id) ?></p>
     </div>
     <div class="post-box__image">
-        <img class="" <?php acf_responsive_image(get_post_thumbnail_id($post_id),'full',1024); ?> alt="" />
+        <a href="<?= get_permalink($post_id); ?>"  class="post-box__image-link">
+            <img class="" <?php acf_responsive_image(get_post_thumbnail_id($post_id),'full',1024); ?> alt="" />
+        </a>
     </div>
 </div>
