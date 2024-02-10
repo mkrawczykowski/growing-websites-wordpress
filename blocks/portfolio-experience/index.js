@@ -2,6 +2,8 @@ import './index.scss';
 
 document.addEventListener('DOMContentLoaded', function(){
     const dropdownCheckboxesInstances = [];
+    const applyFiltersButton = document.getElementById('js-portfolio-experience-apply-filters');
+    const operatorCheckboxes = document.querySelectorAll('js-portfolio-experience-apply-filters');
 
     const initData = () => {
         const componentInstances = document.querySelectorAll('[data-dropdown-checkboxes]');
@@ -56,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 const dataFromClickedItem = getDataFromClickedItem(event.target);
                 const parentComponentDiv = event.target.closest('[data-dropdown-checkboxes]');
                 
-                if (parentComponentDiv){console.log(parentComponentDiv);
+                if (parentComponentDiv){
                     const oppositeListUl = parentComponentDiv.querySelector(`[data-${switchItemType(event.target.dataset.itemType)}-list]`);
                     createItemInOppositeList(oppositeListUl, dataFromClickedItem.value, dataFromClickedItem.type);
                     event.target.remove();    
@@ -69,15 +71,22 @@ document.addEventListener('DOMContentLoaded', function(){
     initData();
     addClickHandlersToLists();
 
-
-
-
-    
-    const yearsFilters = document.querySelectorAll('[data-years-filter]');
-    yearsFilters.forEach(yearsFilter => {
-        yearsFilter.addEventListener('click', () => {
-            yearsFilter.classList.toggle('active');
+    const allAtOnceFilters = document.querySelectorAll('[data-all-at-once]');
+    allAtOnceFilters.forEach(allAtOnceFilter => {
+        allAtOnceFilter.addEventListener('click', () => {
+            allAtOnceFilter.classList.toggle('active');
+            // allAtOnceFilter.closest('[data-filter]').dataset.filterString = buildTermsStringFromElements(allAtOnceFilters);
         })
     })
 
+    const buildTermsStringFromElements = (elements) => {
+        let termsString = '';
+        elements.forEach(element => {
+            
+            if (element.classList.contains('active')){console.log(element);
+                termsString += element.innerHTML + ',';
+            }
+        })
+        return termsString;
+    }
 })

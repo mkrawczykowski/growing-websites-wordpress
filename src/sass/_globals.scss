@@ -52,4 +52,13 @@ img {
       max-width: 1266px;
     }
   }
+
+  &--header{
+    display: flex;
+    flex-direction: column;
+  }
+
+  &--title{
+    flex-grow: 1;
+  }
 }

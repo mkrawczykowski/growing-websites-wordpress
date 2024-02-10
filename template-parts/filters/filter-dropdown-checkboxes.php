@@ -32,7 +32,7 @@
     }
 ?>
 
-<div class="dropdown-checkboxes" data-dropdown-checkboxes="1">
+<div class="dropdown-checkboxes" data-dropdown-checkboxes data-filter data-filter-operator="<?= $default_filtering_type; ?>">
     <!-- <select class="dropdown-checkboxes__select">
         <option value="2022">2022</option>
         <option value="2021">2021</option>
@@ -60,7 +60,7 @@
                 <?php
                     foreach ($array_of_active_terms as $active_term) :
                         $term_name = $active_term -> name; ?>
-                       <li class="dropdown-checkboxes__active-list-item" data-item-type="active" data-value="<?= $term_name ?>"><?= $term_name ?></li>
+                       <li class="dropdown-checkboxes__active-list-item" data-item-type="active" data-item-id="<?= $active_term -> term_id ?>"data-value="<?= $term_name ?>"><?= $term_name ?></li>
                     <?php endforeach;
                 ?>
             </ul>

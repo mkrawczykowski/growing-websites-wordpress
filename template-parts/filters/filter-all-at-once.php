@@ -11,7 +11,7 @@
     $array_of_active_terms_ids = [];
 ?>
 
-<div class="all-at-once">
+<div class="all-at-once" data-filter data-filter-operator="<?= $default_filtering_type; ?>">
 <?= $filter_name ? '<h4 class="all-at-once__heading">' . $filter_name . '</h4>' : ''; ?>
 
 <?php
@@ -25,7 +25,7 @@
     }
 
     if ($terms) : ?>
-        <ul class="all-at-once__list" data-filter-operator>
+        <ul class="all-at-once__list">
             <?php
                 foreach ($terms as $term) :
                     if (has_term_id($active_terms_in_this_filter_array, $term->term_id)){
