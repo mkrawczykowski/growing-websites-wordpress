@@ -1,7 +1,6 @@
 <?php 
 	$image_link = get_sub_field('link');
 	if ($image = get_sub_field($menu_item_type)) :
-		var_dump($image) ;
 		$image_alt = $image['alt'];
 		$image_id = $image['id'];
 		$image_size = 'full';
