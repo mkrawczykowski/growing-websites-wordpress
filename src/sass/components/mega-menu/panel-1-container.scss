@@ -162,7 +162,7 @@
         border-top-right-radius: 6px;
         border-bottom-right-radius: 6px;
         overflow: hidden;
-        padding: 10px 12px 8px 12px;
+        padding: 10px 12px 8px 10px;
         display: inline-block;
         font-family: 'Roboto Flex', sans-serif;
         font-size: 10px;
@@ -170,7 +170,7 @@
         font-weight: 600;
         line-height: 120%; /* 12px */
         text-transform: uppercase;
-        margin-left: -10px;
+        // margin-left: -10px;
     }
 
     &__post-title{
