@@ -20,7 +20,7 @@
     }
 
     &--smaller{
-        padding: 8px 23.5px 11px;
+        padding: 10px 23.5px;
     }
 
     &--transparent-light{
@@ -40,12 +40,11 @@
         font-weight: 600;
         line-height: 120%; /* 18px */
         text-transform: uppercase;
-        border: 2px solid variables.$transparent;
         
 
         &:hover{
-            background-color: variables.$white;
-            border: 2px solid variables.$navyBlue;
+            background-color: variables.$navyBlue;
+            color: variables.$lightBlue;
         }
     }
 }
