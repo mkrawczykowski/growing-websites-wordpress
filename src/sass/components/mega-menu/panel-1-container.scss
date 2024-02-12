@@ -27,6 +27,7 @@
         .panel-1-container__col-1{
             max-width: 435px;
             display: flex;
+            flex-wrap: wrap;
         }
         .panel-1-container__col-2{
             display: flex;
@@ -58,7 +59,7 @@
 
             @include variables.media-up(lg){
                 display: inline-block;
-                max-width: 435px;
+                // max-width: 435px;
             }
         }
         .panel-1-container__col-2{
@@ -215,13 +216,22 @@
     &__featured-categories-list{
         text-align: left;
         display: flex;
+        flex-wrap: wrap;
         column-gap: 16px;
+        row-gap: 16px;
 
         .panel-1-container__featured-category{
             color: variables.$navyBlue;
             background-color: variables.$lightBlue;
             border-radius: 6px;
             overflow: hidden;
+            transition: all 0.2s ease;
+
+            &:hover{
+                color: variables.$lightBlue;
+                background-color: variables.$navyBlue;
+                transition: all 0.2s ease;
+            }
 
             &-link{
                 font-family: 'Roboto Flex', sans-serif;
@@ -232,6 +242,7 @@
                 text-transform: uppercase;
                 padding: 10px 12px 8px 12px;
                 display: inline-block;
+                white-space: nowrap;
             }
         }
     }
