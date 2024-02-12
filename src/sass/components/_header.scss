@@ -8,10 +8,21 @@
 
     @include variables.media-up(lg){
         padding: 20px;
+        display: flex;
+        align-items: stretch;
     }
 
     @include variables.media-up(xxl){
         padding: 38px 0;
+    }
+
+    .conatiner--header{
+        flex-grow: 1;
+    }
+    
+    .container--title{
+        display: flex;
+        align-items: center;
     }
 
     &__page-title{
