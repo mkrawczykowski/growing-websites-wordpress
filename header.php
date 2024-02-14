@@ -40,8 +40,17 @@
       <div class="container container--title">
         <div class="header__category">
         </div>
+        <?php 
+        $alternative_title = get_field('alternative_title'); ?>
+        
         <h1 class="header__page-title">
-          <?php the_title(); ?>
+          <?php 
+            if ($alternative_title) :
+              echo $alternative_title;
+            else :
+              the_title();
+            endif;
+          ?>
         </h1>
       </div>
         

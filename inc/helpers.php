@@ -80,4 +80,42 @@ function has_term_id($terms_array, $term_id) {
     return false;
 }
 
+
+if (!function_exists('generate_margins_styles_for_section')){
+	function generate_margins_styles_for_section($class_name, $post_id){
+		// echo get_field('margin_top', $post_id);
+		if ($class_name && $post_id) : ?>
+		<?= 'tessssssst'; ?>
+		<?= $post_id; ?>
+		<?php $test = get_field('margin_top', 43); 
+		echo $test;
+		?>
+		<style>
+		.<?= $class_name; ?>{
+			margin-top: <?php the_field('margin_top', $post_id); ?>px;
+			margin-bottom: <?= get_field('margin_bottom', $post_id); ?>px;
+
+			<?php
+
+			if( have_rows('breakpoints', $post_id) ):
+			while( have_rows('breakpoints', $post_id) ) : the_row();
+				$breakpoint = get_sub_field('breakpoint', $post_id);
+				$margin_top = get_sub_field('margin_top', $post_id);
+				$margin_bottom = get_sub_field('margin_bottom', $post_id);
+
+				echo "@media only screen and (min-width: " . $breakpoint . "px) {\n";
+					echo "margin-top: " . $margin_top . "px;\n";
+					echo "margin-bottom: " . $margin_bottom . "px;\n";
+				echo "}\n";
+			endwhile;
+			endif;
+
+			?>
+		}
+		</style>      
+	<?php endif;
+	}	
+}
+
+
 ?>

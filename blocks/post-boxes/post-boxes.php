@@ -6,6 +6,12 @@
   $post_type = get_field('post_type');
   $posts_in_section = get_field('posts_in_section');
 ?>
+<?=  get_field('margin_top'); ?>
+
+  <?php
+  generate_margins_styles_for_section('post-boxes', get_the_ID());
+  
+?>
 
 <section class="post-boxes">
   <div class="container">
