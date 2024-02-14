@@ -3,12 +3,13 @@
 .header{
     background-color: variables.$navyBlue;
     border-radius: 10px;
-    min-height: 554px;
+    min-height: 470px;
     padding: 0;
+    display: flex;
 
     @include variables.media-up(lg){
+        min-height: 554px;
         padding: 20px;
-        display: flex;
         align-items: stretch;
     }
 
@@ -18,6 +19,7 @@
 
     .conatiner--header{
         flex-grow: 1;
+        margin: 0 20px;
     }
     
     .container--title{
@@ -26,14 +28,19 @@
     }
 
     &__page-title{
+        font-size: 32px;
+        line-height: 135%;
         color:variables.$white;
         font-family: 'Roboto Flex', sans-serif;
-        font-size: 56px;
         font-style: normal;
         font-weight: 800;
-        line-height: 115%;
         letter-spacing: -1.68px;
         z-index: 5;
         position: relative;
+
+        @include variables.media-up(xxl){
+            font-size: 56px;
+            line-height: 115%;
+        }
     }
 }

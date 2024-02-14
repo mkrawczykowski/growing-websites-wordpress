@@ -54,11 +54,16 @@ img {
   }
 
   &--header{
+
     display: flex;
     flex-direction: column;
   }
 
   &--title{
+    @include variables.media-down(xl){
+      margin: 0 20px;
+    }
+    
     flex-grow: 1;
   }
 }
