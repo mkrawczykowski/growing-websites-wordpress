@@ -82,38 +82,41 @@ function has_term_id($terms_array, $term_id) {
 
 
 if (!function_exists('generate_margins_styles_for_section')){
-	function generate_margins_styles_for_section($class_name, $post_id){
-		// echo get_field('margin_top', $post_id);
-		if ($class_name && $post_id) : ?>
-		<?= 'tessssssst'; ?>
-		<?= $post_id; ?>
-		<?php $test = get_field('margin_top', 43); 
-		echo $test;
+	
+	/**
+     * Generate margins styles for section
+     *
+     * @param string $class_name the class name of the section
+     * @param int $margin_top_small the top margin for small screens
+     * @param int $margin_bottom_small the bottom margin for small screens
+     * @param array $breakpoints an array of breakpoints with their margin values
+     */
+
+	function generate_margins_styles_for_section($class_name, $margin_top_small, $margin_bottom_small, $breakpoints){
+		if (!$class_name && !$margin_top_small && !$margin_bottom_small && !$breakpoints) {
+			return;
+		} 
+
 		?>
+
 		<style>
 		.<?= $class_name; ?>{
-			margin-top: <?php the_field('margin_top', $post_id); ?>px;
-			margin-bottom: <?= get_field('margin_bottom', $post_id); ?>px;
+			margin-top: <?= $margin_top_small ?>px;
+			margin-bottom: <?= $margin_bottom_small ?>px;
 
 			<?php
 
-			if( have_rows('breakpoints', $post_id) ):
-			while( have_rows('breakpoints', $post_id) ) : the_row();
-				$breakpoint = get_sub_field('breakpoint', $post_id);
-				$margin_top = get_sub_field('margin_top', $post_id);
-				$margin_bottom = get_sub_field('margin_bottom', $post_id);
-
-				echo "@media only screen and (min-width: " . $breakpoint . "px) {\n";
-					echo "margin-top: " . $margin_top . "px;\n";
-					echo "margin-bottom: " . $margin_bottom . "px;\n";
-				echo "}\n";
-			endwhile;
-			endif;
+			foreach ($breakpoints as $breakpoint){
+				echo "@media only screen and (min-width: " . $breakpoint['breakpoint'] . "px) {";
+					echo "margin-top: " . $breakpoint['margin_top'] . "px;";
+					echo "margin-bottom: " . $breakpoint['margin_bottom'] . "px;";
+				echo "}\n";	
+			}
 
 			?>
 		}
 		</style>      
-	<?php endif;
+	<?php 
 	}	
 }
 
