@@ -4,6 +4,13 @@
   $posts_per_page = get_field('posts_per_page');
   $portfolio_filters = get_field('portfolio_filters');
   $GLOBALS['global_active_portfolio_filters'] = [];
+
+  //margins for the block
+  $margin_top_small = get_field('margin_top_small');
+  $margin_bottom_small = get_field('margin_bottom_small');
+  $breakpoints = get_field('breakpoints');
+  
+  generate_margins_styles_for_section('post-boxes', $margin_top_small, $margin_bottom_small, $breakpoints);
 ?>
 
 <section class="portfolio-experience">
