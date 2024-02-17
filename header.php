@@ -38,20 +38,38 @@
       <?php include get_template_directory() . '/inc/acf-menu/acf-menu.php' ?>  
 
       <div class="container container--title">
-        <div class="header__category">
-        </div>
-        <?php 
-        $alternative_title = get_field('alternative_title'); ?>
-        
-        <h1 class="header__page-title">
+        <div class="header-content">
+          <?php if (is_single()) : ?>
+            <div class="header__post-meta">
+              <ul class="header__post-categories">
+                <?php foreach(get_the_category($featured_post_id) as $category) : ?>
+                  <li class="header__post-category">
+                    <a class="header__post-category-link" href="<?= get_category_link($category->term_id); ?>">
+                      <?= $category->name; ?>
+                    </a>
+                  </li>
+                <?php endforeach; ?>
+              </ul>
+              <span class="header__post-date">
+                <?= get_the_date('F d Y', $featured_post_id); ?>
+              </span>
+            </div>
+          <?php endif; ?>
+          
           <?php 
-            if ($alternative_title) :
-              echo $alternative_title;
-            else :
-              the_title();
-            endif;
-          ?>
-        </h1>
+          $alternative_title = get_field('alternative_title'); ?>
+          
+          <h1 class="header__page-title">
+            <?php 
+              if ($alternative_title) :
+                echo $alternative_title;
+              else :
+                the_title();
+              endif;
+            ?>
+          </h1>  
+        </div>
+        
       </div>
         
     </div>

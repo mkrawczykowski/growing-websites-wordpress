@@ -44,17 +44,16 @@ img {
   margin: 0 auto;
   
   @include variables.media-up(xl){
-    max-width: 970px;
+    width: 970px;
   }
 
   &--wider{
     @include variables.media-up(xl){
-      max-width: 1266px;
+      width: 1266px;
     }
   }
 
   &--header{
-
     display: flex;
     flex-direction: column;
   }
