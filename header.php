@@ -18,7 +18,7 @@
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@400;600;800;900&display=swap">
   </noscript>
 
-  <title><?php the_title(); ?></title>
+  <title><?php echo esc_html(get_the_title()); ?></title>
   <?php wp_head(); ?>
 </head>
 
@@ -49,14 +49,14 @@
           <?php endif; ?>
           
           <?php 
-          $alternative_title = get_field('alternative_title'); ?>
+          $alternative_title = get_field('alternative_title', false, true, true); ?>
           
           <h1 class="header__page-title">
             <?php 
               if ($alternative_title) :
                 echo $alternative_title;
               else :
-                the_title();
+                echo esc_html(get_the_title());
               endif;
             ?>
           </h1>  
