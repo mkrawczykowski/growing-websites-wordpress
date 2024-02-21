@@ -19,7 +19,10 @@
 
     .conatiner--header{
         flex-grow: 1;
-        margin: 0 20px;
+        margin: 0 20px;width: 100%;
+        @include variables.media-down(lg){
+            
+        }
     }
     
     .container--title{

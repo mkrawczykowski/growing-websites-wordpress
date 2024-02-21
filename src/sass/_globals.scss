@@ -48,6 +48,7 @@ img {
   }
 
   &--wider{
+    width: 100%;
     @include variables.media-up(xl){
       width: 1266px;
     }
@@ -55,7 +56,7 @@ img {
 
   &--header{
     display: flex;
-    flex-direction: column;
+    flex-direction: column;  
   }
 
   &--title{

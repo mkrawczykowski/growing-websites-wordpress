@@ -48,16 +48,18 @@
         @include variables.media-down(lg){
             z-index: 8;
         }
-        width: calc(100% - 30px);
+
         display: flex;
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
         position: absolute;
         background-color: variables.$navyBlue;
+        width: calc(100% - 30px);
 
         @include variables.media-up(lg){
-            position: relative;width: calc(100%);
+            position: relative;
+            width: calc(100%);
         }
 
         @include variables.media-up(xl){
