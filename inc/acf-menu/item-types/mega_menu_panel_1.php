@@ -72,7 +72,7 @@
                             <?php endif ; ?>
                         </div>
                         <div class="panel-1-container__col-2">
-                            <a class="panel-1-container__link" href="">Go to blog page</a>
+                            <a class="panel-1-container__link" href="<?= $link_in_the_corner['url']; ?>"><?= $link_in_the_corner['title']; ?></a>
                         </div>
                     </div>
                 </div>
