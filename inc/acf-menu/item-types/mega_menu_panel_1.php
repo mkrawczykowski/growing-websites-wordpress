@@ -1,6 +1,6 @@
 <?php 
 
-    if ($mega_menu_panel_1 = get_sub_field('mega_menu_panel_1')) :
+    if ($mega_menu_panel_1 = get_sub_field('mega_menu_panel_1', false, true, true)) :
 
         $menu_item_label = $mega_menu_panel_1['menu_item_label'];
         $featured_post = $mega_menu_panel_1['featured_post'];
@@ -10,7 +10,7 @@
         
         $featured_categories = $mega_menu_panel_1['featured_categories'];
         $link_in_the_corner = $mega_menu_panel_1['link_in_the_corner'];
-        $custom_classes = get_sub_field('custom_classes');
+        $custom_classes = get_sub_field('custom_classes', false, true, true);
         $id_attribute = ($custom_id = get_sub_field('custom_id')) ? 'id="' . $custom_id . '"' : ''; 
 ?>
         <li <?= $id_attribute; ?> class="main-nav__list-item main-nav__has-children mobile-expandable main-nav__mega-menu-panel-1 <?= esc_html($custom_classes); ?>"><!-- add .active if you want the menu always visible -->

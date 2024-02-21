@@ -1,14 +1,14 @@
 <?php defined('ABSPATH') or die; ?>
 
 <?php
-  $posts_per_page = get_field('posts_per_page');
-  $portfolio_filters = get_field('portfolio_filters');
+  $posts_per_page = get_field('posts_per_page', false, true, true);
+  $portfolio_filters = get_field('portfolio_filters', false, true, true);
   $GLOBALS['global_active_portfolio_filters'] = [];
 
   //margins for the block
-  $margin_top_small = get_field('margin_top_small');
-  $margin_bottom_small = get_field('margin_bottom_small');
-  $breakpoints = get_field('breakpoints');
+  $margin_top_small = get_field('margin_top_small', false, true, true);
+  $margin_bottom_small = get_field('margin_bottom_small', false, true, true);
+  $breakpoints = get_field('breakpoints', false, true, true);
   
   generate_margins_styles_for_section('post-boxes', $margin_top_small, $margin_bottom_small, $breakpoints);
 ?>
@@ -19,21 +19,21 @@
             <?php
                 if( have_rows('portfolio_filters') ):
                     while( have_rows('portfolio_filters') ) : the_row();
-                        $filter_name = get_sub_field('filter_name');
-                        $taxonomy_slug = get_sub_field('taxonomy_slug');
+                        $filter_name = get_sub_field('filter_name', false, true, true);
+                        $taxonomy_slug = get_sub_field('taxonomy_slug', false, true, true);
                         $this_taxonomy_exists = taxonomy_exists($taxonomy_slug);
-                        $filter_type = get_sub_field('filter_type');
+                        $filter_type = get_sub_field('filter_type', false, true, true);
                         $template_path =  'template-parts/filters/filter-'. $filter_type. '.php';
                         $template_exists = locate_template($template_path, false, false);
-                        $items_in_reverse_order = get_sub_field('items_in_reverse_order');
-                        $enable_change_filtering_type = get_sub_field('enable_change_filtering_type');
-                        $default_filtering_type = get_sub_field('default_filtering_type');
-                        $default_filtering_type_label = get_sub_field('default_filtering_type_label');
+                        $items_in_reverse_order = get_sub_field('items_in_reverse_order', false, true, true);
+                        $enable_change_filtering_type = get_sub_field('enable_change_filtering_type', false, true, true);
+                        $default_filtering_type = get_sub_field('default_filtering_type', false, true, true);
+                        $default_filtering_type_label = get_sub_field('default_filtering_type_label', false, true, true);
 
                         if ($this_taxonomy_exists && $template_exists) : ?>
 
                             <?php
-                                $active_terms_in_this_filter = get_sub_field('active_terms_in_this_filter');
+                                $active_terms_in_this_filter = get_sub_field('active_terms_in_this_filter', false, true, true);
                                 $active_terms_in_this_filter_array = get_existing_terms_list(explode(",", $active_terms_in_this_filter), $taxonomy_slug);
                                 $container_width = get_sub_field('full_width') ? 'full-width' : 'half-width';
                             ?>

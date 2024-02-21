@@ -1,15 +1,15 @@
 <?php defined('ABSPATH') or die; ?>
 
 <?php
-  $heading = get_field('heading');
-  $which_posts = get_field('which_posts');
-  $post_type = get_field('post_type');
-  $posts_in_section = get_field('posts_in_section');
+  $heading = get_field('heading', false, true, true);
+  $which_posts = get_field('which_posts', false, true, true);
+  $post_type = get_field('post_type', false, true, true);
+  $posts_in_section = get_field('posts_in_section', false, true, true);
 
   //margins for the block
-  $margin_top_small = get_field('margin_top_small');
-  $margin_bottom_small = get_field('margin_bottom_small');
-  $breakpoints = get_field('breakpoints');
+  $margin_top_small = get_field('margin_top_small', false, true, true);
+  $margin_bottom_small = get_field('margin_bottom_small', false, true, true);
+  $breakpoints = get_field('breakpoints', false, true, true);
 
   generate_margins_styles_for_section('post-boxes', $margin_top_small, $margin_bottom_small, $breakpoints);
 ?>
