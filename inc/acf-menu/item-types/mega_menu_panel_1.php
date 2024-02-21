@@ -1,6 +1,6 @@
 <?php 
 
-    if ($mega_menu_panel_1 = get_sub_field('mega_menu_panel_1', false, true, true)) :
+    if ($mega_menu_panel_1 = get_sub_field('mega_menu_panel_1')) :
 
         $menu_item_label = $mega_menu_panel_1['menu_item_label'];
         $featured_post = $mega_menu_panel_1['featured_post'];
