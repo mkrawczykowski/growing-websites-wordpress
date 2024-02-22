@@ -39,6 +39,26 @@ img {
   height: auto;
 }
 
+p{
+  color: variables.$navyBlue;
+  font-family: 'Roboto Flex';
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  margin-bottom: 20px;
+}
+
+.main{
+  &--singular{
+    padding-top: 40px;
+    
+    @include variables.media-up(xl){
+      padding-top: 100px;
+    }
+  }
+}
+
 .container{
   display: block;
   margin: 0 auto;
@@ -51,6 +71,13 @@ img {
     width: 100%;
     @include variables.media-up(xl){
       width: 1266px;
+    }
+  }
+
+  &--narrower{
+    width: 100%;
+    @include variables.media-up(xl){
+      width: 680px;
     }
   }
 

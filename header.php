@@ -2,17 +2,23 @@
   global $post;
 
   $post_type = get_post_type();
+  $post_id = get_the_ID();
   $taxonomy = '';
+  $date_or_year = '';
 
   switch ($post_type) {
     case 'post':
       $taxonomy = 'category';
+      $date_or_year = get_the_date('F d Y', $post_id);
     break;
     case 'project':
       $taxonomy = 'project-category';
+      $names = array_column(get_the_terms($post_id, 'project-year'), 'name');
+      $date_or_year = implode(', ', $names);
+      
     break;
   };
-  $this_post_terms = wp_get_post_terms(get_the_ID(), $taxonomy);
+  $this_post_terms = wp_get_post_terms($post_id, $taxonomy);
 
 ?>
 
@@ -56,13 +62,15 @@
                 <?php endforeach; ?>
               </ul>
               <span class="header__post-date">
-                <?= get_the_date('F d Y', get_the_ID()); ?>
+                <?= $date_or_year ?>
               </span>
             </div>
           <?php endif; ?>
           
           <?php 
-          $alternative_title = get_field('alternative_title', false, true, true); ?>
+            $alternative_title = get_field('alternative_title', false, true, true);
+            $excerpt = get_field('excerpt', false, true, true); 
+          ?>
           
           <h1 class="header__page-title">
             <?php 
@@ -72,7 +80,8 @@
                 echo esc_html(get_the_title());
               endif;
             ?>
-          </h1>  
+          </h1>
+          <?= $excerpt ? '<p class="header__excerpt">' . $excerpt . '</p>' : NULL; ?>
         </div>
         
       </div>
