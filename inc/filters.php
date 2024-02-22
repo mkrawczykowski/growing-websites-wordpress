@@ -12,6 +12,20 @@
       .acf-table > tbody > tr > td{
         border-width: 15px 0 0 1px;
       }
+
+      .acf-field-message:not(.message-margins){
+        background-color: #DFDFDF;
+        font-size: 18px;
+      }
+      .acf-field-message.message-margins{
+        background-color: #f3f3f3;
+        font-size: 16px;
+      }
+
+      .acf-field .acf-label{
+        margin: 0;
+      }
+
     </style>';
   }
 ?>
