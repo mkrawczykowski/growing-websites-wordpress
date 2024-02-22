@@ -1,0 +1,22 @@
+@use '../../src/sass/variables' as variables;
+
+.image-caption{
+    margin: 0;
+    @include variables.media-up(xl){
+        margin: 0 -50px;
+    }
+
+    figcaption{
+        color: variables.$navyBlue;
+        font-family: 'Roboto Flex';
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 150%;
+        text-transform: uppercase;
+        background-color: variables.$navyBlueLight2;
+        padding: 11px 21px;
+        border-radius: 0 0 10px 10px;
+        transform: translateY(-2px);
+    }
+}

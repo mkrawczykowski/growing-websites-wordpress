@@ -27,6 +27,10 @@ $GLOBALS['gw_gutenberg_blocks_array_with_scripts_gw'] = array(
   array(
     'block-name' => 'portfolio-experience', 
     'block-scripts' => array('checkbox-dropdowns-filters')
+  ),
+  array(
+    'block-name' => 'image-caption', 
+    'block-scripts' => array()
   )
 );
  

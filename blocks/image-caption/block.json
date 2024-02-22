@@ -1,0 +1,30 @@
+{
+    "name": "acf/image-caption",
+    "title": "Image with caption",
+    "description": "Responsive image with short cation below, <figure> and <figcaption>",
+    "style": "file:./index.css",
+    "script": "file:./index.js",
+    "category": "design",
+    "icon": "list-view",
+    "keywords": [
+      "image",
+      "caption",
+      "picture"
+    ],
+    "apiVersion": 2,
+    "acf": {
+      "mode": "edit",
+      "renderTemplate": "image-caption.php"
+    },
+    "align": "full",
+    "supports": {
+      "align": true,
+      "anchor": true
+    },
+    "attributes": {
+      "align": {
+        "type": "string",
+        "default": "full"
+      }
+    }
+  }
