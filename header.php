@@ -1,5 +1,19 @@
 <?php
   global $post;
+
+  $post_type = get_post_type();
+  $taxonomy = '';
+
+  switch ($post_type) {
+    case 'post':
+      $taxonomy = 'category';
+    break;
+    case 'project':
+      $taxonomy = 'project-category';
+    break;
+  };
+  $this_post_terms = wp_get_post_terms(get_the_ID(), $taxonomy);
+
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +40,6 @@
   <div class="covering-layer"></div>
   <header class="header">
     <div class="container container--wider container--header">
-      
       <?php include get_template_directory() . '/inc/acf-menu/acf-menu.php' ?>  
 
       <div class="container container--title">
@@ -34,16 +47,16 @@
           <?php if (is_single()) : ?>
             <div class="header__post-meta">
               <ul class="header__post-categories">
-                <?php foreach(get_the_category($featured_post_id) as $category) : ?>
+                <?php foreach($this_post_terms as $term) : ?>
                   <li class="header__post-category">
-                    <a class="header__post-category-link" href="<?= get_category_link($category->term_id); ?>">
-                      <?= $category->name; ?>
+                    <a class="header__post-category-link" href="<?= get_category_link($term->term_id); ?>">
+                      <?= $term->name; ?>
                     </a>
                   </li>
                 <?php endforeach; ?>
               </ul>
               <span class="header__post-date">
-                <?= get_the_date('F d Y', $featured_post_id); ?>
+                <?= get_the_date('F d Y', get_the_ID()); ?>
               </span>
             </div>
           <?php endif; ?>
