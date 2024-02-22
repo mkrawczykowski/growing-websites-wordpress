@@ -1,7 +1,7 @@
 @use '../variables';
 
 .button{
-    padding: 8px 31.5px 11px;
+    padding: 9px 31.5px 10px;
     display: inline-block;
     border-radius: 8px;
     font-family: 'Roboto Flex', sans-serif;
@@ -16,7 +16,7 @@
     &:hover{
         transition: all 0.2s ease;
         background-color: variables.$lightBlue;
-        color: variables.$navyBlue;
+        color: variables.$white;
     }
 
     &--smaller{
