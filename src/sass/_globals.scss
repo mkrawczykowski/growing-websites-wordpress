@@ -95,3 +95,22 @@ p{
     flex-grow: 1;
   }
 }
+
+.footer{
+  display: block;
+  margin: 0 auto;
+  border-top: 1px solid variables.$navyBlueLight2;
+  padding-top: 40px;
+
+  @include variables.media-up(xl){
+    width: 970px;
+  }
+
+  &__text{
+    text-align: center;
+
+    span{
+      white-space: nowrap;
+    }
+  }
+}
