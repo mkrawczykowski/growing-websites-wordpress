@@ -27,17 +27,14 @@
         align-items: center;
     }
 
-    &-content{
-
-    }
-
     &__post-meta{
         display: flex;
         margin-bottom: 22px;
         margin-top: 9px;
         flex-direction: column-reverse;
 
-        @include variables.media-up(lg){
+        @include variables.media-up(md){
+            flex-direction: row;
             margin-top: 0;
             flex-direction: row;
         }
@@ -46,26 +43,35 @@
     &__post-categories{
         display: flex;
         background-color: variables.$navyBlue;
-        border: 1px solid variables.$white;
-        border-top-left-radius: 6px;
-        border-bottom-left-radius: 6px;
-        overflow: hidden;
+        
+
+        @include variables.media-up(md){
+            // padding: 3px 10px 3px 0;
+            border-right: 1px solid variables.$white; 
+            border: 1px solid variables.$white;
+            border-top-left-radius: 6px;
+            border-bottom-left-radius: 6px;
+            overflow: hidden;
+        }
 
         .header__post-category{
-            color: variables.$navyBlue;
-
             &-link{
-                display: none;
                 font-family: 'Roboto Flex', sans-serif;
-                font-size: 13px;
+                font-size: 14px;
                 font-style: normal;
                 color: variables.$white;
                 font-weight: 800;
                 line-height: 120%;
                 text-transform: uppercase;
-                padding: 10px 12px 8px 12px;
                 display: inline-block;
                 transition: all 0.3s ease;
+                text-decoration: underline;
+
+                @include variables.media-up(md){
+                    text-decoration: none;
+                    padding: 10px 12px 8px 12px;
+                    font-size: 13px;
+                }
 
                 &:hover{
                     background-color: variables.$navyBlueLight2;
@@ -77,12 +83,7 @@
     }
 
     &__post-date{
-        background-color: variables.$white;
-        color: variables.$navyBlue;
-        border-top-right-radius: 6px;
-        border-bottom-right-radius: 6px;
-        overflow: hidden;
-        padding: 10px 12px 8px 10px;
+        color: variables.$white;
         display: inline-block;
         font-family: 'Roboto Flex', sans-serif;
         font-size: 13px;
@@ -90,6 +91,21 @@
         font-weight: 600;
         line-height: 120%; /* 12px */
         text-transform: uppercase;
+        padding: 0 0 10px 0;
+        display: flex;
+        align-items: center;
+
+        @include variables.media-up(md){
+            padding: 3px 0 3px 10px;
+            background-color: variables.$white;
+            color: variables.$navyBlue;
+            border-top-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+            overflow: hidden;
+            padding: 10px 12px 8px 10px;
+            
+        }
+        
     }
 
     &__page-title{
@@ -104,6 +120,16 @@
         position: relative;
         margin-bottom: 10px;
 
+        @include variables.media-up(md){
+            font-size: 36px;
+            line-height: 135%;
+        }
+
+        @include variables.media-up(xl){
+            font-size: 42px;
+            line-height: 135%;
+        }
+        
         @include variables.media-up(xxl){
             font-size: 56px;
             line-height: 115%;
