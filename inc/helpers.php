@@ -24,14 +24,18 @@ function acf_responsive_image($image_id,$image_size,$max_width){
  * @param array $posts_ids array od posts IDs
  */
 
-function the_posts_by_ids($posts_ids){
+function the_posts_by_ids($posts_ids, $taxonomy, $date){
 	if (!is_array($posts_ids) || empty($posts_ids)) {
 		return;
     }
 
     foreach($posts_ids as $post_id) : 
         get_template_part('template-parts/post','box',
-        	array('post_id' => $post_id)
+        	array(
+				'post_id' 			=> $post_id,
+				'category_taxonomy'	=> $taxonomy,
+				'date'				=> 'year'
+				)
         );
     endforeach;
 }

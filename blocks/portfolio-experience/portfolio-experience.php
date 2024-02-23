@@ -119,17 +119,9 @@
         <div class="posts-list">
         <?php
         $global_active_portfolio_filters = $GLOBALS['global_active_portfolio_filters'];
-        // echo '------ $global_active_portfolio_filters --------';
-        // echo '<br>';
-        // var_dump($global_active_portfolio_filters);
-        // echo '------ END $global_active_portfolio_filters --------';
-        // echo '<br>';
-        // echo '<br>';
+
     $active_filters_taxonomies = array_keys($global_active_portfolio_filters);
-    // var_dump($active_filters_taxonomies);
-    // echo '<br>';
-    // echo '<br>';
-    // echo '<br>';
+
    
 
     $args_test = array(
@@ -142,129 +134,21 @@
     );
 
     if ($active_filters_taxonomies){
-        // $query_string = '';
         foreach($active_filters_taxonomies as $active_filters_taxonomy) :
             $args_test['tax_query'][] = array(
                 'taxonomy' => $active_filters_taxonomy,
-                        'field'    => 'term_id', // Możesz zmienić na 'term_id', 'name' lub 'slug', w zależności od sposobu identyfikacji
+                        'field'    => 'term_id',
                         'terms' => $global_active_portfolio_filters[$active_filters_taxonomy]['active_terms_ids'],
                         'operator' => $global_active_portfolio_filters[$active_filters_taxonomy]['default_filtering_type']
             );
-            // $posts = get_posts(array(
-            //     'post_type' => 'project',
-            //     'fields'         => 'ids',
-            //     'numberposts' => -1,
-            //     'tax_query' => array(
-            //         'relation' => $global_active_portfolio_filters[$active_filters_taxonomy]['default_filtering_type'],
-            //     //   array(
-            //     //     'taxonomy' => $active_filters_taxonomy,
-            //     //     'field' => 'term_id', 
-            //     //     'terms' => $global_active_portfolio_filters[$active_filters_taxonomy]['active_terms_ids'],
-            //     //     'include_children' => false,
-            //     //     'operator' => $global_active_portfolio_filters[$active_filters_taxonomy]['default_filtering_type']
-            //     //   )
-            //     )
-            //   ));
-
-
-            // echo '<br>';
-            // echo '--$active_filters_taxonomy--';
-            // echo '<br>';
-            // echo $active_filters_taxonomy;
-            // echo '<br>';
-            // var_dump($global_active_portfolio_filters[$active_filters_taxonomy]['active_terms_ids']);
-            
-            // echo '<br>';
-            // echo $global_active_portfolio_filters[$active_filters_taxonomy]['default_filtering_type'];
-            // echo '<br>';
-
-
-            
-
-
-            //   foreach($posts as $post) :
-            //     echo get_the_title($post) . '<br>';
-            // if (!$all_queried_posts){
-            //             $merged_array = $posts;
-            //         }
-            //         if ($all_queried_posts){
-            //             $merged_array = array_intersect($all_queried_posts, $posts);
-            //         }
-            // $all_queried_posts = $merged_array;
-            
-            // foreach ($all_queried_posts as $post) :
-            //     echo get_the_title($post). '<br>';
-            // endforeach;
-            // echo '<br>=====================</br>';
-            // endforeach;
-            //   if ($posts){
-            //     echo 'posts!';
-            //     echo '<br>';
-                
-            //     echo '<br>';
-            //     // foreach($posts as $post){
-
-            //     // }
-            //     echo '================= $all_queried_posts ===================';
-            //     echo '<br>';
-            //     if (!$all_queried_posts){
-            //         $merged_array = $posts;
-            //     }
-            //     if ($all_queried_posts){
-                    
-            //     }
-                
-            //     var_dump($merged_array);
-            //     echo '<br>';
-            //     $all_queried_posts = $merged_array;
-                
-            //     foreach ($all_queried_posts as $post) :
-            //         echo get_the_title($post). '<br>';
-            //     endforeach;
-            //     echo '================= //// $all_queried_posts //// ===================';
-            //     echo '<br>';
-                
-            //   }
-              
-            // $query_string .= $active_filters_post_type . '=';
-            // $query_string .= implode(',',$global_active_portfolio_filters[$active_filters_post_type]);
-            // $query_string .= '&';
-            // echo '<br>';
-            // var_dump($posts);
-            // echo '<br>';
-            // echo '<br>';
-            // echo '<br>';echo '================================================================';
         endforeach;
 
-        // echo 'all_queried_posts';
-        // echo '<br>';
-        // // var_dump($all_queried_posts);
-        // foreach($all_queried_posts as $post) :
-        //     echo get_the_title($post) . '<br>';
-
-        // endforeach;
-        // $query_string .= "&numberposts=3&fields='ids'";
-        // echo $query_string;
     }
 
                     $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-                    // if ($all_queried_posts){
-                    //     $query = new WP_Query( array(
-                    //         'post_type' => 'any', // any post type
-                    //         'post__in'  => $all_queried_posts, // our merged queries
-                    //     ) );    
-                    // }
+
     
                     $query = new WP_Query($args_test);
-    // $query = new WP_Query( array(
-    //     'posts_per_page' => $posts_per_page, 
-    //                 'paged' => $paged, 
-    //                 'post_type' => 'project'
-    // ) );
-
-    // $query = get_posts($query_string);
-    // var_dump($query);
-    // echo '<br /><br /><br /><br /><br />';
 
 
 if ( $query->have_posts() ) :

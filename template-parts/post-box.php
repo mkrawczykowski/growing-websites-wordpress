@@ -1,5 +1,6 @@
 <?php
     $post_id = $args['post_id'];
+    $excerpt = get_field('excerpt', $post_id, true, true);
     $date = array_key_exists('date', $args) ? $args['date'] : 'full';
     $category_taxonomy = array_key_exists('category_taxonomy', $args) ? $args['category_taxonomy'] : 'category';
     $tag_taxonomy = array_key_exists('tag_taxonomy', $args) ? $args['tag_taxonomy'] : 'post_tag';
@@ -57,7 +58,7 @@
             </ul>
         <?php endif; ?>
 
-        <p class="post-box__excerpt"><?= get_the_excerpt($post_id) ?></p>
+        <?= $excerpt ? '<p class="post-box__excerpt">' . $excerpt . '</p>' : NULL; ?></p>
     </div>
     <div class="post-box__image">
         <a href="<?= get_permalink($post_id); ?>"  class="post-box__image-link">

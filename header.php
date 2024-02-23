@@ -1,8 +1,7 @@
 <?php
-
+  $post_id = get_the_ID();
   if (is_singular()){
     $post_type = get_post_type();
-    $post_id = get_the_ID();
     $taxonomy = '';
     $date_or_year = '';
 
@@ -24,18 +23,17 @@
   $proper_title = '';
   $excerpt = '';
 
-  if (!is_tax()){
+  if (!is_tax() && !is_category()){
     $alternative_title = get_field('alternative_title', false, true, true);
-
+    $excerpt = get_field('excerpt', $post_id, true, true); 
     if ($alternative_title){
-      $excerpt = get_field('excerpt', false, true, true); 
       $proper_title = $alternative_title;	
     }
     if (!$alternative_title){
       $proper_title = get_the_title();
     }
   }
-  if (is_tax()){
+  if (is_tax() || is_category()){
     $proper_title = single_cat_title("", false);
   }
   

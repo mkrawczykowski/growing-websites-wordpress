@@ -1,43 +1,35 @@
 <?php
-  get_header();
-  $queried_object = get_queried_object();
-$category = $queried_object->term_id; 
-var_dump($queried_object);
-echo '----------------------------------------------------------------';
-
+    get_header();
+    $queried_object = get_queried_object();
+    $category = $queried_object->term_id;
 ?>
 
 	<main class="main">
-		<div class="container container--narrower">
+	<div class="container">
  
 <?php
 
-
-
-// WP_Query arguments for first loop
 $args = array(
   'paged' => get_query_var('paged') ? get_query_var('paged') : 1,
   'tax_query' => array(
     array(
-      'taxonomy' => 'project-category',
+      'taxonomy' => $queried_object->taxonomy,
       'terms' => $category,
-    //   
-      
     ),
   ),
 );
 
-// The Query
 $query = new WP_Query( $args );
 
-// var_dump($query);
-
-// The Loop
 if ( $query->have_posts() ) {
   while ( $query->have_posts() ) {
     $query->the_post();
-    the_title();
-    echo '<br><br>';
+    get_template_part('template-parts/post','box',
+        array(
+            'post_id' => get_the_ID(),
+            'category_taxonomy' => $queried_object->taxonomy
+            )
+    );
   } 
   wp_reset_postdata();
   ?>
@@ -62,87 +54,8 @@ if ( $query->have_posts() ) {
 </div>
 <?php
 } else {
-  // no posts found
 }
-// Restore original Post Data
 
-// $big = 9999; // need an unlikely integer
-//         echo paginate_links( array(
-//             'base' => str_replace( $big, '%#%', get_pagenum_link( $big ) ),
-//             'format' => '?paged=%#%',
-//             'current' => max(1, $query->get( 'paged' ) ),
-//             'total' => $query->max_num_pages
-//     ) );
-// WP_Query arguments for second loop
-
-// The Query
-
-
-
-
-    // $args = array(
-    //                         // 'post_type' => 'portfolio',
-    //                         'post_type' => 'project',
-    //                         'posts_per_page' => 4,
-    //                         'paged' => $paged,
-    //                         'tax_query' => array(             
-    //                             array(
-    //                                'taxonomy' => 'project-category',
-    //                                'field' => 'slug',
-    //                                'terms' => $queried_object->slug, // or the category name e.g. Germany
-    //                            ),
-    //                         )
-    //                     ) ;
-    
-    
-    
-    
-    
-    
-    // array(
-    //     'post_type'         => 'post',
-    //     'post_status'       => 'publish',
-    //     'paged'             => $paged,
-    //     'posts_per_page'    => 2
-    // );
-
-
-
-
-    // $query = array(
-    //     'post_type' => 'project',
-    //                         'posts_per_page' => 4,
-    //                         'paged' => $paged,
-    //                         'tax_query' => array(             
-    //                             array(
-    //                                'taxonomy' => 'project-category',
-    //                                'field' => 'slug',
-    //                                'terms' => $queried_object->slug, // or the category name e.g. Germany
-    //                            ),
-    //                         )
-
-        // 'post_type' => 'post',
-        // 'posts_per_page' => 2,
-        // 'author'=>the_author_meta('id'),
-        // 'ignore_sticky_posts' => true,
-        // 'paged' => get_query_var('paged') ? get_query_var('paged') : 1 
-    // );
-    // $loop = new WP_Query($query);
-    
-    // if( $loop->have_posts() ):
-    //     while ( $loop->have_posts() ) : $loop->the_post();
-    //        the_title();
-    //        echo '<br /><br />';
-    //     endwhile;
-    // endif;
-    
-    // $big = 9999; // need an unlikely integer
-    //     echo paginate_links( array(
-    //         'base' => str_replace( $big, '%#%', get_pagenum_link( $big ) ),
-    //         'format' => '?paged=%#%',
-    //         'current' => max(1, $loop->get( 'paged' ) ),
-    //         'total' => $loop->max_num_pages
-    // ) );
                 
                 ?>
                
