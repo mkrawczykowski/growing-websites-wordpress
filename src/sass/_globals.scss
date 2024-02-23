@@ -50,12 +50,10 @@ p{
 }
 
 .main{
-  &--singular{
-    padding-top: 40px;
+  padding-top: 40px;
     
-    @include variables.media-up(xl){
-      padding-top: 100px;
-    }
+  @include variables.media-up(xl){
+    padding-top: 100px;
   }
 }
 

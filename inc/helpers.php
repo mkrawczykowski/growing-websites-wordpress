@@ -121,4 +121,21 @@ if (!function_exists('generate_margins_styles_for_section')){
 }
 
 
+
+
+function the_proper_title(){
+	if (!is_category()){
+		if ($alternative_title){
+			return $alternative_title;	
+		}
+		if (!$alternative_title){
+			return get_the_title();
+		}
+	}
+	if (is_category()){
+		return single_cat_title();
+	}
+}
+
+
 ?>
