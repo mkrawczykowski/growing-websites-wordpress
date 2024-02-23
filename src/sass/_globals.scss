@@ -75,7 +75,10 @@ p{
   }
 
   &--narrower{
-    width: 100%;
+    width: 90%;
+    @include variables.media-up(lg){
+      width: 800px;
+    }
     @include variables.media-up(xl){
       width: 680px;
     }
