@@ -17,7 +17,7 @@
         position: relative;
 
         .main-nav__list{
-            // position: static;
+            padding-bottom: 50px;
             width: 100%;
 
             @include variables.media-up(xxxl){
