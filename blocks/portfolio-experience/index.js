@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function(){
     const dropdownCheckboxesInstances = [];
     const applyFiltersButton = document.getElementById('js-portfolio-experience-apply-filters');
     const operatorCheckboxes = document.querySelectorAll('js-portfolio-experience-apply-filters');
+    const expanders = document.querySelectorAll('.js-dropdown-checkboxes-expand-area');
 
     const initData = () => {
         const componentInstances = document.querySelectorAll('[data-dropdown-checkboxes]');
@@ -89,4 +90,11 @@ document.addEventListener('DOMContentLoaded', function(){
         })
         return termsString;
     }
+
+    expanders.forEach(expander => {
+        expander.addEventListener('click', ()=>{
+            console.log('expand area clicked');
+            expander.closest('.dropdown-checkboxes').classList.toggle('active');
+        })
+    });
 })

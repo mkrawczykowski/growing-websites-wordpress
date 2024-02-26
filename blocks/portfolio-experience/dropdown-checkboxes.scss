@@ -1,6 +1,19 @@
 @use '../../src/sass/variables' as variables;
 
 .dropdown-checkboxes{
+    &.active{
+        .dropdown-checkbox__active-expander{
+            &:after{
+                transform: rotateZ(225deg);
+            }
+        }
+
+        .dropdown-checkboxes__choices-list{
+            max-height: 500px;
+            transition: all 0.2s ease;
+        }
+    }
+
     &__select{
         display: none;
     }
@@ -17,9 +30,18 @@
     }
 
     &__active-wrapper{
-        position: relative;
+        display: flex;
         background-color: variables.$lightBlue;
         border-radius: 6px;
+        overflow: hidden;
+    }
+
+    &__active-expander{
+        width: 80px;
+        position: relative;
+        cursor: pointer;
+        background-color: variables.$navyBlue;
+        flex-shrink: 0;
 
         &:after{
             content: '';
@@ -30,12 +52,17 @@
                 width: 12px;
                 height: 12px;
                 border: 0;
-                border-bottom: 2px solid variables.$navyBlue;
-                border-right: 2px solid variables.$navyBlue;
+                border-bottom: 2px solid variables.$lightBlue;
+                border-right: 2px solid variables.$lightBlue;
                 transform: rotateZ(45deg);
                 top: calc(50% - 8px);
-                right: 12px;
+                right: 33px;
         }
+    }
+
+    &__active-wrapper-inner{
+        position: relative;
+        flex-grow: 1;
 
         .dropdown-checkboxes__checkbox{
             display: flex;
@@ -49,7 +76,6 @@
                 
             &-input{
                 appearance: none;
-                
                 margin: 0;
                 background-color: variables.$lightBlue;
                 font: inherit;
@@ -132,5 +158,11 @@
                 right: 8px;
             }
         }
+    }
+
+    .dropdown-checkboxes__choices-list{
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.2s ease;
     }
 }

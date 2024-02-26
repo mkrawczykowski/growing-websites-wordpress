@@ -42,31 +42,33 @@
         <option value="2019">2019</option>
     </select> -->
     <div class="dropdown-checkboxes__active-wrapper">
-        <?= $filter_name ? '<h4 class="dropdown-checkboxes__heading">' . $filter_name . '</h4>' : ''; ?>
-        
-        <?php
-            if ($enable_change_filtering_type){ ?>
-                    <label class="dropdown-checkboxes__checkbox">
-                        <?php $checked = $default_filtering_type === 'AND' ? 'checked' : '';?>
-                        <input type="checkbox" class="dropdown-checkboxes__checkbox-input" <?= $checked; ?> name="checkbox-<?= $taxonomy_slug ?>">
-                        <?php echo $default_filtering_type_label ;?>
-                        <!-- <span class="chedropdown-checkboxes__checkbox-checkmark"></span> -->
-                    </label>
-            <?php }
-        ?>
-        <?php
-        if($array_of_active_terms) : ?>
-            <ul class="dropdown-checkboxes__active-list" data-active-list>
-                <?php
-                    foreach ($array_of_active_terms as $active_term) :
-                        $term_name = $active_term -> name; ?>
-                       <li class="dropdown-checkboxes__active-list-item" data-item-type="active" data-item-id="<?= $active_term -> term_id ?>"data-value="<?= $term_name ?>"><?= $term_name ?></li>
-                    <?php endforeach;
-                ?>
-            </ul>
-        <?php endif; ?>
-
-        </ul>
+        <div class="dropdown-checkboxes__active-wrapper-inner">
+            <?= $filter_name ? '<h4 class="dropdown-checkboxes__heading">' . $filter_name . '</h4>' : ''; ?>
+            
+            <?php
+                if ($enable_change_filtering_type){ ?>
+                        <label class="dropdown-checkboxes__checkbox">
+                            <?php $checked = $default_filtering_type === 'AND' ? 'checked' : '';?>
+                            <input type="checkbox" class="dropdown-checkboxes__checkbox-input" <?= $checked; ?> name="checkbox-<?= $taxonomy_slug ?>">
+                            <?php echo $default_filtering_type_label ;?>
+                            <!-- <span class="chedropdown-checkboxes__checkbox-checkmark"></span> -->
+                        </label>
+                <?php }
+            ?>  
+            <?php
+            if($array_of_active_terms) : ?>
+                <ul class="dropdown-checkboxes__active-list" data-active-list>
+                    <?php
+                        foreach ($array_of_active_terms as $active_term) :
+                            $term_name = $active_term -> name; ?>
+                        <li class="dropdown-checkboxes__active-list-item" data-item-type="active" data-item-id="<?= $active_term -> term_id ?>"data-value="<?= $term_name ?>"><?= $term_name ?></li>
+                        <?php endforeach;
+                    ?>
+                </ul>
+            <?php endif; ?>            
+            
+        </div>
+        <div class="dropdown-checkboxes__active-expander js-dropdown-checkboxes-expand-area"></div>
     </div>
 
     <?php 
