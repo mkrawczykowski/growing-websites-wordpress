@@ -70,7 +70,7 @@
 
         $active_filters_taxonomies = array_keys($global_active_portfolio_filters);
 
-        $args_test = array(
+        $args = array(
             'post_type'   => 'project',
             'fields'      => 'ids',
             'numberposts' => -1,
@@ -79,58 +79,42 @@
             )
         );
 
-    if ($active_filters_taxonomies){
-        foreach($active_filters_taxonomies as $active_filters_taxonomy) :
-            $args['tax_query'][] = array(
-                'taxonomy' => $active_filters_taxonomy,
-                'field'    => 'term_id',
-                'terms'    => $global_active_portfolio_filters[$active_filters_taxonomy]['active_terms_ids'],
-                'operator' => $global_active_portfolio_filters[$active_filters_taxonomy]['default_filtering_type']
+        if ($active_filters_taxonomies){
+            foreach($active_filters_taxonomies as $active_filters_taxonomy) :
+                $args['tax_query'][] = array(
+                    'taxonomy' => $active_filters_taxonomy,
+                    'field'    => 'term_id',
+                    'terms'    => $global_active_portfolio_filters[$active_filters_taxonomy]['active_terms_ids'],
+                    'operator' => $global_active_portfolio_filters[$active_filters_taxonomy]['default_filtering_type']
+                );
+            endforeach;
+        }
+
+        $query = get_posts($args);
+        $number_of_posts = count($query);
+        $default_posts_per_page = get_option( 'posts_per_page' );
+        $links_in_pagination = $number_of_posts / $default_posts_per_page;
+
+        for ($i = 0; $i < $default_posts_per_page; $i++){
+            get_template_part('template-parts/post','box',
+                array(
+                    'post_id'           => $query[$i],
+                    'date'              => 'year',
+                    'category_taxonomy' => 'project-category',
+                    'tag_taxonomy'      => 'project-tag',
+                )
             );
-        endforeach;
-    }
-
-    $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-    $query = new WP_Query($args);
-    var_dump($query);
-
-    if ( $query->have_posts() ) :
-    while ( $query->have_posts() ) : $query->the_post();
-        get_template_part('template-parts/post','box',
-            array(
-                'post_id'           => get_the_ID(),
-                'date'              => 'year',
-                'category_taxonomy' => 'project-category',
-                'tag_taxonomy'      => 'project-tag',
-            )
-        );
-    endwhile; ?>
-
-    <div class="pagination">
-        <?php 
-            echo paginate_links( array(
-                'base'         => str_replace( 999999999, '%#%', esc_url( get_pagenum_link( 999999999 ) ) ),
-                'total'        => $query->max_num_pages,
-                'current'      => max( 1, get_query_var( 'paged' ) ),
-                'format'       => '?paged=%#%',
-                'show_all'     => false,
-                'type'         => 'plain',
-                'end_size'     => 2,
-                'mid_size'     => 1,
-                'prev_next'    => true,
-                'prev_text'    => sprintf( '<i></i> %1$s', __( 'Newer Posts' ) ),
-                'next_text'    => sprintf( '%1$s <i></i>', __( 'Older Posts' ) ),
-                'add_args'     => false,
-                'add_fragment' => '',
-            ) );
+        }
         ?>
-    </div>
 
-    <?php wp_reset_postdata(); ?>
-
-        <?php else : ?>
-            <p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
-        <?php endif; ?>
+        <div class="pagination">
+            <?php
+                for ($i = 0; $i < ceil($links_in_pagination); $i++){
+                    echo '<a data-pagination-page-number="' . $i . '" href="#">' . $i+1 . '</a>';
+                }
+            ?>   
         </div>
+
+    </div>
     </div>
 </section>
