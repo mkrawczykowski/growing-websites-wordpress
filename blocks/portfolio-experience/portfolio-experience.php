@@ -56,114 +56,55 @@
                         <?php endif;
 
                         if (!$this_taxonomy_exists || !$template_exists)  : ?>
-                            <!-- 
-                                something's missing:
-                                taxonomy: <?= $taxonomy_slug; ?>
-                                template: <?= $template_path; ?>
-                            -->
                         <?php endif;
                     endwhile;
                 endif;
             ?>            
         </div>
 
-            
-            
-            
-
-
-
-                <!-- <div class="dropdown-checkboxes" data-dropdown-checkboxes="2">
-                    <select class="dropdown-checkboxes__select">
-                        <option value="2022">2022</option>
-                        <option value="2021">2021</option>
-                        <option value="2020">2020</option>
-                        <option value="2019">2019</option>
-                        <option value="2019">2019</option>
-                        <option value="2019">2019</option>
-                    </select>
-                    <div class="dropdown-checkboxes__active-wrapper">
-                    <h4 class="dropdown-checkboxes__heading">technologies/solutions used</h4>
-                        <ul class="dropdown-checkboxes__active-list" data-active-list>
-                            <li class="dropdown-checkboxes__active-list-item" data-item-type="active" data-value="WooCommerce">WooCommerce</li>
-                            <li class="dropdown-checkboxes__active-list-item" data-item-type="active" data-value="WordPress">WordPress</li>
-                            <li class="dropdown-checkboxes__active-list-item" data-item-type="active" data-value="SCSS">SCSS</li>
-                            <li class="dropdown-checkboxes__active-list-item" data-item-type="active" data-value="Quick.Cart">Quick.Cart</li>
-                            <li class="dropdown-checkboxes__active-list-item" data-item-type="active" data-value="GeneratePress">GeneratePress</li>
-                            <li class="dropdown-checkboxes__active-list-item" data-item-type="active" data-value="custom design">custom design</li>
-                            <li class="dropdown-checkboxes__active-list-item" data-item-type="active" data-value="ACF Pro">ACF Pro</li>
-                        </ul>
-                    </div>
-                    <ul class="dropdown-checkboxes__choices-list" data-choices-list>
-                        <li class="dropdown-checkboxes__choices-list-item" data-item-type="choices" data-value="websites">websites</li>
-                    </ul>
-                </div> -->
-
-
-
-
-
-        <a class="button" href="#" id="js-portfolio-experience-apply-filters">Apply filters</a>
-<br>
-<br>
-<br>
-<br>
-<div>
-       
-</div>
-<br>
-<br>
-<br>
-<br>
-<br>
-        <div class="posts-list">
+        <a class="button" href="#" id="js-portfolio-experience-apply-filters">Apply filters</a> 
+    </div>
+    <div class="posts-list">
         <?php
         $global_active_portfolio_filters = $GLOBALS['global_active_portfolio_filters'];
 
-    $active_filters_taxonomies = array_keys($global_active_portfolio_filters);
+        $active_filters_taxonomies = array_keys($global_active_portfolio_filters);
 
-   
-
-    $args_test = array(
-        'post_type' => 'project',
-                'fields'         => 'ids',
-                'numberposts' => -1,
-                'tax_query' => array(
-                    'relation' => 'AND',
-                )
-    );
+        $args_test = array(
+            'post_type'   => 'project',
+            'fields'      => 'ids',
+            'numberposts' => -1,
+            'tax_query'   => array(
+            'relation'    => 'AND',
+            )
+        );
 
     if ($active_filters_taxonomies){
         foreach($active_filters_taxonomies as $active_filters_taxonomy) :
             $args_test['tax_query'][] = array(
                 'taxonomy' => $active_filters_taxonomy,
-                        'field'    => 'term_id',
-                        'terms' => $global_active_portfolio_filters[$active_filters_taxonomy]['active_terms_ids'],
-                        'operator' => $global_active_portfolio_filters[$active_filters_taxonomy]['default_filtering_type']
+                'field'    => 'term_id',
+                'terms'    => $global_active_portfolio_filters[$active_filters_taxonomy]['active_terms_ids'],
+                'operator' => $global_active_portfolio_filters[$active_filters_taxonomy]['default_filtering_type']
             );
         endforeach;
-
     }
 
-                    $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-
-    
-                    $query = new WP_Query($args_test);
+    $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+    $query = new WP_Query($args_test);
 
 
-if ( $query->have_posts() ) :
-   while ( $query->have_posts() ) : $query->the_post(); 
-    get_template_part('template-parts/post','box',
-        array(
-            'post_id' => get_the_ID(),
-            'date'    => 'year',
-            'category_taxonomy' => 'project-category',
-            'tag_taxonomy' => 'project-tag',
-        )
-    );
+    if ( $query->have_posts() ) :
+    while ( $query->have_posts() ) : $query->the_post(); 
+        get_template_part('template-parts/post','box',
+            array(
+                'post_id'           => get_the_ID(),
+                'date'              => 'year',
+                'category_taxonomy' => 'project-category',
+                'tag_taxonomy'      => 'project-tag',
+            )
+        );
     endwhile; ?>
-
-
 
     <div class="pagination">
         <?php 
@@ -185,23 +126,11 @@ if ( $query->have_posts() ) :
         ?>
     </div>
 
-
     <?php wp_reset_postdata(); ?>
 
-<?php else : ?>
-    <p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
-<?php endif; ?>
-
-
-
-
-
-            <!-- <nav>
-                <ul>
-                    <li><?php previous_posts_link( '&laquo; PREV', $cpt_query->max_num_pages) ?></li> 
-                    <li><?php next_posts_link( 'NEXT &raquo;', $cpt_query->max_num_pages) ?></li>
-                </ul>
-            </nav> -->
+        <?php else : ?>
+            <p><?php _e( 'Sorry, no posts matched your criteria.' ); ?></p>
+        <?php endif; ?>
         </div>
     </div>
 </section>
