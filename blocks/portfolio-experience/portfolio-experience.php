@@ -81,7 +81,7 @@
 
     if ($active_filters_taxonomies){
         foreach($active_filters_taxonomies as $active_filters_taxonomy) :
-            $args_test['tax_query'][] = array(
+            $args['tax_query'][] = array(
                 'taxonomy' => $active_filters_taxonomy,
                 'field'    => 'term_id',
                 'terms'    => $global_active_portfolio_filters[$active_filters_taxonomy]['active_terms_ids'],
@@ -91,11 +91,11 @@
     }
 
     $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-    $query = new WP_Query($args_test);
-
+    $query = new WP_Query($args);
+    var_dump($query);
 
     if ( $query->have_posts() ) :
-    while ( $query->have_posts() ) : $query->the_post(); 
+    while ( $query->have_posts() ) : $query->the_post();
         get_template_part('template-parts/post','box',
             array(
                 'post_id'           => get_the_ID(),
@@ -118,8 +118,8 @@
                 'end_size'     => 2,
                 'mid_size'     => 1,
                 'prev_next'    => true,
-                'prev_text'    => sprintf( '<i></i> %1$s', __( 'Newer Posts', 'text-domain' ) ),
-                'next_text'    => sprintf( '%1$s <i></i>', __( 'Older Posts', 'text-domain' ) ),
+                'prev_text'    => sprintf( '<i></i> %1$s', __( 'Newer Posts' ) ),
+                'next_text'    => sprintf( '%1$s <i></i>', __( 'Older Posts' ) ),
                 'add_args'     => false,
                 'add_fragment' => '',
             ) );
