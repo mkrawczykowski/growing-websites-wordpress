@@ -95,22 +95,31 @@
         $default_posts_per_page = get_option( 'posts_per_page' );
         $links_in_pagination = $number_of_posts / $default_posts_per_page;
 
-        for ($i = 0; $i < $default_posts_per_page; $i++){
-            get_template_part('template-parts/post','box',
-                array(
-                    'post_id'           => $query[$i],
-                    'date'              => 'year',
-                    'category_taxonomy' => 'project-category',
-                    'tag_taxonomy'      => 'project-tag',
-                )
-            );
+        if ($query){
+            for ($i = 0; $i < $default_posts_per_page; $i++){
+                get_template_part('template-parts/post','box',
+                    array(
+                        'post_id'           => $query[$i],
+                        'date'              => 'year',
+                        'category_taxonomy' => 'project-category',
+                        'tag_taxonomy'      => 'project-tag',
+                    )
+                );
+            }
         }
+
+        if (!$query){
+            echo 'No posts found.';
+        }
+
         ?>
 
         <div class="pagination">
             <?php
                 for ($i = 0; $i < ceil($links_in_pagination); $i++){
-                    echo '<a data-pagination-page-number="' . $i . '" href="#">' . $i+1 . '</a>';
+                    $current_link_element = 'a';
+                    $i == 0 ? $current_link_element = 'span' : NULL;
+                    echo '<' . $current_link_element . ' data-pagination-page-number="' . $i . '" href="#">' . $i+1 . '</' . $current_link_element . '>';
                 }
             ?>   
         </div>
