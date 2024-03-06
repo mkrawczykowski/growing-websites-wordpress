@@ -20,6 +20,10 @@
         border-bottom: 1px solid variables.$navyBlueLight2;
     }
 
+    &.js-example-template{
+        display: none;
+    }
+
     &__texts{
         margin-top: 20px;
         margin-right: 10px;
@@ -52,10 +56,18 @@
         margin-bottom: 20px;
 
         .post-box__categories{
+            display: flex;
+
             .post-box__category{
+                &:last-of-type{
+                    .post-box__category-link{border-radius: 0 6px 6px 0;}
+                }
+                &:first-of-type{
+                    .post-box__category-link{border-radius: 6px 0 0 6px;}
+                }
+                
                 &-link{
                     background-color: variables.$navyBlueLight2;
-                    border-radius: 6px;
                     padding: 10px 12px 9px 12px;
                     display: inline-block;
                     color: variables.$navyBlue;
@@ -67,9 +79,6 @@
                     text-transform: uppercase;
                     transition: all 0.2s ease;
 
-                    &:last-of-type{
-                        border-radius: 6px 0 0 6px;
-                    }
                     
                     &:hover{
                         background-color: variables.$navyBlue;
@@ -80,7 +89,7 @@
             }
         }
 
-        .post-box__data{
+        .post-box__date{
             font-family: 'Roboto Flex';
             font-size: 13px;
             font-style: normal;

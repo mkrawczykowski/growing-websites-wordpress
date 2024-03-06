@@ -27,7 +27,8 @@ if ( $query->have_posts() ) {
     get_template_part('template-parts/post','box',
         array(
             'post_id' => get_the_ID(),
-            'category_taxonomy' => $queried_object->taxonomy
+            'category_taxonomy' => $queried_object->taxonomy,
+            'date'              => 'full',
             )
     );
   } 

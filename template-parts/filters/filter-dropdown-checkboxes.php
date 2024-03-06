@@ -60,8 +60,9 @@
                 <ul class="dropdown-checkboxes__active-list" data-active-list>
                     <?php
                         foreach ($array_of_active_terms as $active_term) :
-                            $term_name = $active_term -> name; ?>
-                        <li class="dropdown-checkboxes__active-list-item" data-item-type="active" data-item-id="<?= $active_term -> term_id ?>" data-value="<?= $term_name ?>"><?= $term_name ?></li>
+                            $term_name = $active_term -> name;
+                            $term_slug = $active_term -> slug; ?>
+                        <li class="dropdown-checkboxes__active-list-item" data-item-type="active" data-item-id="<?= $active_term -> term_id ?>" data-slug="<?= $term_slug ?>" data-value="<?= $term_name ?>"><?= $term_name ?></li>
                         <?php endforeach;
                     ?>
                 </ul>

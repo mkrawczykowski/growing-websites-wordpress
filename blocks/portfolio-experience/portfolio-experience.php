@@ -13,7 +13,7 @@
   generate_margins_styles_for_section('post-boxes', $margin_top_small, $margin_bottom_small, $breakpoints);
 ?>
 
-<section class="portfolio-experience">
+<section class="portfolio-experience js-portfolio-experience" data-rest-url="<?= site_url() . '/wp-json/wp/v2/project/?' ?>">
     <div class="container">
         <div class="portfolio-experience__filters">
             <?php
@@ -66,8 +66,8 @@
     </div>
     <div class="posts-list">
         <?php
-        $global_active_portfolio_filters = $GLOBALS['global_active_portfolio_filters'];
 
+        $global_active_portfolio_filters = $GLOBALS['global_active_portfolio_filters'];
         $active_filters_taxonomies = array_keys($global_active_portfolio_filters);
 
         $args = array(
@@ -94,22 +94,24 @@
         $number_of_posts = count($query);
         $default_posts_per_page = get_option( 'posts_per_page' );
         $links_in_pagination = $number_of_posts / $default_posts_per_page;
-
         if ($query){
-            for ($i = 0; $i < $default_posts_per_page; $i++){
-                get_template_part('template-parts/post','box',
-                    array(
-                        'post_id'           => $query[$i],
-                        'date'              => 'year',
-                        'category_taxonomy' => 'project-category',
-                        'tag_taxonomy'      => 'project-tag',
-                    )
-                );
-            }
+            
+                for ($i = 0; $i < $default_posts_per_page - 1; $i++){
+                    get_template_part('template-parts/post','box',
+                        array(
+                            'post_id'           => $query[$i],
+                            'date'              => 'year',
+                            'category_taxonomy' => 'project-category',
+                            'tag_taxonomy'      => 'project-tag',
+                        )
+                    );
+                }
+            
+            
         }
 
         if (!$query){
-            echo 'No posts found.';
+            
         }
 
         ?>

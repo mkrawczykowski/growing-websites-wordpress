@@ -1,7 +1,7 @@
 <?php
-    $post_id = $args['post_id'];
+    $post_id = array_key_exists('post_id', $args) ? $args['post_id'] : NULL;
     $excerpt = get_field('excerpt', $post_id, true, true);
-    $date = array_key_exists('date', $args) ? $args['date'] : 'full';
+    $date = array_key_exists('date', $args) ? $args['date'] : 'none';
     $category_taxonomy = array_key_exists('category_taxonomy', $args) ? $args['category_taxonomy'] : 'category';
     $tag_taxonomy = array_key_exists('tag_taxonomy', $args) ? $args['tag_taxonomy'] : 'post_tag';
     $post_categories = get_the_terms($post_id, $category_taxonomy);
@@ -36,13 +36,13 @@
             <?php endif; ?>
 
             <?php if ($display_date) : ?>
-                <div class="post-box__data"><?= $display_date; ?></div>
+                <div class="post-box__date"><?= $display_date; ?></div>
             <?php endif; ?>
         </div>
         
         <h3 class="post-box__title">
-            <a href="<?= get_permalink($post_id); ?>" class="post-box__title-post">
-                <?= get_the_title($post_id); ?>
+            <a href="<?= $post_id ? get_permalink($post_id) : ''; ?>" class="post-box__title-link">
+                <?= $post_id ? get_the_title($post_id) : '' ; ?>
             </a>
         </h3>
 

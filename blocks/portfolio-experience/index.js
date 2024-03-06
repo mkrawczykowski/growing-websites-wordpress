@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function(){
     const expanders = document.querySelectorAll('.js-dropdown-checkboxes-expand-area');
     const postsList = document.querySelector('.posts-list');
     const paginationPageNumbers = document.querySelectorAll('[data-pagination-page-number]');
-    console.log(paginationPageNumbers);
+    let routesString = '';
 
     const initData = () => {
         const componentInstances = document.querySelectorAll('[data-dropdown-checkboxes]');
@@ -74,8 +74,24 @@ document.addEventListener('DOMContentLoaded', function(){
         });
     }
 
+    const buildRoutesString = () => {
+        const filters = document.querySelectorAll('[data-taxonomy]');
+        const portfolioExperienceComponent = document.querySelector('.js-portfolio-experience');
+        const baseRESTUrl = portfolioExperienceComponent.dataset.restUrl;
+        filters.forEach(filter => {
+            routesString += baseRESTUrl;
+            routesString += filter.dataset.taxonomy + '=';
+            const activeItemsForThisFilter = filter.querySelectorAll('[data-item-type="active"]');
+            activeItemsForThisFilter.forEach(activeItem => {
+                routesString += activeItem.dataset.itemId + ',';
+            });
+            routesString += '&';
+        });
+    }
+
     initData();
     addClickHandlersToLists();
+    buildRoutesString();
 
     const allAtOnceFilters = document.querySelectorAll('[data-all-at-once]');
     allAtOnceFilters.forEach(allAtOnceFilter => {
@@ -84,17 +100,6 @@ document.addEventListener('DOMContentLoaded', function(){
         })
     })
 
-    const buildTermsStringFromElements = (elements) => {
-        let termsString = '';
-        elements.forEach(element => {
-            
-            if (element.classList.contains('active')){console.log(element);
-                termsString += element.innerHTML + ',';
-            }
-        })
-        return termsString;
-    }
-
     expanders.forEach(expander => {
         expander.addEventListener('click', ()=>{
             expander.closest('.dropdown-checkboxes').classList.toggle('active');
@@ -102,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function(){
     });
 
     const createPostBox = (title, categories, date, tags) => {
-        if (!title || !categories || !Array.isArray(categories) || !date || !tags || !Array.isArray(tags)){
+        if (!title || !categories || !Array.isArray(categories) || !date || !Array.isArray(date) || !tags || !Array.isArray(tags)){
             console.error('createPostBox - not enough params or incorrect params');
             return;
         }
@@ -188,45 +193,57 @@ document.addEventListener('DOMContentLoaded', function(){
         })
     });
 
-    const fetchPortfolioPosts = async (pageNumber) => {
-        let routeString = '?';
-        const allFilteringComponents = document.querySelectorAll('[data-taxonomy');
-        allFilteringComponents.forEach(filteringComponent => {
-            routeString += filteringComponent.dataset.taxonomy + '=';
-            routeString += filteringComponent.dataset.termsIds + '&';
-        });
-        routeString += '_embed';
-        console.log('routeString:');
-        console.log(routeString);
+    const turnIdIntoSlug = (id, taxonomy) => {
+        const filterWithTaxonomy = document.querySelector(`[data-taxonomy="${taxonomy}"]`);
+        const itemWithId = filterWithTaxonomy.querySelector(`[data-item-id="${id}"]`);
 
-        const response = await fetch(
-            'http://localhost/wp-json/wp/v2/project/' + routeString
-        );
+        return itemWithId.dataset.slug;
+    }
+
+    const getFilterTaxonomyOperator = (taxonomy) => {
+        const filterComponent = document.querySelector(`[data-taxonomy="${taxonomy}"]`);
+        return filterComponent.dataset.filterOperator;
+    }
+
+    const fetchPortfolioPosts = async (pageNumber) => {
+        const portfolioExperienceComponent = document.querySelector('.js-portfolio-experience');
+        const baseRESTUrl = portfolioExperienceComponent.dataset.restUrl;
+        let routeString = baseRESTUrl;
+        const allFilteringComponents = document.querySelectorAll('[data-taxonomy]');
+        allFilteringComponents.forEach(filteringComponent => {
+            routeString += `filter[${filteringComponent.dataset.taxonomy}]=`;
+            let termsIds = filteringComponent.dataset.termsIds;
+            const termsIdsArray = termsIds.split(',');
+            let termsSlugs = '';
+            termsIdsArray.forEach((termId, termIdIndex) =>{
+                let operator = '';
+                const termSlug = turnIdIntoSlug(termId, filteringComponent.dataset.taxonomy);
+                if (termIdIndex < termsIdsArray.length - 1){
+                    operator = getFilterTaxonomyOperator(filteringComponent.dataset.taxonomy) === 'AND' ? '%2B' : ',';
+                }
+                termsSlugs += termSlug + operator; 
+            })
+
+            routeString += termsSlugs + '&';
+        });
+        routeString += '&_embed';
+
+        const response = await fetch(routeString);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const fetchedPortfolioPosts = await response.json();
-        console.log(fetchedPortfolioPosts);
+        
         fetchedPortfolioPosts.forEach(fetchedPortfolioPost => {
             const title = fetchedPortfolioPost.title.rendered;
             const categories = fetchedPortfolioPost['project-category'];
             const date = fetchedPortfolioPost['project-year'];
             const tags = fetchedPortfolioPost['project-tag'];
-            console.log(title);
-            console.log(categories);
-            console.log(date);
-            console.log(tags);
-            // postBox.innerHTML = '';
-            // createPostBox(title, categories, date, tags);
-            console.log('============================================================');
+            createPostBox(title, categories, date, tags);
         });
     }
 
     applyFiltersButton.addEventListener('click', () => {
         fetchPortfolioPosts();
     })
-
-    const categories = ['test cat 1'];
-    const tags = ['test tag 1', 'test tag 2', 'test tag 3'];
-    createPostBox('test title', categories, 2015, tags);
 })
