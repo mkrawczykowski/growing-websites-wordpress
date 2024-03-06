@@ -106,6 +106,13 @@ document.addEventListener('DOMContentLoaded', function(){
         })
     });
 
+    const turnIDIntoName = (id, taxonomy) => {
+        const filterWithTaxonomy = document.querySelector(`[data-taxonomy="${taxonomy}"]`);
+        const itemWithId = filterWithTaxonomy.querySelector(`[data-item-id="${id}"]`);
+
+        return itemWithId.dataset.value;
+    }
+
     const createPostBox = (title, categories, date, tags) => {
         if (!title || !categories || !Array.isArray(categories) || !date || !Array.isArray(date) || !tags || !Array.isArray(tags)){
             console.error('createPostBox - not enough params or incorrect params');
@@ -128,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function(){
             postBox__category.classList.add('post-box__category');
             const postBox__categoryLink = document.createElement('a');
             postBox__categoryLink.classList.add('post-box__category-link');
-            postBox__categoryLink.innerHTML = category;
+            postBox__categoryLink.innerHTML = turnIDIntoName(category, 'project-category');
             postBox__category.appendChild(postBox__categoryLink);
             postBox__categories.appendChild(postBox__category);
         });
@@ -136,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
         const postBox__date = document.createElement('div');
         postBox__date.classList.add('post-box__date');
-        postBox__date.innerHTML = date;
+        postBox__date.innerHTML = turnIDIntoName(date, 'project-year');
         postBox__meta.appendChild(postBox__date);
         
         const postBox__title = document.createElement('h3');
@@ -154,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function(){
             postBox__tag.classList.add('post-box__tag');
             const postBox__tagLink = document.createElement('a');
             postBox__tagLink.classList.add('post-box__tag-link');
-            postBox__tagLink.innerHTML = tag;
+            postBox__tagLink.innerHTML = turnIDIntoName(tag, 'project-tag');
             postBox__tag.appendChild(postBox__tagLink);
             postBox__tags.appendChild(postBox__tag);
         });
