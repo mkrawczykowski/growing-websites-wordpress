@@ -122,8 +122,8 @@ document.addEventListener('DOMContentLoaded', function(){
         return itemWithURL.dataset.itemUrl;
     }
 
-    const createPostBox = (link, title, categories, date, tags) => {
-        if (!link, !title || !categories || !Array.isArray(categories) || !date || !Array.isArray(date) || !tags || !Array.isArray(tags)){
+    const createPostBox = (link, title, categories, date, tags, featuredImage) => {
+        if (!link, !title || !categories || !Array.isArray(categories) || !date || !Array.isArray(date) || !tags || !Array.isArray(tags) || !featuredImage){
             // console.error('createPostBox - not enough params or incorrect params');
             return;
         }
@@ -195,8 +195,8 @@ document.addEventListener('DOMContentLoaded', function(){
         postBox__imageLink.classList.add('post-box__image-link');
 
         const postBox__imageImg = document.createElement('img');
+        postBox__imageImg.setAttribute('src', featuredImage);
         postBox__imageLink.appendChild(postBox__imageImg);
-
         postBox__image.appendChild(postBox__imageLink);
         postBox.appendChild(postBox__image);
 
@@ -255,13 +255,15 @@ document.addEventListener('DOMContentLoaded', function(){
         
         fetchedPortfolioPosts.forEach(fetchedPortfolioPost => {
             console.log(fetchedPortfolioPost);
+            const featuredImage = fetchedPortfolioPost._embedded['wp:featuredmedia'][0].source_url;
+            console.log(featuredImage);
             const id = fetchedPortfolioPost.id;
             const link = fetchedPortfolioPost.link;
             const title = fetchedPortfolioPost.title.rendered;
             const categories = fetchedPortfolioPost['project-category'];
             const date = fetchedPortfolioPost['project-year'];
             const tags = fetchedPortfolioPost['project-tag'];
-            createPostBox(link, title, categories, date, tags);
+            createPostBox(link, title, categories, date, tags, featuredImage);
         });
     }
 
