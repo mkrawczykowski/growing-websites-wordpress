@@ -113,9 +113,18 @@ document.addEventListener('DOMContentLoaded', function(){
         return itemWithId.dataset.value;
     }
 
-    const createPostBox = (title, categories, date, tags) => {
-        if (!title || !categories || !Array.isArray(categories) || !date || !Array.isArray(date) || !tags || !Array.isArray(tags)){
-            console.error('createPostBox - not enough params or incorrect params');
+    const getURLFromItem = (id, taxonomy) => {
+        console.log(`id: ${id}`);
+        const filterWithTaxonomy = document.querySelector(`[data-taxonomy="${taxonomy}"]`);
+        const itemWithURL = filterWithTaxonomy.querySelector(`[data-item-id="${id}"]`);
+        console.log(filterWithTaxonomy);
+
+        return itemWithURL.dataset.itemUrl;
+    }
+
+    const createPostBox = (link, title, categories, date, tags) => {
+        if (!link, !title || !categories || !Array.isArray(categories) || !date || !Array.isArray(date) || !tags || !Array.isArray(tags)){
+            // console.error('createPostBox - not enough params or incorrect params');
             return;
         }
         const postBox = document.createElement('div');
@@ -134,6 +143,7 @@ document.addEventListener('DOMContentLoaded', function(){
             const postBox__category = document.createElement('li');
             postBox__category.classList.add('post-box__category');
             const postBox__categoryLink = document.createElement('a');
+            postBox__categoryLink.setAttribute('href', getURLFromItem(category, 'project-category'));
             postBox__categoryLink.classList.add('post-box__category-link');
             postBox__categoryLink.innerHTML = turnIDIntoName(category, 'project-category');
             postBox__category.appendChild(postBox__categoryLink);
@@ -149,6 +159,7 @@ document.addEventListener('DOMContentLoaded', function(){
         const postBox__title = document.createElement('h3');
         postBox__title.classList.add('post-box__title');
         const postBox__titleLink = document.createElement('a');
+        postBox__titleLink.setAttribute('href', link);
         postBox__titleLink.classList.add('post-box__title-link');
         postBox__titleLink.innerHTML = title;
         postBox__title.appendChild(postBox__titleLink);
@@ -160,6 +171,7 @@ document.addEventListener('DOMContentLoaded', function(){
             const postBox__tag = document.createElement('li');
             postBox__tag.classList.add('post-box__tag');
             const postBox__tagLink = document.createElement('a');
+            postBox__tagLink.setAttribute('href', getURLFromItem(tag, 'project-tag'));
             postBox__tagLink.classList.add('post-box__tag-link');
             postBox__tagLink.innerHTML = turnIDIntoName(tag, 'project-tag');
             postBox__tag.appendChild(postBox__tagLink);
@@ -242,11 +254,14 @@ document.addEventListener('DOMContentLoaded', function(){
         const fetchedPortfolioPosts = await response.json();
         
         fetchedPortfolioPosts.forEach(fetchedPortfolioPost => {
+            console.log(fetchedPortfolioPost);
+            const id = fetchedPortfolioPost.id;
+            const link = fetchedPortfolioPost.link;
             const title = fetchedPortfolioPost.title.rendered;
             const categories = fetchedPortfolioPost['project-category'];
             const date = fetchedPortfolioPost['project-year'];
             const tags = fetchedPortfolioPost['project-tag'];
-            createPostBox(title, categories, date, tags);
+            createPostBox(link, title, categories, date, tags);
         });
     }
 

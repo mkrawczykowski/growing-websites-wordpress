@@ -61,8 +61,10 @@
                     <?php
                         foreach ($array_of_active_terms as $active_term) :
                             $term_name = $active_term -> name;
-                            $term_slug = $active_term -> slug; ?>
-                        <li class="dropdown-checkboxes__active-list-item" data-item-type="active" data-item-id="<?= $active_term -> term_id ?>" data-slug="<?= $term_slug ?>" data-value="<?= $term_name ?>"><?= $term_name ?></li>
+                            $term_slug = $active_term -> slug; 
+                            $term_id = $active_term -> term_id;
+                            ?>
+                        <li class="dropdown-checkboxes__active-list-item" data-item-type="active" data-item-id="<?= $term_id ?>" data-slug="<?= $term_slug ?>" data-item-url="<?= get_category_link($term_id) ?>" data-value="<?= $term_name ?>"><?= $term_name ?></li>
                         <?php endforeach;
                     ?>
                 </ul>
@@ -77,8 +79,10 @@
             <ul class="dropdown-checkboxes__choices-list" data-choices-list>
                 <?php
                     foreach ($array_of_inactive_terms as $inactive_term) : 
-                        $term_name = $inactive_term -> name; ?>
-                        <li class="dropdown-checkboxes__choices-list-item" data-item-type="choices" data-item-id="<?= $inactive_term -> term_id ?>" data-value="<?= $term_name ?>"><?= $term_name ?></li>
+                        $term_name = $inactive_term -> name; 
+                        $term_id = $inactive_term -> term_id;
+                        ?>
+                        <li class="dropdown-checkboxes__choices-list-item" data-item-type="choices" data-item-id="<?= $inactive_term -> term_id ?>" data-item-url="<?= get_category_link($term_id) ?>" data-value="<?= $term_name ?>"><?= $term_name ?></li>
                     <?php endforeach;
                 ?>
             </ul>
