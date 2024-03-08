@@ -1,7 +1,7 @@
 <?php 
 
     if ($mega_menu_panel_1 = get_sub_field('mega_menu_panel_1')) :
-
+        $mega_menu_item_portfolio_count = get_sub_field('mega_menu_panel_portfolio_count');
         $menu_item_label = $mega_menu_panel_1['menu_item_label'];
         $featured_post = $mega_menu_panel_1['featured_post'];
         $featured_post_id = $featured_post->ID;
@@ -14,7 +14,16 @@
         $id_attribute = ($custom_id = get_sub_field('custom_id')) ? 'id="' . $custom_id . '"' : ''; 
 ?>
         <li <?= $id_attribute; ?> class="main-nav__list-item main-nav__has-children mobile-expandable main-nav__mega-menu-panel-1 <?= esc_html($custom_classes); ?>"><!-- add .active if you want the menu always visible -->
-            <span class="">
+            
+            
+            <span class="main-nav__item-name">
+                <?php if ($mega_menu_item_portfolio_count) : ?>
+                    <span class="main-nav__portfolio-count">
+                        <?php
+                            echo wp_count_posts( 'project' )->publish;
+                        ?>
+                    </span>
+                <?php endif; ?>
                 <?php echo esc_html( $menu_item_label ); ?>
             </span>
             <div class="panel-1-container">

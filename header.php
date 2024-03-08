@@ -11,9 +11,13 @@
         $date_or_year = get_the_date('F d Y', $post_id);
       break;
       case 'project':
+        $year_terms = get_the_terms($post_id, 'project-year');
         $taxonomy = 'project-category';
-        $names = array_column(get_the_terms($post_id, 'project-year'), 'name');
-        $date_or_year = implode(', ', $names);
+        $date_or_year = '';
+        if ($year_terms) {
+          $names = array_column($year_terms, 'name');
+          $date_or_year = implode(', ', $names);
+        }
       break;
     };
 
