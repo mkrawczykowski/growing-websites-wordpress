@@ -15,4 +15,17 @@
         }
     }
 
+    &__results-heading{
+        display: inline-block;
+        color: variables.$navyBlue;
+        font-family: 'Roboto Flex';
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 120%;
+        display: inline-block;
+        margin: 30px 0;
+
+    }
+
 }

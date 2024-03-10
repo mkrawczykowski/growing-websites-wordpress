@@ -64,12 +64,8 @@
 
         <a class="button" href="#" id="js-portfolio-experience-apply-filters">Apply filters</a> 
     </div>
-    <div class="posts-list">
-        <?php
 
-        $global_active_portfolio_filters = $GLOBALS['global_active_portfolio_filters'];
-        $active_filters_taxonomies = array_keys($global_active_portfolio_filters);
-
+    <?php
         $args = array(
             'post_type'   => 'project',
             'fields'      => 'ids',
@@ -78,6 +74,16 @@
             'relation'    => 'AND',
             )
         );
+        $query = get_posts($args);
+        $number_of_posts = count($query) ? count($query) : '0';
+    ?>
+    <h2 class="portfolio-experience__results-heading">Found <span><?= $number_of_posts; ?> </span> projects</h2>
+
+    <div class="posts-list">
+        <?php
+
+        $global_active_portfolio_filters = $GLOBALS['global_active_portfolio_filters'];
+        $active_filters_taxonomies = array_keys($global_active_portfolio_filters);
 
         if ($active_filters_taxonomies){
             foreach($active_filters_taxonomies as $active_filters_taxonomy) :
@@ -90,8 +96,6 @@
             endforeach;
         }
 
-        $query = get_posts($args);
-        $number_of_posts = count($query);
         $default_posts_per_page = get_option( 'posts_per_page' );
         $links_in_pagination = $number_of_posts / $default_posts_per_page;
         if ($query){
