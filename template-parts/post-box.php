@@ -9,7 +9,8 @@
 
     $display_date = '';
     switch ($date){
-        case 'year': $names = array_column(get_the_terms($post_id, 'project-year'), 'name');
+        case 'year': 
+            $names = array_column(get_the_terms($post_id, 'project-year'), 'name');
             $display_date = implode(', ', $names);
         break;
         case 'full':

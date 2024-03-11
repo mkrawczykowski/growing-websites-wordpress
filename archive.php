@@ -1,12 +1,13 @@
 <?php
     get_header();
     $queried_object = get_queried_object();
-    $category = $queried_object->term_id;
+    $category = $queried_object->term_id;   
+    $date_format = $queried_object->taxonomy == 'project-category' ? 'year' : 'full';
 ?>
 
 	<main class="main">
 	<div class="container">
- 
+
 <?php
 
 $args = array(
@@ -20,7 +21,6 @@ $args = array(
 );
 
 $query = new WP_Query( $args );
-
 if ( $query->have_posts() ) {
   while ( $query->have_posts() ) {
     $query->the_post();
@@ -28,8 +28,8 @@ if ( $query->have_posts() ) {
         array(
             'post_id' => get_the_ID(),
             'category_taxonomy' => $queried_object->taxonomy,
-            'date'              => 'full',
-            )
+            'date'              => $date_format,
+          )
     );
   } 
   wp_reset_postdata();
