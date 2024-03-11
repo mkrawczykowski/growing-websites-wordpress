@@ -30,7 +30,7 @@
         font-weight: 800;
         line-height: 120%;
         text-transform: uppercase;
-        margin: 12px 6px 6px;
+        // margin: 12px 6px 6px;
         display: inline-block;
     }
 
@@ -70,6 +70,7 @@
     &__active-wrapper-inner{
         position: relative;
         flex-grow: 1;
+        margin: 12px;
 
         .dropdown-checkboxes__checkbox{
             display: flex;
@@ -80,7 +81,8 @@
             font-weight: 400;
             line-height: 130%;
             cursor: pointer;
-                
+            margin: 10px 0 0 0;
+
             &-input{
                 appearance: none;
                 margin: 0;
@@ -94,6 +96,7 @@
                 transform: translateY(-0.075em);
                 display: grid;
                 place-content: center;
+                flex-shrink: 0;
 
                 &:before {
                     content: "";
@@ -120,10 +123,10 @@
         width: calc(100% - 33px);
         display: flex;
         flex-wrap: wrap;
-        
-        padding: 6px 34px 6px 6px;
+        // padding: 6px 34px 6px 6px;
         overflow: hidden;
         gap: 6px;
+        margin: 10px 0 0 0;
 
         &-item{
             background-color: variables.$navyBlue;

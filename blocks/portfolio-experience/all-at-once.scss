@@ -1,6 +1,6 @@
 .all-at-once{
     background-color: variables.$lightBlue;
-    padding: 6px;
+    padding: 12px;
     overflow: hidden;
     border-radius: 6px;
     margin-bottom: 40px;
@@ -13,7 +13,7 @@
         font-weight: 800;
         line-height: 120%;
         text-transform: uppercase;
-        margin: 12px 6px 6px;
+        // margin: 12px 6px 6px;
         display: inline-block;
     }
     &__list{
@@ -21,6 +21,7 @@
         flex-wrap: wrap;
         position: relative;
         gap: 6px;
+        margin: 10px 0 0 0;
     }
 
     &__item{
