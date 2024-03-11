@@ -49,6 +49,33 @@ p{
   margin-bottom: 20px;
 }
 
+ul{
+  margin-bottom: 20px;
+
+  li{
+    color: variables.$navyBlue;
+    font-family: 'Roboto Flex';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 17px;
+
+    &:before{
+      position: absolute;
+      content: '';
+      top: 11px;
+      left: 0;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: variables.$navyBlue;
+    }
+  }
+}
+
 .main{
   padding-top: 40px;
     
