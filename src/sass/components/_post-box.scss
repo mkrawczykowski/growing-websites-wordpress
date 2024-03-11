@@ -57,8 +57,16 @@
 
         .post-box__categories{
             display: flex;
+            margin-bottom: 0;
 
             .post-box__category{
+                padding: 0;
+                margin: 0;
+
+                &:before{
+                    content: none;
+                }
+
                 &:last-of-type{
                     .post-box__category-link{border-radius: 0 6px 6px 0;}
                 }
@@ -109,6 +117,12 @@
         margin-bottom: 10px;
 
         .post-box__tag{
+            margin: 0;
+            padding: 0;
+
+            &:before{
+                content: none;
+            }
             &-link{
                 background-color: variables.$navyBlue;
                 border-radius: 6px;

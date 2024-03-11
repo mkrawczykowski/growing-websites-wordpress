@@ -37,6 +37,11 @@
         border-radius: 6px;
         position: relative;
         transition: all 0.2s ease;
+        margin: 0;
+
+            &:before{
+                content: none;
+            }
 
         &:hover{
             background-color: variables.$navyBlueLight2;

@@ -139,6 +139,11 @@
             border-radius: 6px;
             position: relative;
             transition: all 0.2s ease;
+            margin: 0;
+
+            &:before{
+                content: none;
+            }
 
             &:hover{
                 background-color: variables.$navyBlueLight2;
@@ -182,11 +187,16 @@
             font-weight: 800;
             line-height: 120%;
             text-transform: uppercase;
-            padding: 10px 23px 8px 12px;
+            padding: 12px 23px 10px 12px;
             display: inline-block;
             color: variables.$navyBlue;
             transition: all 0.2s ease;
             background-color: variables.$lightBlue2;
+            margin: 0;
+
+            &:before{
+                content: none;
+            }
 
             &:hover{
                 transition: all 0.2s ease;

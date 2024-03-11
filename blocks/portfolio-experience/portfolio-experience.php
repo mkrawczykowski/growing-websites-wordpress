@@ -77,7 +77,8 @@
         $query = get_posts($args);
         $number_of_posts = count($query) ? count($query) : '0';
     ?>
-    <h2 class="portfolio-experience__results-heading">Found <span><?= $number_of_posts; ?> </span> projects</h2>
+    <h2 class="portfolio-experience__results-heading">Found <span><?= $number_of_posts; ?> </span> projects (out of 
+    <?= wp_count_posts( 'project' )->publish; ?>)</h2>
 
     <div class="posts-list">
         <?php
