@@ -76,6 +76,32 @@ main ul{
   }
 }
 
+h2{
+  &.wp-block-heading{
+    color: variables.$navyBlue;
+    font-family: "Roboto Flex";
+    font-size: 29px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 130%;
+    margin-top: 40px;
+    margin-bottom: 13px;
+  }
+}
+
+h3{
+  &.wp-block-heading{
+    color: variables.$navyBlue;
+    font-family: "Roboto Flex";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 130%;
+    margin-top: 40px;
+    margin-bottom: 13px;
+  }
+}
+
 .main{
   padding-top: 40px;
     
