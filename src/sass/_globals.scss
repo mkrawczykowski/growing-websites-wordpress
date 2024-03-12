@@ -28,6 +28,13 @@ body {
   overflow-x: hidden;
   min-height: 100vw;
   padding: 15px;
+  color: variables.$navyBlue;
+  font-family: 'Roboto Flex';
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  margin-bottom: 20px;
 
   @include variables.media-up(lg){
     padding: 30px;
@@ -73,6 +80,14 @@ main ul{
       border-radius: 50%;
       background-color: variables.$navyBlue;
     }
+  }
+}
+
+.wp-block-code{
+  padding: 20px;
+  @include variables.media-up(xl){
+    margin-right: -50px;
+    margin-left: -50px;
   }
 }
 
@@ -142,7 +157,7 @@ h3{
 
   &--title{
     @include variables.media-down(xl){
-      margin: 0 20px;
+      margin: 40px 20px 0;
     }
     
     flex-grow: 1;

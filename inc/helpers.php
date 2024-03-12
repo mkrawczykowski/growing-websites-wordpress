@@ -84,6 +84,18 @@ function has_term_id($terms_array, $term_id) {
     return false;
 }
 
+function random_class_name($class_name) {
+    $characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    $randomString = '';
+	$randomLength = rand(12, 15);
+
+    $max = strlen($characters) - 1;
+    for ($i = 0; $i < $randomLength; $i++) {
+        $randomString .= $characters[rand(0, $max)];
+    }
+    return $class_name . '__' . $randomString;
+}
+
 
 if (!function_exists('generate_margins_styles_for_section')){
 	
@@ -99,28 +111,35 @@ if (!function_exists('generate_margins_styles_for_section')){
 	function generate_margins_styles_for_section($class_name, $margin_top_small, $margin_bottom_small, $breakpoints){
 		if (!$class_name && !$margin_top_small && !$margin_bottom_small && !$breakpoints) {
 			return;
-		} 
+		}
 
 		?>
 
 		<style>
-		.<?= $class_name; ?>{
-			margin-top: <?= $margin_top_small ?>px;
-			margin-bottom: <?= $margin_bottom_small ?>px;
+		<?= '.' . $class_name . '{'; ?>
+			<?= 
+				$margin_top_small ? 'margin-top: ' . $margin_top_small . 'px;' : '';
+				$margin_bottom_small ? 'margin-top: ' . $margin_bottom_small . 'px;' : '';
+			?>
 
 			<?php
-
-			foreach ($breakpoints as $breakpoint){
-				echo "@media only screen and (min-width: " . $breakpoint['breakpoint'] . "px) {";
-					echo "margin-top: " . $breakpoint['margin_top'] . "px;";
-					echo "margin-bottom: " . $breakpoint['margin_bottom'] . "px;";
-				echo "}\n";	
+			if ($breakpoints && is_array($breakpoints)){
+				foreach ($breakpoints as $breakpoint){
+					if ($breakpoint['margin_top'] || $breakpoint['margin_bottom']) : 
+						echo '@media only screen and (min-width: 992px) {';
+						
+							$breakpoint['margin_top'] ? 'margin-top: ' . $breakpoint['margin_top'] . 'px' : '';
+							$breakpoint['margin_bottom'] ? 'margin-top: ' . $breakpoint['margin_bottom'] . 'px' : '';
+							
+						echo '}';
+					endif;
+					
+				}
 			}
 
-			?>
-		}
-		</style>      
-	<?php 
+			echo '}'; ?>
+		</style>
+		<?php 
 	}	
 }
 
