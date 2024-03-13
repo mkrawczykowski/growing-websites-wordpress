@@ -62,7 +62,6 @@ function get_existing_terms_list($array_from_acf_field, $taxonomy){
 } 
 
 
-
 /**
  * Removes all spaces from a given string and trims it.
  *
@@ -126,10 +125,10 @@ if (!function_exists('generate_margins_styles_for_section')){
 			if ($breakpoints && is_array($breakpoints)){
 				foreach ($breakpoints as $breakpoint){
 					if ($breakpoint['margin_top'] || $breakpoint['margin_bottom']) : 
-						echo '@media only screen and (min-width: 992px) {';
+						echo '@media only screen and (min-width: ' . $breakpoint['breakpoint'] . 'px) {';
 						
-							$breakpoint['margin_top'] ? 'margin-top: ' . $breakpoint['margin_top'] . 'px' : '';
-							$breakpoint['margin_bottom'] ? 'margin-top: ' . $breakpoint['margin_bottom'] . 'px' : '';
+							echo $breakpoint['margin_top'] ? 'margin-top: ' . $breakpoint['margin_top'] . 'px' : '';
+							echo $breakpoint['margin_bottom'] ? 'margin-bottom: ' . $breakpoint['margin_bottom'] . 'px' : '';
 							
 						echo '}';
 					endif;
