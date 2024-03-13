@@ -186,6 +186,7 @@
             font-weight: 700;
             line-height: 150%;
             font-weight: 700;
+            text-decoration: none;
 
             @include variables.media-up(lg){
                 font-size: 29px;

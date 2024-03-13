@@ -56,6 +56,16 @@ p{
   margin-bottom: 20px;
 }
 
+main p a{
+  color: variables.$navyBlue50;
+  font-family: 'Roboto Flex';
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  text-decoration: underline;
+  line-height: 150%;
+}
+
 main ul{
   margin-bottom: 20px;
   
