@@ -111,7 +111,7 @@
 
                 &:checked{
                     &:before {
-                        transform: scale(1) translateX(0.7px) rotateZ(45deg);
+                        transform: scale(1) translateX(0.7px) translateY(-0.8px) rotateZ(45deg);
                     }
                 }
             }
