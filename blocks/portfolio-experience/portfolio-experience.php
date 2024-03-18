@@ -25,7 +25,7 @@
                 if( have_rows('portfolio_filters') ):
                     while( have_rows('portfolio_filters') ) : the_row();
                         $filter_name = get_sub_field('filter_name', false, true, true);
-                        $taxonomy_slug = get_sub_field('taxonomy_slug', false, true, true);
+                        $taxonomy_slug = get_sub_field('taxonomy_slug', false, true, true); //works fine
                         $this_taxonomy_exists = taxonomy_exists($taxonomy_slug);
                         $filter_type = get_sub_field('filter_type', false, true, true);
                         $template_path =  'template-parts/filters/filter-'. $filter_type. '.php';
@@ -79,7 +79,7 @@
             'relation'    => 'AND',
             )
         );
-        $query = get_posts($args);
+        $query = array();
         $number_of_posts = count($query) ? count($query) : '0';
     ?>
     <h2 class="portfolio-experience__results-heading">Found <span><?= $number_of_posts; ?> </span> projects (out of 
@@ -87,49 +87,172 @@
 
     <div class="posts-list">
         <?php
-
+        $posts = array();
         $global_active_portfolio_filters = $GLOBALS['global_active_portfolio_filters'];
         $active_filters_taxonomies = array_keys($global_active_portfolio_filters);
 
-        if ($active_filters_taxonomies){
-            foreach($active_filters_taxonomies as $active_filters_taxonomy) :
-                $args['tax_query'][] = array(
-                    'taxonomy' => $active_filters_taxonomy,
-                    'field'    => 'term_id',
-                    'terms'    => $global_active_portfolio_filters[$active_filters_taxonomy]['active_terms_ids'],
-                    'operator' => $global_active_portfolio_filters[$active_filters_taxonomy]['default_filtering_type']
-                );
-            endforeach;
-        }
+        // if ($active_filters_taxonomies){
+        //     foreach($active_filters_taxonomies as $active_filters_taxonomy) :
+        //         $args['tax_query'][] = array(
+        //             'taxonomy' => $active_filters_taxonomy,
+        //             'field'    => 'term_id',
+        //             'terms'    => $global_active_portfolio_filters[$active_filters_taxonomy]['active_terms_ids'],
+        //             'operator' => $global_active_portfolio_filters[$active_filters_taxonomy]['default_filtering_type']
+        //         );
+        //         $posts_taxonomy = get_posts($args);
+        //         echo $active_filters_taxonomy;
+        //         echo '<br>get_posts<br>';
+        //         var_dump($posts_taxonomy);
+        //         echo '<br>';
+        //         echo '$query before intersect:<br>';
+        //         var_dump($query);echo '<br><br>';
+        //         if (empty($query)){
+        //             $query = $posts_taxonomy;
+        //         }
+        //         if (!empty($query)){
+        //             echo '<br>array not empty<br>';
+        //             $query = array_intersect($query, $posts_taxonomy);
+        //         }
+        //         echo 'after array_intersect:<br>';
+        //         var_dump($query);echo '<br><br>';
+        //         echo '############################################################################<br>';
+        //     endforeach;
 
-        $links_in_pagination = $number_of_posts / $default_posts_per_page;
-        if ($query){
-            
-            for ($i = 0; $i < $default_posts_per_page; $i++){
-                get_template_part('template-parts/post','box',
-                    array(
-                        'post_id'           => $query[$i],
-                        'date'              => 'year',
-                        'category_taxonomy' => 'project-category',
-                        'tag_taxonomy'      => 'project-tag',
-                    )
-                );
-            }
-        }
+        // }
 
-        if (!$query){
-            
+        // $active_filters_taxonomy = 'project-year';
+        // // $default_filtering_type = $global_active_portfolio_filters[$active_filters_taxonomy]['default_filtering_type'];
+        // $default_filtering_type = 'IN';
+        // echo $default_filtering_type;
+        // echo '<br>';
+
+        // $args['tax_query'][] = array(
+        //     'taxonomy' => $active_filters_taxonomy,
+        //     'field'    => 'term_id',
+        //     'terms'    => $global_active_portfolio_filters[$active_filters_taxonomy]['active_terms_ids'],
+        //     'operator' => $default_filtering_type
+        // );
+        // $posts_taxonomy = get_posts($args);
+        // var_dump($posts_taxonomy);
+
+// ====================================   DZIAŁĄJĄCE project-tag 
+        // echo '<br>';echo '<br>';echo '<br>';echo '<br>';
+
+
+        // $active_filters_taxonomy = 'project-tag';
+        // $default_filtering_type = $global_active_portfolio_filters[$active_filters_taxonomy]['default_filtering_type'];
+        // echo $default_filtering_type;
+        // $active_terms_ids = $global_active_portfolio_filters[$active_filters_taxonomy]['active_terms_ids'];
+        // var_dump($active_terms_ids);
+        // echo $default_filtering_type;
+        // echo '<br>';
+
+        // foreach ($active_terms_ids as $active_term_id){
+        //     $args['tax_query'][] = array(
+        //         'taxonomy' => $active_filters_taxonomy,
+        //         'field'    => 'term_id',
+        //         'terms'    => $active_term_id,
+        //     );
+        // }
+        
+        // $posts_taxonomy2 = get_posts($args);
+        // var_dump($posts_taxonomy2);
+
+// ====================================   KONIEC DZIAŁĄJĄCE project-tag 
+
+
+
+
+
+
+// ====================================   DZIAŁĄJĄCE project-year 
+        // echo '<br>';echo '<br>';echo '<br>';echo '<br>';
+
+        // $args = array(
+        //     'post_type'   => 'project',
+        //     'fields'      => 'ids',
+        //     'numberposts' => -1,
+        //     'tax_query'   => array(
+        //     'relation'    => 'OR',
+        //     )
+        // );
+        // $active_filters_taxonomy = 'project-year';
+        // $default_filtering_type = $global_active_portfolio_filters[$active_filters_taxonomy]['default_filtering_type'];
+        // echo $default_filtering_type;
+        // $active_terms_ids = $global_active_portfolio_filters[$active_filters_taxonomy]['active_terms_ids'];
+        // var_dump($active_terms_ids);
+        // echo $default_filtering_type;
+        // echo '<br>';
+
+        // foreach ($active_terms_ids as $active_term_id){
+        //     $args['tax_query'][] = array(
+        //         'taxonomy' => $active_filters_taxonomy,
+        //         'field'    => 'term_id',
+        //         'terms'    => $active_term_id,
+        //     );
+        // }
+        
+        // $posts_taxonomy2 = get_posts($args);
+        // var_dump($posts_taxonomy2);
+        
+// ====================================   KONIEC DZIAŁĄJĄCE project-year 
+
+
+
+
+
+
+// ====================================   DZIAŁĄJĄCE project-category 
+        // echo '<br>';echo '<br>';echo '<br>';echo '<br>';
+
+
+        $active_filters_taxonomy = 'project-category';
+        $default_filtering_type = $global_active_portfolio_filters[$active_filters_taxonomy]['default_filtering_type'];
+        echo $default_filtering_type;
+        $active_terms_ids = $global_active_portfolio_filters[$active_filters_taxonomy]['active_terms_ids'];
+        var_dump($active_terms_ids);
+        echo $default_filtering_type;
+        echo '<br>';
+
+        foreach ($active_terms_ids as $active_term_id){
+            $args['tax_query'][] = array(
+                'taxonomy' => $active_filters_taxonomy,
+                'field'    => 'term_id',
+                'terms'    => $active_term_id,
+            );
         }
+        
+        $posts_taxonomy2 = get_posts($args);
+        var_dump($posts_taxonomy2);
+
+// ====================================   KONIEC DZIAŁĄJĄCE project-category 
+
+
+
+        // $links_in_pagination = $number_of_posts / $default_posts_per_page;
+        // if ($query){
+            
+        //     for ($i = 0; $i < $default_posts_per_page; $i++){
+        //         get_template_part('template-parts/post','box',
+        //             array(
+        //                 'post_id'           => $query[$i],
+        //                 'date'              => 'year',
+        //                 'category_taxonomy' => 'project-category',
+        //                 'tag_taxonomy'      => 'project-tag',
+        //             )
+        //         );
+        //     }
+        // }
 
         ?>
     </div>
     <div class="pagination">
             <?php
-                for ($i = 0; $i < ceil($links_in_pagination); $i++){
-                    $button_class = 'pagination__button';
-                    $i == 0 ? $button_class = 'pagination__button pagination__button--active' : NULL;
-                    echo '<button data-pagination-page-number="' . $i+1 . '" class="' . $button_class . '">' . $i+1 . '</button>';
-                }
+                // for ($i = 0; $i < ceil($links_in_pagination); $i++){
+                //     $button_class = 'pagination__button';
+                //     $i == 0 ? $button_class = 'pagination__button pagination__button--active' : NULL;
+                //     echo '<button data-pagination-page-number="' . $i+1 . '" class="' . $button_class . '">' . $i+1 . '</button>';
+                // }
             ?>   
         </div>
 </section>
