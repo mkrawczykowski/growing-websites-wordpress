@@ -9,11 +9,14 @@
   $margin_top_small = get_field('margin_top_small', false, true, true);
   $margin_bottom_small = get_field('margin_bottom_small', false, true, true);
   $breakpoints = get_field('breakpoints', false, true, true);
-  
-  generate_margins_styles_for_section('post-boxes', $margin_top_small, $margin_bottom_small, $breakpoints);
+  $class_name = 'portfolio-experience';
+    
+  $random_class_name = random_class_name($class_name);
+  generate_margins_styles_for_section($random_class_name, $margin_top_small, $margin_bottom_small, $breakpoints);
+  $all_class_names = $class_name . ' ' . $random_class_name;
 ?>
 
-<section class="portfolio-experience js-portfolio-experience" data-rest-url="<?= site_url() . '/wp-json/wp/v2/project/?' ?>">
+<section class="<?= $all_class_names; ?> js-portfolio-experience" data-rest-url="<?= site_url() . '/wp-json/wp/v2/project/?' ?>">
     <div class="container">
         <div class="portfolio-experience__filters">
             <?php
@@ -101,18 +104,16 @@
         $links_in_pagination = $number_of_posts / $default_posts_per_page;
         if ($query){
             
-                for ($i = 0; $i < $default_posts_per_page - 1; $i++){
-                    get_template_part('template-parts/post','box',
-                        array(
-                            'post_id'           => $query[$i],
-                            'date'              => 'year',
-                            'category_taxonomy' => 'project-category',
-                            'tag_taxonomy'      => 'project-tag',
-                        )
-                    );
-                }
-            
-            
+            for ($i = 0; $i < $default_posts_per_page - 1; $i++){
+                get_template_part('template-parts/post','box',
+                    array(
+                        'post_id'           => $query[$i],
+                        'date'              => 'year',
+                        'category_taxonomy' => 'project-category',
+                        'tag_taxonomy'      => 'project-tag',
+                    )
+                );
+            }
         }
 
         if (!$query){
@@ -124,9 +125,9 @@
         <div class="pagination">
             <?php
                 for ($i = 0; $i < ceil($links_in_pagination); $i++){
-                    $current_link_element = 'a';
-                    $i == 0 ? $current_link_element = 'span' : NULL;
-                    echo '<' . $current_link_element . ' data-pagination-page-number="' . $i . '" href="#">' . $i+1 . '</' . $current_link_element . '>';
+                    $button_class = 'pagination__button';
+                    $i == 0 ? $button_class = 'pagination__button pagination__button--active' : NULL;
+                    echo '<button data-pagination-page-number="' . $i+1 . '" class="' . $button_class . '">' . $i+1 . '</button>';
                 }
             ?>   
         </div>

@@ -5,7 +5,8 @@
     justify-content: center;
     gap: 10px;
 
-    span, a{
+    
+    &__button{
         color: variables.$navyBlue;
         font-family: 'Roboto Flex';
         font-size: 18px;
@@ -14,18 +15,23 @@
         line-height: 150%;
         margin-bottom: 20px;
         padding: 10px 12px 8px 12px;
-    }
 
-    a{
-        
-        border-radius: 6px;
-        border: 1px solid variables.$navyBlue;
-        transition: all 0.2s ease;
-
-        &:hover{
-            background-color: variables.$navyBlueLight2;
-            color: variables.$navyBlue;
+        &:not(.pagination__button--active){
+            border-radius: 6px;
+            border: 1px solid variables.$navyBlue;
             transition: all 0.2s ease;
+                &:hover{
+                    background-color: variables.$navyBlueLight2;
+                    color: variables.$navyBlue;
+                    transition: all 0.2s ease;
+                    cursor: pointer;
+                }  
+        }
+
+        &--active{
+            
+
+          
         }
     }
 }

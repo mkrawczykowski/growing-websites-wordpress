@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     paginationPageNumbers.forEach(paginationPageNumber => {
         paginationPageNumber.addEventListener('click', () => {
-            if (paginationPageNumber.tagName === 'A'){
+            if (!paginationPageNumber.classList.contains('pagination__button--active')){
                 console.log(paginationPageNumber.dataset.paginationPageNumber);    
             }
         })
