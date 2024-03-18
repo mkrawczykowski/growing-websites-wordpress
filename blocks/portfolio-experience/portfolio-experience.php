@@ -14,9 +14,11 @@
   $random_class_name = random_class_name($class_name);
   generate_margins_styles_for_section($random_class_name, $margin_top_small, $margin_bottom_small, $breakpoints);
   $all_class_names = $class_name . ' ' . $random_class_name;
+
+  $default_posts_per_page = get_option( 'posts_per_page' );
 ?>
 
-<section class="<?= $all_class_names; ?> js-portfolio-experience" data-rest-url="<?= site_url() . '/wp-json/wp/v2/project/?' ?>">
+<section class="<?= $all_class_names; ?> js-portfolio-experience" data-posts-per-page="<?= $default_posts_per_page; ?>" data-rest-url="<?= site_url() . '/wp-json/wp/v2/project/?' ?>">
     <div class="container">
         <div class="portfolio-experience__filters">
             <?php
@@ -100,11 +102,10 @@
             endforeach;
         }
 
-        $default_posts_per_page = get_option( 'posts_per_page' );
         $links_in_pagination = $number_of_posts / $default_posts_per_page;
         if ($query){
             
-            for ($i = 0; $i < $default_posts_per_page - 1; $i++){
+            for ($i = 0; $i < $default_posts_per_page; $i++){
                 get_template_part('template-parts/post','box',
                     array(
                         'post_id'           => $query[$i],
@@ -121,8 +122,8 @@
         }
 
         ?>
-
-        <div class="pagination">
+    </div>
+    <div class="pagination">
             <?php
                 for ($i = 0; $i < ceil($links_in_pagination); $i++){
                     $button_class = 'pagination__button';
@@ -131,7 +132,4 @@
                 }
             ?>   
         </div>
-
-    </div>
-    </div>
 </section>

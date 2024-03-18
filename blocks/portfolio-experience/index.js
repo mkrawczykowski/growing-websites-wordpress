@@ -203,6 +203,7 @@ document.addEventListener('DOMContentLoaded', function(){
         paginationPageNumber.addEventListener('click', () => {
             if (!paginationPageNumber.classList.contains('pagination__button--active')){
                 console.log(paginationPageNumber.dataset.paginationPageNumber);
+                fetchPortfolioPosts(paginationPageNumber.dataset.paginationPageNumber);
             }
         })
     });
@@ -222,8 +223,11 @@ document.addEventListener('DOMContentLoaded', function(){
     const fetchPortfolioPosts = async (pageNumber) => {
         const portfolioExperienceComponent = document.querySelector('.js-portfolio-experience');
         const baseRESTUrl = portfolioExperienceComponent.dataset.restUrl;
+        const postsPerPage = portfolioExperienceComponent.dataset.postsPerPage;
         let routeString = baseRESTUrl;
         const allFilteringComponents = document.querySelectorAll('[data-taxonomy]');
+        let currentPage = pageNumber ? pageNumber : 1;
+
         allFilteringComponents.forEach(filteringComponent => {
             routeString += `filter[${filteringComponent.dataset.taxonomy}]=`;
             let termsIds = filteringComponent.dataset.termsIds;
@@ -240,7 +244,8 @@ document.addEventListener('DOMContentLoaded', function(){
 
             routeString += termsSlugs + '&';
         });
-        routeString += '&_embed';
+        routeString += `&_embed&per_page=${postsPerPage}&page=${currentPage}`;
+        console.log(routeString);
 
         const response = await fetch(routeString);
         if (!response.ok) {
@@ -248,6 +253,7 @@ document.addEventListener('DOMContentLoaded', function(){
         }
         const fetchedPortfolioPosts = await response.json();
         
+        postsList.innerHTML = '';
         fetchedPortfolioPosts.forEach(fetchedPortfolioPost => {
             const featuredImage = fetchedPortfolioPost._embedded['wp:featuredmedia'][0].source_url;
             const id = fetchedPortfolioPost.id;

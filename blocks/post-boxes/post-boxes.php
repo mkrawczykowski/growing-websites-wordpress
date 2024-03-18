@@ -20,11 +20,14 @@
   $margin_top_small = get_field('margin_top_small', false, true, true);
   $margin_bottom_small = get_field('margin_bottom_small', false, true, true);
   $breakpoints = get_field('breakpoints', false, true, true);
-
-  generate_margins_styles_for_section('post-boxes', $margin_top_small, $margin_bottom_small, $breakpoints);
+  $class_name = 'post-boxes';
+    
+  $random_class_name = random_class_name($class_name);
+  generate_margins_styles_for_section($random_class_name, $margin_top_small, $margin_bottom_small, $breakpoints);
+  $all_class_names = $class_name . ' ' . $random_class_name;
 ?>
 
-<section class="post-boxes" data-type="<?= $post_type; ?>">
+<section class="<?= $all_class_names; ?>" data-type="<?= $post_type; ?>">
   <div class="container">
     <?= $heading ? '<h2 class="post-boxes__heading">' . $heading . '</h2>' : ''; ?>
 
