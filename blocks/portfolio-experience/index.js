@@ -114,17 +114,14 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     const getURLFromItem = (id, taxonomy) => {
-        console.log(`id: ${id}`);
         const filterWithTaxonomy = document.querySelector(`[data-taxonomy="${taxonomy}"]`);
         const itemWithURL = filterWithTaxonomy.querySelector(`[data-item-id="${id}"]`);
-        console.log(filterWithTaxonomy);
 
         return itemWithURL.dataset.itemUrl;
     }
 
     const createPostBox = (link, title, categories, date, tags, featuredImage) => {
         if (!link, !title || !categories || !Array.isArray(categories) || !date || !Array.isArray(date) || !tags || !Array.isArray(tags) || !featuredImage){
-            // console.error('createPostBox - not enough params or incorrect params');
             return;
         }
         const postBox = document.createElement('div');
@@ -199,15 +196,13 @@ document.addEventListener('DOMContentLoaded', function(){
         postBox__imageLink.appendChild(postBox__imageImg);
         postBox__image.appendChild(postBox__imageLink);
         postBox.appendChild(postBox__image);
-
-        console.log(postBox);
         postsList.appendChild(postBox);
     }
 
     paginationPageNumbers.forEach(paginationPageNumber => {
         paginationPageNumber.addEventListener('click', () => {
             if (!paginationPageNumber.classList.contains('pagination__button--active')){
-                console.log(paginationPageNumber.dataset.paginationPageNumber);    
+                console.log(paginationPageNumber.dataset.paginationPageNumber);
             }
         })
     });
@@ -254,9 +249,7 @@ document.addEventListener('DOMContentLoaded', function(){
         const fetchedPortfolioPosts = await response.json();
         
         fetchedPortfolioPosts.forEach(fetchedPortfolioPost => {
-            console.log(fetchedPortfolioPost);
             const featuredImage = fetchedPortfolioPost._embedded['wp:featuredmedia'][0].source_url;
-            console.log(featuredImage);
             const id = fetchedPortfolioPost.id;
             const link = fetchedPortfolioPost.link;
             const title = fetchedPortfolioPost.title.rendered;
