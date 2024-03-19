@@ -71,14 +71,7 @@
     </div>
 
     <?php
-        $args = array(
-            'post_type'   => 'project',
-            'fields'      => 'ids',
-            'numberposts' => -1,
-            'tax_query'   => array(
-            'relation'    => 'AND',
-            )
-        );
+        
         $query = array();
         $number_of_posts = count($query) ? count($query) : '0';
     ?>
@@ -90,6 +83,69 @@
         $posts = array();
         $global_active_portfolio_filters = $GLOBALS['global_active_portfolio_filters'];
         $active_filters_taxonomies = array_keys($global_active_portfolio_filters);
+
+        if ($active_filters_taxonomies) :
+            foreach($active_filters_taxonomies as $index=>$active_filters_taxonomy) :
+                $default_filtering_type = $global_active_portfolio_filters[$active_filters_taxonomy]['default_filtering_type'];
+                $args = array(
+                    'post_type'   => 'project',
+                    'fields'      => 'ids',
+                    'numberposts' => -1,
+                    'tax_query'   => array(
+                    'relation'    => $default_filtering_type,
+                    )
+                );
+
+                echo $active_filters_taxonomy . '<br>';
+                
+                $active_terms_ids = $global_active_portfolio_filters[$active_filters_taxonomy]['active_terms_ids'];
+
+                foreach ($active_terms_ids as $active_term_id){
+                    $args['tax_query'][] = array(
+                        'taxonomy' => $active_filters_taxonomy,
+                        'field'    => 'term_id',
+                        'terms'    => $active_term_id,
+                    );
+                }
+                
+                
+                $posts_taxonomy = get_posts($args);
+                echo 'get_posts, $posts_taxonomy:<br>';
+                var_dump($posts_taxonomy);
+                echo '<br>--*--<br>';
+                echo '$query:<br>';
+                var_dump($query);
+                echo '<br>';
+                echo '================================';
+                echo '<br>';
+                if ($index == 0){
+                    $query = $posts_taxonomy;
+                }
+                if ($index !== 0){
+                    // echo '<br>array not empty<br>';
+                    var_dump($query);echo '<br><br>';
+                    $query = find_common_elements($query, $posts_taxonomy);
+                    echo '$query after array_intersect:<br>';
+                    var_dump($query);echo '<br><br>';
+                }
+                    
+                
+                
+                echo '############################################################################<br>';
+            endforeach;
+
+            var_dump($query);echo '<br><br>';
+        endif;
+
+
+
+
+
+
+
+
+
+
 
         // if ($active_filters_taxonomies){
         //     foreach($active_filters_taxonomies as $active_filters_taxonomy) :
@@ -141,10 +197,7 @@
 
         // $active_filters_taxonomy = 'project-tag';
         // $default_filtering_type = $global_active_portfolio_filters[$active_filters_taxonomy]['default_filtering_type'];
-        // echo $default_filtering_type;
         // $active_terms_ids = $global_active_portfolio_filters[$active_filters_taxonomy]['active_terms_ids'];
-        // var_dump($active_terms_ids);
-        // echo $default_filtering_type;
         // echo '<br>';
 
         // foreach ($active_terms_ids as $active_term_id){
@@ -206,24 +259,24 @@
         // echo '<br>';echo '<br>';echo '<br>';echo '<br>';
 
 
-        $active_filters_taxonomy = 'project-category';
-        $default_filtering_type = $global_active_portfolio_filters[$active_filters_taxonomy]['default_filtering_type'];
-        echo $default_filtering_type;
-        $active_terms_ids = $global_active_portfolio_filters[$active_filters_taxonomy]['active_terms_ids'];
-        var_dump($active_terms_ids);
-        echo $default_filtering_type;
-        echo '<br>';
+        // $active_filters_taxonomy = 'project-category';
+        // $default_filtering_type = $global_active_portfolio_filters[$active_filters_taxonomy]['default_filtering_type'];
+        // echo $default_filtering_type;
+        // $active_terms_ids = $global_active_portfolio_filters[$active_filters_taxonomy]['active_terms_ids'];
+        // var_dump($active_terms_ids);
+        // echo $default_filtering_type;
+        // echo '<br>';
 
-        foreach ($active_terms_ids as $active_term_id){
-            $args['tax_query'][] = array(
-                'taxonomy' => $active_filters_taxonomy,
-                'field'    => 'term_id',
-                'terms'    => $active_term_id,
-            );
-        }
+        // foreach ($active_terms_ids as $active_term_id){
+        //     $args['tax_query'][] = array(
+        //         'taxonomy' => $active_filters_taxonomy,
+        //         'field'    => 'term_id',
+        //         'terms'    => $active_term_id,
+        //     );
+        // }
         
-        $posts_taxonomy2 = get_posts($args);
-        var_dump($posts_taxonomy2);
+        // $posts_taxonomy2 = get_posts($args);
+        // var_dump($posts_taxonomy2);
 
 // ====================================   KONIEC DZIAŁĄJĄCE project-category 
 

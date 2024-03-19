@@ -159,5 +159,29 @@ function the_proper_title(){
 	}
 }
 
+/**
+ * Finds the common elements between two arrays, only if both arrays are not empty. Returns an empty array otherwise.
+ *
+ * @param array $array1 The first array.
+ * @param array $array2 The second array.
+ * @return array The common elements between the two arrays.
+ */
+
+function find_common_elements($array1, $array2) {
+	echo 'find_common_elements<br>';
+	if (empty($array1) || empty($array2)) {
+		echo 'one is empty';
+		// if (empty($array1)){
+		// 	echo 'array 1 is empty';
+		// }
+		// if (empty($array2)){
+		// 	echo 'array 2 is empty';
+		// }
+		return [];
+	} else {
+		return array_intersect($array1, $array2);
+	}
+}
+
 
 ?>
