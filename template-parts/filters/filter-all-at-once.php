@@ -65,7 +65,7 @@
                        $active_class = '';
                        $data_item_type = 'inactive';
                     }
-                    echo '<li class="all-at-once__item ' . $active_class . '" data-slug="' . $term -> slug . '" data-item-type="' . $data_item_type . '"data-value="' . $term_name . '" data-item-id="'. $term->term_id .'" data-all-at-once>' . $term_name . '</li>';
+                    echo '<li class="all-at-once__item ' . $active_class . '" data-item-slug="' . $term -> slug . '" data-item-type="' . $data_item_type . '"data-item-value="' . $term_name . '" data-item-id="'. $term->term_id .'" data-all-at-once>' . $term_name . '</li>';
                 endforeach;
                 $GLOBALS['global_active_portfolio_filters'][$taxonomy_slug]['active_terms_ids'] = $array_of_active_terms_ids;
                 $GLOBALS['global_active_portfolio_filters'][$taxonomy_slug]['default_filtering_type'] = $default_filtering_type;

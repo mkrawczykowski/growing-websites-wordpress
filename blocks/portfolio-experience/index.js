@@ -23,9 +23,11 @@ document.addEventListener('DOMContentLoaded', function(){
         }
         
         const listItemData = {
-            value: listItem.dataset.value,
+            value: listItem.dataset.itemValue,
             type: listItem.dataset.itemType,
             id: listItem.dataset.itemId,
+            slug: listItem.dataset.itemSlug,
+            url: listItem.dataset.itemUrl,
         }
         return listItemData;
     }
@@ -43,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function(){
         };
     }
 
-    const createItemInOppositeList = (oppositeListUl, clickedItemValue, clickedItemType, clickedItemId) => {
+    const createItemInOppositeList = (oppositeListUl, clickedItemValue, clickedItemType, clickedItemId, clickedItemSlug, clickedItemURL) => {
         const newItemClass = `dropdown-checkboxes__${switchItemType(clickedItemType)}-list-item`;
         const newListItem = document.createElement('li');
         const newListItemText = document.createTextNode(clickedItemValue);
@@ -51,9 +53,22 @@ document.addEventListener('DOMContentLoaded', function(){
         newListItem.classList.add(newItemClass);
         newListItem.setAttribute('data-item-type', switchItemType(clickedItemType));
         newListItem.setAttribute('data-item-id', clickedItemId);
-        newListItem.setAttribute('data-value', clickedItemValue);
+        newListItem.setAttribute('data-item-value', clickedItemValue);
+        newListItem.setAttribute('data-item-slug', clickedItemSlug);
+        newListItem.setAttribute('data-item-url', clickedItemURL);
         newListItem.appendChild(newListItemText);
         oppositeListUl.appendChild(newListItem);
+    }
+
+    const activeItemsToComponentData = (parentComponentDiv) => {
+        const activeItems = parentComponentDiv.querySelectorAll('[data-item-type="active"]');
+        let activeIds = [];
+        activeItems.forEach(activeItem => {
+            if (activeItem.dataset.itemType == 'active'){
+                activeIds.push(activeItem.dataset.itemId);
+            }
+        })
+        parentComponentDiv.dataset.termsIds = activeIds.toString();
     }
 
     const addClickHandlersToLists = () => {
@@ -66,8 +81,10 @@ document.addEventListener('DOMContentLoaded', function(){
                 
                 if (parentComponentDiv){
                     const oppositeListUl = parentComponentDiv.querySelector(`[data-${switchItemType(event.target.dataset.itemType)}-list]`);
-                    createItemInOppositeList(oppositeListUl, dataFromClickedItem.value, dataFromClickedItem.type, dataFromClickedItem.id);
-                    event.target.remove();    
+                    createItemInOppositeList(oppositeListUl, dataFromClickedItem.value, dataFromClickedItem.type, dataFromClickedItem.id, dataFromClickedItem.slug, dataFromClickedItem.url);
+                    event.target.remove();
+                    
+                    activeItemsToComponentData(parentComponentDiv);
                     addClickHandlersToLists();
                 }
             });
@@ -110,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function(){
         const filterWithTaxonomy = document.querySelector(`[data-taxonomy="${taxonomy}"]`);
         const itemWithId = filterWithTaxonomy.querySelector(`[data-item-id="${id}"]`);
 
-        return itemWithId.dataset.value;
+        return itemWithId.dataset.itemValue;
     }
 
     const getURLFromItem = (id, taxonomy) => {
@@ -212,7 +229,7 @@ document.addEventListener('DOMContentLoaded', function(){
         const filterWithTaxonomy = document.querySelector(`[data-taxonomy="${taxonomy}"]`);
         const itemWithId = filterWithTaxonomy.querySelector(`[data-item-id="${id}"]`);
 
-        return itemWithId.dataset.slug;
+        return itemWithId.dataset.itemSlug;
     }
 
     const getFilterTaxonomyOperator = (taxonomy) => {
@@ -241,11 +258,9 @@ document.addEventListener('DOMContentLoaded', function(){
                 }
                 termsSlugs += termSlug + operator; 
             })
-
             routeString += termsSlugs + '&';
         });
         routeString += `&_embed&per_page=${postsPerPage}&page=${currentPage}`;
-        console.log(routeString);
 
         const response = await fetch(routeString);
         if (!response.ok) {
