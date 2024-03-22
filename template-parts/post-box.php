@@ -62,7 +62,7 @@
     </div>
     <div class="post-box__image">
         <a href="<?= get_permalink($post_id); ?>"  class="post-box__image-link">
-            <img class="" <?php acf_responsive_image(get_post_thumbnail_id($post_id),'full',1024); ?> alt="" />
+            <img class="" <?php acf_responsive_image(get_post_thumbnail_id($post_id),'715-500',715); ?> alt="" />
         </a>
     </div>
 </div>
