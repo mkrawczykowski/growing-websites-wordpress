@@ -5,6 +5,7 @@
   $which_posts = get_field('which_posts', false, true, true);
   $post_type = get_field('post_type', false, true, true);
   $posts_in_section = get_field('posts_in_section', false, true, true);
+
   switch ($post_type) {
     case 'post':
       $taxonomy = 'category';

@@ -34,7 +34,7 @@ function the_posts_by_ids($posts_ids, $taxonomy, $date){
         	array(
 				'post_id' 			=> $post_id,
 				'category_taxonomy'	=> $taxonomy,
-				'date'				=> 'year'
+				'date'				=> $date
 				)
         );
     endforeach;

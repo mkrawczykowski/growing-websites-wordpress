@@ -6,11 +6,10 @@
     $tag_taxonomy = array_key_exists('tag_taxonomy', $args) ? $args['tag_taxonomy'] : 'post_tag';
     $post_categories = get_the_terms($post_id, $category_taxonomy);
     $post_tags = get_the_terms($post_id, $tag_taxonomy);
-
     $display_date = '';
     switch ($date){
         case 'year': 
-            $names = array_column(get_the_terms($post_id, $category_taxonomy), 'name');
+            $names = array_column(get_the_terms($post_id, 'project-year'), 'name');
             $display_date = implode(', ', $names);
         break;
         case 'full':
