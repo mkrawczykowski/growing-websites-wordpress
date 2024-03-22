@@ -279,6 +279,8 @@ document.addEventListener('DOMContentLoaded', function(){
             const tags = fetchedPortfolioPost['project-tag'];
             createPostBox(link, title, categories, date, tags, featuredImage);
         });
+
+        console.log(fetchedPortfolioPosts.length);
     }
 
     applyFiltersButton.addEventListener('click', () => {

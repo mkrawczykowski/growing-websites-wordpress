@@ -114,8 +114,6 @@
         $number_of_posts = $filtered_posts_length ? $filtered_posts_length : '0';
         $links_in_pagination = $number_of_posts / $default_posts_per_page;
     ?>
-    <h2 class="portfolio-experience__results-heading">Found <span><?= $number_of_posts; ?> </span> <?= $projects_string; ?> (out of 
-    <?= wp_count_posts( 'project' )->publish; ?>)</h2>
 
     <div class="posts-list">
         <?php
