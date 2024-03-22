@@ -7,7 +7,11 @@ document.addEventListener('DOMContentLoaded', function(){
     const expanders = document.querySelectorAll('.js-dropdown-checkboxes-expand-area');
     const postsList = document.querySelector('.posts-list');
     const paginationPageNumbers = document.querySelectorAll('[data-pagination-page-number]');
-    let routesString = '';
+    const portfolioExperienceComponent = document.querySelector('.js-portfolio-experience');
+    const baseRESTUrl = portfolioExperienceComponent.dataset.restUrl;
+    const postsPerPage = portfolioExperienceComponent.dataset.postsPerPage;
+    let routeString = '';
+    let fetchedPortfolioPosts = [];
 
     const initData = () => {
         const componentInstances = document.querySelectorAll('[data-dropdown-checkboxes]');
@@ -91,38 +95,11 @@ document.addEventListener('DOMContentLoaded', function(){
         });
     }
 
-    const buildRoutesString = () => {
-        const filters = document.querySelectorAll('[data-taxonomy]');
-        const portfolioExperienceComponent = document.querySelector('.js-portfolio-experience');
-        const baseRESTUrl = portfolioExperienceComponent.dataset.restUrl;
-        filters.forEach(filter => {
-            routesString += baseRESTUrl;
-            routesString += filter.dataset.taxonomy + '=';
-            const activeItemsForThisFilter = filter.querySelectorAll('[data-item-type="active"]');
-            activeItemsForThisFilter.forEach(activeItem => {
-                routesString += activeItem.dataset.itemId + ',';
-            });
-            routesString += '&';
-        });
+    const getFilterTaxonomyOperator = (taxonomy) => {
+        const filterComponent = document.querySelector(`[data-taxonomy="${taxonomy}"]`);
+        return filterComponent.dataset.filterOperator;
     }
-
-    initData();
-    addClickHandlersToLists();
-    buildRoutesString();
-
-    const allAtOnceFilters = document.querySelectorAll('[data-all-at-once]');
-    allAtOnceFilters.forEach(allAtOnceFilter => {
-        allAtOnceFilter.addEventListener('click', () => {
-            allAtOnceFilter.classList.toggle('active');
-        })
-    })
-
-    expanders.forEach(expander => {
-        expander.addEventListener('click', ()=>{
-            expander.closest('.dropdown-checkboxes').classList.toggle('active');
-        })
-    });
-
+    
     const turnIDIntoName = (id, taxonomy) => {
         const filterWithTaxonomy = document.querySelector(`[data-taxonomy="${taxonomy}"]`);
         const itemWithId = filterWithTaxonomy.querySelector(`[data-item-id="${id}"]`);
@@ -136,6 +113,43 @@ document.addEventListener('DOMContentLoaded', function(){
 
         return itemWithURL.dataset.itemUrl;
     }
+
+    const turnIdIntoSlug = (id, taxonomy) => {
+        const filterWithTaxonomy = document.querySelector(`[data-taxonomy="${taxonomy}"]`);
+        const itemWithId = filterWithTaxonomy.querySelector(`[data-item-id="${id}"]`);
+
+        return itemWithId.dataset.itemSlug;
+    }
+
+    const buildRouteString = () => {
+        const portfolioExperienceComponent = document.querySelector('.js-portfolio-experience');
+        const baseRESTUrl = portfolioExperienceComponent.dataset.restUrl;
+        routeString = baseRESTUrl;
+        const allFilteringComponents = document.querySelectorAll('[data-taxonomy]');
+
+        allFilteringComponents.forEach(filteringComponent => {
+            routeString += `filter[${filteringComponent.dataset.taxonomy}]=`;
+            let termsIds = filteringComponent.dataset.termsIds;
+            const termsIdsArray = termsIds.split(',');
+            let termsSlugs = '';
+            termsIdsArray.forEach((termId, termIdIndex) =>{
+                let operator = '';
+                const termSlug = turnIdIntoSlug(termId, filteringComponent.dataset.taxonomy);
+                if (termIdIndex < termsIdsArray.length - 1){
+                    operator = getFilterTaxonomyOperator(filteringComponent.dataset.taxonomy) === 'AND' ? '%2B' : ',';
+                }
+                termsSlugs += termSlug + operator; 
+            })
+            routeString += termsSlugs + '&';
+        });
+        routeString += `&_embed`;
+        console.log('routeString');
+        console.log(routeString);
+    }
+
+    initData();
+    addClickHandlersToLists();
+    // buildRouteString();
 
     const createPostBox = (link, title, categories, date, tags, featuredImage) => {
         if (!link, !title || !categories || !Array.isArray(categories) || !date || !Array.isArray(date) || !tags || !Array.isArray(tags) || !featuredImage){
@@ -216,60 +230,35 @@ document.addEventListener('DOMContentLoaded', function(){
         postsList.appendChild(postBox);
     }
 
-    paginationPageNumbers.forEach(paginationPageNumber => {
-        paginationPageNumber.addEventListener('click', () => {
-            if (!paginationPageNumber.classList.contains('pagination__button--active')){
-                console.log(paginationPageNumber.dataset.paginationPageNumber);
-                fetchPortfolioPosts(paginationPageNumber.dataset.paginationPageNumber);
-            }
-        })
-    });
+    const fetchPortfolioPosts = async () => {
+        let currentPage = 1;
+        let fetchedThisPage;
+        buildRouteString();
+            while (true) {
+                const response = await fetch(`${routeString}&per_page=${postsPerPage}&page=${currentPage}`);
 
-    const turnIdIntoSlug = (id, taxonomy) => {
-        const filterWithTaxonomy = document.querySelector(`[data-taxonomy="${taxonomy}"]`);
-        const itemWithId = filterWithTaxonomy.querySelector(`[data-item-id="${id}"]`);
-
-        return itemWithId.dataset.itemSlug;
-    }
-
-    const getFilterTaxonomyOperator = (taxonomy) => {
-        const filterComponent = document.querySelector(`[data-taxonomy="${taxonomy}"]`);
-        return filterComponent.dataset.filterOperator;
-    }
-
-    const fetchPortfolioPosts = async (pageNumber) => {
-        const portfolioExperienceComponent = document.querySelector('.js-portfolio-experience');
-        const baseRESTUrl = portfolioExperienceComponent.dataset.restUrl;
-        const postsPerPage = portfolioExperienceComponent.dataset.postsPerPage;
-        let routeString = baseRESTUrl;
-        const allFilteringComponents = document.querySelectorAll('[data-taxonomy]');
-        let currentPage = pageNumber ? pageNumber : 1;
-
-        allFilteringComponents.forEach(filteringComponent => {
-            routeString += `filter[${filteringComponent.dataset.taxonomy}]=`;
-            let termsIds = filteringComponent.dataset.termsIds;
-            const termsIdsArray = termsIds.split(',');
-            let termsSlugs = '';
-            termsIdsArray.forEach((termId, termIdIndex) =>{
-                let operator = '';
-                const termSlug = turnIdIntoSlug(termId, filteringComponent.dataset.taxonomy);
-                if (termIdIndex < termsIdsArray.length - 1){
-                    operator = getFilterTaxonomyOperator(filteringComponent.dataset.taxonomy) === 'AND' ? '%2B' : ',';
+                if (!response.ok) {
+                    console.error(`HTTP error! status: ${response.status}`);
+                    break;
                 }
-                termsSlugs += termSlug + operator; 
-            })
-            routeString += termsSlugs + '&';
-        });
-        routeString += `&_embed&per_page=${postsPerPage}&page=${currentPage}`;
 
-        const response = await fetch(routeString);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const fetchedPortfolioPosts = await response.json();
+                fetchedThisPage = await response.json();
+                // console.log('fetchedThisPage.length');
+                // console.log(fetchedThisPage.length);
+                
+                // console.log('fetchedThisPage');
+                // console.log(fetchedThisPage);
+                fetchedPortfolioPosts.push(fetchedThisPage);
+                currentPage++;
+            }
+            // console.log('fetchedPortfolioPosts');
+            // console.log(fetchedPortfolioPosts);
         
+    };
+
+    const buildPortfolioPostsList = async (pageNumber = 0) => {
         postsList.innerHTML = '';
-        fetchedPortfolioPosts.forEach(fetchedPortfolioPost => {
+        fetchedPortfolioPosts[pageNumber].forEach(fetchedPortfolioPost => {
             const featuredImage = fetchedPortfolioPost._embedded['wp:featuredmedia'][0].source_url;
             const id = fetchedPortfolioPost.id;
             const link = fetchedPortfolioPost.link;
@@ -279,11 +268,51 @@ document.addEventListener('DOMContentLoaded', function(){
             const tags = fetchedPortfolioPost['project-tag'];
             createPostBox(link, title, categories, date, tags, featuredImage);
         });
-
-        console.log(fetchedPortfolioPosts.length);
     }
 
+    const displayPortfolioPosts = async (pageNumber) => {
+        if (fetchedPortfolioPosts.length === 0) {
+            fetchPortfolioPosts()
+                .then(() => {
+                    console.log('Fetched');
+                    buildPortfolioPostsList(pageNumber);
+                    console.log('fetchedPortfolioPosts');
+            console.log(fetchedPortfolioPosts);
+                });
+        }
+
+        if (fetchedPortfolioPosts.length != 0) {
+            buildPortfolioPostsList(pageNumber);
+        }
+    }
+
+
+
+
+
     applyFiltersButton.addEventListener('click', () => {
-        fetchPortfolioPosts();
+        displayPortfolioPosts(0);
     })
+    
+    paginationPageNumbers.forEach(paginationPageNumber => {
+        paginationPageNumber.addEventListener('click', () => {
+            if (!paginationPageNumber.classList.contains('pagination__button--active')){
+                console.log(paginationPageNumber.dataset.paginationPageNumber);
+                displayPortfolioPosts(paginationPageNumber.dataset.paginationPageNumber);
+            }
+        })
+    });
+
+    const allAtOnceFilters = document.querySelectorAll('[data-all-at-once]');
+    allAtOnceFilters.forEach(allAtOnceFilter => {
+        allAtOnceFilter.addEventListener('click', () => {
+            allAtOnceFilter.classList.toggle('active');
+        })
+    })
+
+    expanders.forEach(expander => {
+        expander.addEventListener('click', ()=>{
+            expander.closest('.dropdown-checkboxes').classList.toggle('active');
+        })
+    });
 })
