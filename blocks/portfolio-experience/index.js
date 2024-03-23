@@ -292,15 +292,14 @@ document.addEventListener('DOMContentLoaded', function(){
         const paginationLinks = document.querySelector('.pagination');
         console.log('paginationLinks');
         console.log(paginationLinks);
-        const paginationLinkActive = paginationLinks.querySelector('.pagination__button--active');
-        paginationLinkActive.classList.remove('pagination__button--active');
-        // paginationLinks.forEach(paginationLink => {
-        //     if (paginationLink.classList.contains('pagination__button--active')){
-        //         paginationLink.classList.remove('pagination__button--active');
-        //     }
-        // }
-        const padinationLinkToActivate = paginationLinks.querySelector(`.pagination__button:nth-child(${clickedLinkNumber})`);
-        padinationLinkToActivate.classList.add('pagination__button--active');
+        const paginationButtons = paginationLinks.querySelectorAll('.pagination__button');
+        if (paginationButtons.length != 0) {
+            const paginationLinkActive = paginationLinks.querySelector('.pagination__button--active');
+            const padinationLinkToActivate = paginationLinks.querySelector(`.pagination__button:nth-child(${clickedLinkNumber})`);
+
+            paginationLinkActive.classList.remove('pagination__button--active');
+            padinationLinkToActivate.classList.add('pagination__button--active');
+        }
     }
 
     const buildPortfolioPostsList = async (pageNumber = 0) => {
@@ -337,6 +336,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
     applyFiltersButton.addEventListener('click', () => {
+        fetchedPortfolioPosts = [];
         displayPortfolioPosts(0);
     })
 

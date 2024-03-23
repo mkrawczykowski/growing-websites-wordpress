@@ -168,20 +168,18 @@ function the_proper_title(){
  */
 
 function find_common_elements($arrays) {
-// Sprawdź, czy którykolwiek z tablic jest pusty
     foreach ($arrays as $array) {
         if (empty($array)) {
-            return []; // Zwróć pustą tablicę, jeśli którakolwiek z nich jest pusta
+            return [];
         }
     }
 
-    // Użyj array_intersect() wielokrotnie, aby znaleźć wspólne elementy we wszystkich tablicach
     $result = $arrays[0];
     for ($i = 1; $i < count($arrays); $i++) {
         $result = array_intersect($result, $arrays[$i]);
     }
 
-    return $result;	
+    return array_values($result);	
 }
 
     

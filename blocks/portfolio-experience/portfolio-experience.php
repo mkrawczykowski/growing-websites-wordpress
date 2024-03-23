@@ -118,9 +118,9 @@
 
     <div class="posts-list">
         <?php
-        
+        var_dump($filtered_posts);
         if ($filtered_posts){
-            for ($i = 1; $i < $default_posts_per_page-1; $i++){
+            for ($i = 0; $i < $default_posts_per_page-1; $i++){
 
                 echo $i;
                 get_template_part('template-parts/post','box',
