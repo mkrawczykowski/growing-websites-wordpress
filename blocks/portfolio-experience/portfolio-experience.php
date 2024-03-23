@@ -16,6 +16,7 @@
   $all_class_names = $class_name . ' ' . $random_class_name;
 
   $default_posts_per_page = get_option( 'posts_per_page' );
+  echo $default_posts_per_page;
 ?>
 
 <section class="<?= $all_class_names; ?> js-portfolio-experience" data-posts-per-page="<?= $default_posts_per_page; ?>" data-rest-url="<?= site_url() . '/wp-json/wp/v2/project/?' ?>">
@@ -120,6 +121,8 @@
         
         if ($filtered_posts){
             for ($i = 1; $i < $default_posts_per_page-1; $i++){
+
+                echo $i;
                 get_template_part('template-parts/post','box',
                     array(
                         'post_id'           => $filtered_posts[$i],

@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function(){
     const operatorCheckboxes = document.querySelectorAll('js-portfolio-experience-apply-filters');
     const expanders = document.querySelectorAll('.js-dropdown-checkboxes-expand-area');
     const postsList = document.querySelector('.posts-list');
-    const paginationPageNumbers = document.querySelectorAll('[data-pagination-page-number]');
+    const paginationLinks = document.querySelector('.pagination');
     const portfolioExperienceComponent = document.querySelector('.js-portfolio-experience');
     const baseRESTUrl = portfolioExperienceComponent.dataset.restUrl;
     const postsPerPage = portfolioExperienceComponent.dataset.postsPerPage;
@@ -95,6 +95,18 @@ document.addEventListener('DOMContentLoaded', function(){
         });
     }
 
+    const addClickHandlersToPaginationLinks = () => {
+        const paginationPageNumbers = document.querySelectorAll('[data-pagination-page-number]');
+        
+        paginationPageNumbers.forEach(paginationPageNumber => {
+            paginationPageNumber.addEventListener('click', () => {
+                if (!paginationPageNumber.classList.contains('pagination__button--active')){
+                    displayPortfolioPosts(paginationPageNumber.dataset.paginationPageNumber);
+                }
+            })
+        });        
+    }
+
     const getFilterTaxonomyOperator = (taxonomy) => {
         const filterComponent = document.querySelector(`[data-taxonomy="${taxonomy}"]`);
         return filterComponent.dataset.filterOperator;
@@ -149,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     initData();
     addClickHandlersToLists();
-    // buildRouteString();
+    addClickHandlersToPaginationLinks();
 
     const createPostBox = (link, title, categories, date, tags, featuredImage) => {
         if (!link, !title || !categories || !Array.isArray(categories) || !date || !Array.isArray(date) || !tags || !Array.isArray(tags) || !featuredImage){
@@ -234,27 +246,58 @@ document.addEventListener('DOMContentLoaded', function(){
         let currentPage = 1;
         let fetchedThisPage;
         buildRouteString();
-            while (true) {
-                const response = await fetch(`${routeString}&per_page=${postsPerPage}&page=${currentPage}`);
+            
+        while (true) {
+            const response = await fetch(`${routeString}&per_page=${postsPerPage}&page=${currentPage}`);
 
-                if (!response.ok) {
-                    console.error(`HTTP error! status: ${response.status}`);
-                    break;
-                }
-
-                fetchedThisPage = await response.json();
-                // console.log('fetchedThisPage.length');
-                // console.log(fetchedThisPage.length);
-                
-                // console.log('fetchedThisPage');
-                // console.log(fetchedThisPage);
-                fetchedPortfolioPosts.push(fetchedThisPage);
-                currentPage++;
+            if (!response.ok) {
+                console.error(`HTTP error! status: ${response.status}`);
+                break;
             }
-            // console.log('fetchedPortfolioPosts');
-            // console.log(fetchedPortfolioPosts);
-        
+
+            fetchedThisPage = await response.json();
+            fetchedPortfolioPosts.push(fetchedThisPage);
+            currentPage++;
+        }     
     };
+
+    const displayPaginationLinks = async (pageNumber) => {
+        console.log('buildPaginationLinks');
+        console.log('fetchedPortfolioPosts.length');
+        console.log(fetchedPortfolioPosts.length);
+        paginationLinks.innerHTML = '';
+        for (let i = 0; i < fetchedPortfolioPosts.length-1; i++) {
+            const paginationButton = document.createElement('button');
+            paginationButton.classList.add('pagination__button');
+            paginationButton.classList.add('test');
+            if (pageNumber == i+1){
+                console.log('pageNumber == i');
+                paginationButton.classList.add('pagination__button--active');
+            }
+            paginationButton.setAttribute('data-pagination-page-number', i+1);
+            const paginationButtonText = document.createTextNode(i+1);
+            paginationButton.appendChild(paginationButtonText);
+            paginationLinks.appendChild(paginationButton);
+        }
+        addClickHandlersToPaginationLinks();        
+    }
+
+    const updatePaginationLinks = (clickedLinkNumber) => {
+        console.log('clickedLinkNumber');
+        console.log(clickedLinkNumber);
+        const paginationLinks = document.querySelector('.pagination');
+        console.log('paginationLinks');
+        console.log(paginationLinks);
+        const paginationLinkActive = paginationLinks.querySelector('.pagination__button--active');
+        paginationLinkActive.classList.remove('pagination__button--active');
+        // paginationLinks.forEach(paginationLink => {
+        //     if (paginationLink.classList.contains('pagination__button--active')){
+        //         paginationLink.classList.remove('pagination__button--active');
+        //     }
+        // }
+        const padinationLinkToActivate = paginationLinks.querySelector(`.pagination__button:nth-child(${clickedLinkNumber})`);
+        padinationLinkToActivate.classList.add('pagination__button--active');
+    }
 
     const buildPortfolioPostsList = async (pageNumber = 0) => {
         postsList.innerHTML = '';
@@ -276,6 +319,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 .then(() => {
                     console.log('Fetched');
                     buildPortfolioPostsList(pageNumber);
+                    displayPaginationLinks(pageNumber);
                     console.log('fetchedPortfolioPosts');
             console.log(fetchedPortfolioPosts);
                 });
@@ -283,25 +327,14 @@ document.addEventListener('DOMContentLoaded', function(){
 
         if (fetchedPortfolioPosts.length != 0) {
             buildPortfolioPostsList(pageNumber);
+            updatePaginationLinks(pageNumber);
         }
     }
-
-
-
 
 
     applyFiltersButton.addEventListener('click', () => {
         displayPortfolioPosts(0);
     })
-    
-    paginationPageNumbers.forEach(paginationPageNumber => {
-        paginationPageNumber.addEventListener('click', () => {
-            if (!paginationPageNumber.classList.contains('pagination__button--active')){
-                console.log(paginationPageNumber.dataset.paginationPageNumber);
-                displayPortfolioPosts(paginationPageNumber.dataset.paginationPageNumber);
-            }
-        })
-    });
 
     const allAtOnceFilters = document.querySelectorAll('[data-all-at-once]');
     allAtOnceFilters.forEach(allAtOnceFilter => {
