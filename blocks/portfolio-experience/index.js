@@ -68,12 +68,16 @@ document.addEventListener('DOMContentLoaded', function(){
         const activeItems = parentComponentDiv.querySelectorAll('[data-item-type="active"]');
         let activeIds = [];
         activeItems.forEach(activeItem => {
+            console.log('activeItem')
+            console.log(activeItem)
             if (activeItem.dataset.itemType == 'active'){
                 activeIds.push(activeItem.dataset.itemId);
+                console.log(activeIds);
             }
         })
         parentComponentDiv.dataset.termsIds = activeIds.toString();
     }
+
 
     const addClickHandlersToLists = () => {
         const listItems = document.querySelectorAll('[data-item-type]');
@@ -101,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function(){
         paginationPageNumbers.forEach(paginationPageNumber => {
             paginationPageNumber.addEventListener('click', () => {
                 if (!paginationPageNumber.classList.contains('pagination__button--active')){
-                    displayPortfolioPosts(paginationPageNumber.dataset.paginationPageNumber);
+                    displayPortfolioPosts(paginationPageNumber.dataset.paginationPageNumber-1);
                 }
             })
         });        
@@ -336,10 +340,17 @@ document.addEventListener('DOMContentLoaded', function(){
         displayPortfolioPosts(0);
     })
 
-    const allAtOnceFilters = document.querySelectorAll('[data-all-at-once]');
+    const toggleActive = (value) => {
+        return value  == 'active' ? '' : 'active';
+    }
+
+    const allAtOnceFilters = document.querySelectorAll('[data-all-at-once-item]');
     allAtOnceFilters.forEach(allAtOnceFilter => {
         allAtOnceFilter.addEventListener('click', () => {
             allAtOnceFilter.classList.toggle('active');
+            allAtOnceFilter.dataset.itemType = toggleActive(allAtOnceFilter.dataset.itemType);
+            const parentComponentDiv = allAtOnceFilter.closest('[data-all-at-once]');
+            activeItemsToComponentData(parentComponentDiv)
         })
     })
 
