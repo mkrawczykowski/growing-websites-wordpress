@@ -16,7 +16,6 @@
   $all_class_names = $class_name . ' ' . $random_class_name;
 
   $default_posts_per_page = get_option( 'posts_per_page' );
-  echo $default_posts_per_page;
 ?>
 
 <section class="<?= $all_class_names; ?> js-portfolio-experience" data-posts-per-page="<?= $default_posts_per_page; ?>" data-rest-url="<?= site_url() . '/wp-json/wp/v2/project/?' ?>">
@@ -114,25 +113,23 @@
         }
         $number_of_posts = $filtered_posts_length ? $filtered_posts_length : '0';
         $links_in_pagination = $number_of_posts / $default_posts_per_page;
+        $how_many_posts_on_page = $default_posts_per_page <= $filtered_posts_length ? $default_posts_per_page : $filtered_posts_length;
     ?>
 
     <div class="posts-list">
         <?php
-        var_dump($filtered_posts);
-        if ($filtered_posts){
-            for ($i = 0; $i < $default_posts_per_page-1; $i++){
-
-                echo $i;
-                get_template_part('template-parts/post','box',
-                    array(
-                        'post_id'           => $filtered_posts[$i],
-                        'date'              => 'year',
-                        'category_taxonomy' => 'project-category',
-                        'tag_taxonomy'      => 'project-tag',
-                    )
-                );
+            if ($filtered_posts){
+                for ($i = 0; $i < $how_many_posts_on_page; $i++){
+                    get_template_part('template-parts/post','box',
+                        array(
+                            'post_id'           => $filtered_posts[$i],
+                            'date'              => 'year',
+                            'category_taxonomy' => 'project-category',
+                            'tag_taxonomy'      => 'project-tag',
+                        )
+                    );
+                }
             }
-        }
         ?>
     </div>
     <div class="pagination">

@@ -68,8 +68,6 @@ document.addEventListener('DOMContentLoaded', function(){
         const activeItems = parentComponentDiv.querySelectorAll('[data-item-type="active"]');
         let activeIds = [];
         activeItems.forEach(activeItem => {
-            console.log('activeItem')
-            console.log(activeItem)
             if (activeItem.dataset.itemType == 'active'){
                 activeIds.push(activeItem.dataset.itemId);
                 console.log(activeIds);
@@ -159,8 +157,6 @@ document.addEventListener('DOMContentLoaded', function(){
             routeString += termsSlugs + '&';
         });
         routeString += `&_embed`;
-        console.log('routeString');
-        console.log(routeString);
     }
 
     initData();
@@ -173,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function(){
         }
         const postBox = document.createElement('div');
         postBox.classList.add('post-box');
-
+ 
         const postBox__texts = document.createElement('div');
         postBox__texts.classList.add('post-box__texts');
 
@@ -239,7 +235,10 @@ document.addEventListener('DOMContentLoaded', function(){
         postBox__imageLink.classList.add('post-box__image-link');
 
         const postBox__imageImg = document.createElement('img');
-        postBox__imageImg.setAttribute('src', featuredImage);
+        const featuredImageNoExt = featuredImage.replace('.png', '');
+        postBox__imageImg.setAttribute('src', `${featuredImageNoExt}-715x500.png`);
+        postBox__imageImg.setAttribute('decoding', 'async');
+        postBox__imageImg.setAttribute('sizes', '(max-width: 715px) 100vw, 715');
         postBox__imageLink.appendChild(postBox__imageImg);
         postBox__image.appendChild(postBox__imageLink);
         postBox.appendChild(postBox__image);
@@ -266,16 +265,17 @@ document.addEventListener('DOMContentLoaded', function(){
     };
 
     const displayPaginationLinks = async (pageNumber) => {
+        const pageNumberForPagination = pageNumber === 0 ? 1 : pageNumber;
         console.log('buildPaginationLinks');
         console.log('fetchedPortfolioPosts.length');
         console.log(fetchedPortfolioPosts.length);
         paginationLinks.innerHTML = '';
-        for (let i = 0; i < fetchedPortfolioPosts.length-1; i++) {
+        for (let i = 0; i < fetchedPortfolioPosts.length; i++) {
             const paginationButton = document.createElement('button');
             paginationButton.classList.add('pagination__button');
             paginationButton.classList.add('test');
-            if (pageNumber == i+1){
-                console.log('pageNumber == i');
+            if (pageNumberForPagination == i+1){
+                console.log('pageNumberForPagination == i');
                 paginationButton.classList.add('pagination__button--active');
             }
             paginationButton.setAttribute('data-pagination-page-number', i+1);
@@ -283,15 +283,13 @@ document.addEventListener('DOMContentLoaded', function(){
             paginationButton.appendChild(paginationButtonText);
             paginationLinks.appendChild(paginationButton);
         }
-        addClickHandlersToPaginationLinks();        
+        addClickHandlersToPaginationLinks();
     }
 
     const updatePaginationLinks = (clickedLinkNumber) => {
         console.log('clickedLinkNumber');
         console.log(clickedLinkNumber);
         const paginationLinks = document.querySelector('.pagination');
-        console.log('paginationLinks');
-        console.log(paginationLinks);
         const paginationButtons = paginationLinks.querySelectorAll('.pagination__button');
         if (paginationButtons.length != 0) {
             const paginationLinkActive = paginationLinks.querySelector('.pagination__button--active');
@@ -324,13 +322,13 @@ document.addEventListener('DOMContentLoaded', function(){
                     buildPortfolioPostsList(pageNumber);
                     displayPaginationLinks(pageNumber);
                     console.log('fetchedPortfolioPosts');
-            console.log(fetchedPortfolioPosts);
+                    console.log(fetchedPortfolioPosts);
                 });
         }
 
         if (fetchedPortfolioPosts.length != 0) {
             buildPortfolioPostsList(pageNumber);
-            updatePaginationLinks(pageNumber);
+            updatePaginationLinks(pageNumber+1);
         }
     }
 
