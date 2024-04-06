@@ -1,3 +1,5 @@
+<?php defined('ABSPATH') or die; ?>
+
 <?php
   require_once get_template_directory() . '/inc/styles-scripts.php';
   require_once get_template_directory() . '/inc/acf-functions.php';
